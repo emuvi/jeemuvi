@@ -38,7 +38,11 @@ public class Desk extends JFrame {
     }
     
     public void actMain() {
-        new AelinReditCatchOnAct().execute();
+        try {
+            new AelinReditCatchOnAct().execute();
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
     }
     
     public void actMenu() {

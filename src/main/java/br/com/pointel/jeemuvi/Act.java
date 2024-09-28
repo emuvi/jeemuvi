@@ -14,7 +14,7 @@ public abstract class Act {
     
     public abstract String[] getProps();
     
-    public abstract void execute();
+    public abstract void execute() throws Exception;
     
     public Boolean getProp(String key, Boolean defaultValue) {
         return WizProps.get(getPropNamePrepared(key), defaultValue);
