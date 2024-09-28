@@ -153,6 +153,7 @@ public class WizSwing {
                     top = screenBounds.y;
                 }
                 frame.setBounds(left, top, width, height);
+                frame.setAlwaysOnTop(WizProps.get(parameterName + "_FRAME_ONTOP", frame.isAlwaysOnTop()));
             }
 
             @Override
@@ -161,6 +162,7 @@ public class WizSwing {
                 WizProps.set(parameterName + "_FRAME_TOP", frame.getBounds().y);
                 WizProps.set(parameterName + "_FRAME_WIDTH", frame.getBounds().width);
                 WizProps.set(parameterName + "_FRAME_HEIGHT", frame.getBounds().height);
+                WizProps.set(parameterName + "_FRAME_ONTOP", frame.isAlwaysOnTop());
             }
         });
         setAllCompontentsFont(frame, fontMonospaced());

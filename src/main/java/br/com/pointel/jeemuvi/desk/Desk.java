@@ -2,9 +2,12 @@ package br.com.pointel.jeemuvi.desk;
 
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
+import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -14,7 +17,8 @@ import javax.swing.UIManager;
  */
 public class Desk extends JFrame {
     
-    private final DeskIcon deskIcon = new DeskIcon();
+    private final DeskIcon deskIcon = new DeskIcon(this);
+    private final DeskMenu deskMenu = new DeskMenu(this);
 
     public Desk() throws HeadlessException {
         initComponents();
@@ -32,9 +36,13 @@ public class Desk extends JFrame {
         WizSwing.initEscaper(this);
     }
     
+    public void showMenu() {
+        this.deskMenu.show(deskIcon, 0, deskIcon.getHeight());
+    }
+    
     public static void start(String[] args) {
         try {
-            UIManager.setLookAndFeel(new FlatLightLaf());
+            UIManager.setLookAndFeel(new FlatDarculaLaf());
         } catch (Exception ex) {
             ex.printStackTrace();
         }

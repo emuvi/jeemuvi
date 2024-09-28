@@ -1,12 +1,17 @@
 package br.com.pointel.jeemuvi.desk;
 
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -14,10 +19,16 @@ import javax.swing.JLabel;
  */
 public class DeskIcon extends JLabel {
     
+    private final Desk desk;
     private final Image imageLogo;
+    private Point mouseDownCompCoords = null;
 
-    public DeskIcon() {
+    public DeskIcon(Desk desk) {
+        this.desk = desk;
         this.imageLogo = loadLogo();
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
+        setBorder(UIManager.getBorder("Button.border"));
+        this.initActions();
     }
     
     private Image loadLogo() {
@@ -26,6 +37,32 @@ public class DeskIcon extends JLabel {
         } catch (Exception e) {
             return new BufferedImage(128, 128, BufferedImage.TYPE_INT_ARGB);
         }
+    }
+    
+    private void initActions() {
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                desk.showMenu();
+            }
+            
+            @Override
+            public void mousePressed(MouseEvent e) {
+                mouseDownCompCoords = e.getPoint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                mouseDownCompCoords = null;
+            }
+        });
+        this.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                Point currCoords = e.getLocationOnScreen();
+                desk.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
+            }
+        });
     }
     
     public Image getLogo() {
