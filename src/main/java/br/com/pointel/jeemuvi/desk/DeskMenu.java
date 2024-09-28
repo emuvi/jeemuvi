@@ -24,6 +24,14 @@ public class DeskMenu extends JPopupMenu {
         initPopupListener();
     }
     
+    private void initRoot() {
+        rootOnTop.setSelected(desk.isAlwaysOnTop());
+        rootOnTop.addActionListener(e -> actRootOnTop());
+        add(rootOnTop);
+        rootExit.addActionListener(e -> actRootExit());
+        add(rootExit);
+    }
+    
     private void initPopupListener() {
         addPopupMenuListener(new PopupMenuListener() {
             @Override
@@ -37,14 +45,6 @@ public class DeskMenu extends JPopupMenu {
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {}
         });
-    }
-    
-    private void initRoot() {
-        rootOnTop.setSelected(desk.isAlwaysOnTop());
-        rootOnTop.addActionListener(e -> actRootOnTop());
-        add(rootOnTop);
-        rootExit.addActionListener(e -> actRootExit());
-        add(rootExit);
     }
     
     private void actRootOnTop() {

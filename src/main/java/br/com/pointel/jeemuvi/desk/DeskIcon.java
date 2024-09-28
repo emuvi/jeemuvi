@@ -43,7 +43,11 @@ public class DeskIcon extends JLabel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                desk.showMenu();
+                if (e.getButton() == MouseEvent.BUTTON1) {
+                    desk.actMain();
+                } else {
+                    desk.actMenu();
+                }
             }
             
             @Override

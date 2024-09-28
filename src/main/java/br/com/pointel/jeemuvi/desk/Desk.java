@@ -1,5 +1,6 @@
 package br.com.pointel.jeemuvi.desk;
 
+import br.com.pointel.jeemuvi.acts.AelinReditCatchOnAct;
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -36,7 +37,11 @@ public class Desk extends JFrame {
         WizSwing.initEscaper(this);
     }
     
-    public void showMenu() {
+    public void actMain() {
+        new AelinReditCatchOnAct().execute();
+    }
+    
+    public void actMenu() {
         this.deskMenu.show(deskIcon, 0, deskIcon.getHeight());
     }
     
