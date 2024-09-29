@@ -6,6 +6,7 @@ import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizProps;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
