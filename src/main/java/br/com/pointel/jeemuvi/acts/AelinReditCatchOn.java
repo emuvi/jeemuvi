@@ -15,7 +15,7 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author emuvi
  */
-public class AelinReditCatchOnAct extends Act {
+public class AelinReditCatchOn extends Act {
 
     public static final ActMeta META = new ActMeta(
             "AelinReditCatchOn", 

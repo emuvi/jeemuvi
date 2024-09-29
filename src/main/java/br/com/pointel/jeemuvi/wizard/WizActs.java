@@ -2,14 +2,14 @@ package br.com.pointel.jeemuvi.wizard;
 
 import br.com.pointel.jeemuvi.Act;
 import br.com.pointel.jeemuvi.Good;
-import br.com.pointel.jeemuvi.acts.AelinReditCatchOnAct;
+import br.com.pointel.jeemuvi.acts.AelinReditCatchOn;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WizActs {
 
     private static final Good[] GOODS = new Good[] {
-        new Good(AelinReditCatchOnAct.class, AelinReditCatchOnAct.META),
+        new Good(AelinReditCatchOn.class, AelinReditCatchOn.META),
     };
         
     public static Good[] getGoods() {

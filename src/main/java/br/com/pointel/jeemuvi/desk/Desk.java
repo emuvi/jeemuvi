@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.desk;
 
-import br.com.pointel.jeemuvi.acts.AelinReditCatchOnAct;
+import br.com.pointel.jeemuvi.acts.AelinReditCatchOn;
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import com.formdev.flatlaf.FlatDarculaLaf;
