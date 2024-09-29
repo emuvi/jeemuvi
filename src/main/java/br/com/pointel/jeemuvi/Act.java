@@ -1,6 +1,7 @@
 package br.com.pointel.jeemuvi;
 
 import br.com.pointel.jeemuvi.wizard.WizProps;
+import br.com.pointel.jeemuvi.wizard.WizSwing;
 
 /**
  *
@@ -8,13 +9,38 @@ import br.com.pointel.jeemuvi.wizard.WizProps;
  */
 public abstract class Act {
     
-    public abstract String getName();
+    public abstract ActMeta getMeta();
     
-    public abstract String getHint();
+    public abstract void run() throws Exception;
     
-    public abstract String[] getProps();
+    private Long beginTime = null;
+    private Long endTime = null;
     
-    public abstract void execute() throws Exception;
+    public void start() {
+        try {
+            beginTime = System.currentTimeMillis();
+            run();
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        } finally {
+            endTime = System.currentTimeMillis();
+        }
+    }
+    
+    public boolean hasStarted() {
+        return beginTime != null;
+    }
+    
+    public boolean hasFinished() {
+        return endTime != null;
+    }
+    
+    public Long getElapsedTime() {
+        if (beginTime == null || endTime == null) {
+            return null;
+        }
+        return endTime - beginTime;
+    }
     
     public Boolean getProp(String key, Boolean defaultValue) {
         return WizProps.get(getPropNamePrepared(key), defaultValue);
@@ -49,7 +75,7 @@ public abstract class Act {
     }
     
     private String getPropNamePrepared(String key) {
-        return "ACT_" + getName() + "_PROP_" + key;
+        return "ACT_" + getMeta().name() + "_PROP_" + key;
     }
     
 }

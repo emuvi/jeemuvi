@@ -4,11 +4,8 @@ import br.com.pointel.jeemuvi.acts.AelinReditCatchOnAct;
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -38,11 +35,7 @@ public class Desk extends JFrame {
     }
     
     public void actMain() {
-        try {
-            new AelinReditCatchOnAct().execute();
-        } catch (Exception e) {
-            WizSwing.showError(e);
-        }
+        new DeskAct().setVisible(true);
     }
     
     public void actMenu() {
