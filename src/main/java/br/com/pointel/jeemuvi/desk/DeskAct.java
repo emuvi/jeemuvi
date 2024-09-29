@@ -73,6 +73,10 @@ public class DeskAct extends JFrame {
     private void initFrameListeners() {
         addWindowListener(new WindowAdapter() {
             @Override
+            public void windowActivated(WindowEvent e) {
+                comboAct.requestFocus();
+            }
+            @Override
             public void windowClosed(WindowEvent e) {
                 --ACTIVES;
             }
