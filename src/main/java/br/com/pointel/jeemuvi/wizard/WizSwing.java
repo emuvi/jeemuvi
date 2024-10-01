@@ -11,12 +11,15 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URI;
 import javax.swing.AbstractAction;
+import javax.swing.AbstractButton;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -29,6 +32,11 @@ import javax.swing.SwingUtilities;
  */
 public class WizSwing {
 
+    public static void addMenuItem(JComponent menu, AbstractButton item, ActionListener action) {
+        item.addActionListener(action);
+        menu.add(item);
+    }
+    
     public static void showInfo(String message) {
         if (SwingUtilities.isEventDispatchThread()) {
             JOptionPane.showMessageDialog(null, message, "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -118,15 +126,15 @@ public class WizSwing {
     }
 
     public static Font fontMonospaced() {
-        return new Font(Font.MONOSPACED, Font.PLAIN, 14);
+        return new Font(Font.MONOSPACED, Font.PLAIN, 12);
     }
 
     public static Font fontSerif() {
-        return new Font(Font.SERIF, Font.PLAIN, 14);
+        return new Font(Font.SERIF, Font.PLAIN, 12);
     }
 
     public static Font fontSansSerif() {
-        return new Font(Font.SANS_SERIF, Font.PLAIN, 14);
+        return new Font(Font.SANS_SERIF, Font.PLAIN, 12);
     }
 
     public static void initFrame(JFrame frame) {

@@ -1,4 +1,4 @@
-package br.com.pointel.jeemuvi.desk;
+package br.com.pointel.jeemuvi;
 
 import java.awt.Cursor;
 import java.awt.Graphics;
@@ -17,13 +17,13 @@ import javax.swing.UIManager;
  *
  * @author emuvi
  */
-public class DeskIcon extends JLabel {
+public class JeemuviDeskIcon extends JLabel {
     
-    private final Desk desk;
+    private final JeemuviDesk desk;
     private final Image imageLogo;
     private Point mouseDownCompCoords = null;
 
-    public DeskIcon(Desk desk) {
+    public JeemuviDeskIcon(JeemuviDesk desk) {
         this.desk = desk;
         this.imageLogo = loadLogo();
         setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -33,7 +33,7 @@ public class DeskIcon extends JLabel {
     
     private Image loadLogo() {
         try {
-            return ImageIO.read(Desk.class.getResourceAsStream("/img/logo-perfil.jpg"));
+            return ImageIO.read(JeemuviDesk.class.getResourceAsStream("/img/logo-perfil.jpg"));
         } catch (Exception e) {
             return new BufferedImage(128, 128, BufferedImage.TYPE_INT_ARGB);
         }
@@ -43,11 +43,7 @@ public class DeskIcon extends JLabel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON1) {
-                    desk.actMain();
-                } else {
-                    desk.actMenu();
-                }
+                desk.actMenu();
             }
             
             @Override
@@ -63,7 +59,7 @@ public class DeskIcon extends JLabel {
         this.addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
-                Point currCoords = e.getLocationOnScreen();
+                var currCoords = e.getLocationOnScreen();
                 desk.setLocation(currCoords.x - mouseDownCompCoords.x, currCoords.y - mouseDownCompCoords.y);
             }
         });

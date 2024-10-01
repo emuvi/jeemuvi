@@ -1,8 +1,5 @@
-package br.com.pointel.jeemuvi.acts;
+package br.com.pointel.jeemuvi.service;
 
-import br.com.pointel.jeemuvi.Act;
-import br.com.pointel.jeemuvi.ActMeta;
-import br.com.pointel.jeemuvi.ActProp;
 import br.com.pointel.jeemuvi.wizard.WizFiles;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.io.File;
@@ -17,19 +14,8 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author emuvi
  */
-public class AelinReditCatchOn extends Act {
+public class AelinReditCatchOn {
 
-    public static final ActMeta META = new ActMeta(
-            "AelinReditCatchOn",
-            "Catch all new Redit and puts on Aelin and bootstrap them.",
-            new ActProp[]{});
-
-    @Override
-    public ActMeta getMeta() {
-        return META;
-    }
-
-    @Override
     public void run() throws Exception {
         if (!WizSwing.showConfirm("Want to CatchOn the Redit?")) {
             return;

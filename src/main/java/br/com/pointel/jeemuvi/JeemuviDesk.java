@@ -1,6 +1,5 @@
-package br.com.pointel.jeemuvi.desk;
+package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.acts.AelinReditCatchOn;
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import com.formdev.flatlaf.FlatDarculaLaf;
@@ -13,12 +12,12 @@ import javax.swing.UIManager;
  *
  * @author emuvi
  */
-public class Desk extends JFrame {
+public class JeemuviDesk extends JFrame {
     
-    private final DeskIcon deskIcon = new DeskIcon(this);
-    private final DeskMenu deskMenu = new DeskMenu(this);
+    private final JeemuviDeskIcon deskIcon = new JeemuviDeskIcon(this);
+    private final JeemuviDeskMenu deskMenu = new JeemuviDeskMenu(this);
 
-    public Desk() throws HeadlessException {
+    public JeemuviDesk() throws HeadlessException {
         initComponents();
     }
     
@@ -34,10 +33,6 @@ public class Desk extends JFrame {
         WizSwing.initEscaper(this);
     }
     
-    public void actMain() {
-        new DeskAct().setVisible(true);
-    }
-    
     public void actMenu() {
         this.deskMenu.show(deskIcon, 0, deskIcon.getHeight());
     }
@@ -49,7 +44,7 @@ public class Desk extends JFrame {
             ex.printStackTrace();
         }
         java.awt.EventQueue.invokeLater(() -> {
-            new Desk().setVisible(true);
+            new JeemuviDesk().setVisible(true);
         });
     }
     

@@ -1,7 +1,5 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.desk.Desk;
-
 /**
  *
  * @author emuvi
@@ -9,7 +7,7 @@ import br.com.pointel.jeemuvi.desk.Desk;
 public class Jeemuvi {
 
     public static void main(String[] args) {
-        Desk.start(args);
+        JeemuviDesk.start(args);
     }
     
 }
