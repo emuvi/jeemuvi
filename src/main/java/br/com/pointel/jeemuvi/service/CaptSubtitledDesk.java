@@ -8,16 +8,16 @@ import java.io.File;
  *
  * @author emuvi
  */
-public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
+public class CaptSubtitledDesk extends javax.swing.JFrame {
 
-    public AelinCapturarLegendasDesk() {
+    public CaptSubtitledDesk() {
         initComponents();
         initFrame();
     }
 
     private void initFrame() {
         WizSwing.initFrame(this);
-        new Dropper(fieldOrigem, fieldDestino, fieldVinculador).init();
+        new Dropper(fieldOrigin, fieldDestiny, fieldLinker).init();
     }
 
     @SuppressWarnings("unchecked")
@@ -25,28 +25,28 @@ public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
     private void initComponents() {
 
         labelOrigem = new javax.swing.JLabel();
-        fieldOrigem = new javax.swing.JTextField();
+        fieldOrigin = new javax.swing.JTextField();
         labelDestino = new javax.swing.JLabel();
-        fieldDestino = new javax.swing.JTextField();
-        labelVinculador = new javax.swing.JLabel();
-        fieldVinculador = new javax.swing.JTextField();
+        fieldDestiny = new javax.swing.JTextField();
+        labelLinker = new javax.swing.JLabel();
+        fieldLinker = new javax.swing.JTextField();
         buttonRun = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Aelin Capturar Legendas");
-        setName("AelinCapturarLegendasDesk"); // NOI18N
+        setTitle("CaptSubtitled");
+        setName("CaptSubtitledDesk"); // NOI18N
 
-        labelOrigem.setText("Origem");
+        labelOrigem.setText("Origin");
 
-        fieldOrigem.setName("Origem"); // NOI18N
+        fieldOrigin.setName("Origin"); // NOI18N
 
-        labelDestino.setText("Destino");
+        labelDestino.setText("Destiny");
 
-        fieldDestino.setName("Destino"); // NOI18N
+        fieldDestiny.setName("Destiny"); // NOI18N
 
-        labelVinculador.setText("Vinculador");
+        labelLinker.setText("Linker");
 
-        fieldVinculador.setName("Vinculador"); // NOI18N
+        fieldLinker.setName("Linker"); // NOI18N
 
         buttonRun.setText("Run");
         buttonRun.addActionListener(new java.awt.event.ActionListener() {
@@ -62,14 +62,14 @@ public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fieldOrigem)
-                    .addComponent(fieldDestino)
-                    .addComponent(fieldVinculador)
+                    .addComponent(fieldOrigin)
+                    .addComponent(fieldDestiny)
+                    .addComponent(fieldLinker)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelOrigem)
                             .addComponent(labelDestino)
-                            .addComponent(labelVinculador)
+                            .addComponent(labelLinker)
                             .addComponent(buttonRun))
                         .addGap(0, 249, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -80,15 +80,15 @@ public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelOrigem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldOrigem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelDestino)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldDestiny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelVinculador)
+                .addComponent(labelLinker)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldVinculador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldLinker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonRun)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -99,10 +99,10 @@ public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
 
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
         try {
-            new AelinCapturarLegendas(
-                    new File(fieldOrigem.getText()), 
-                    new File(fieldDestino.getText()), 
-                    new File(fieldVinculador.getText())
+            new CaptSubtitled(
+                    new File(fieldOrigin.getText()), 
+                    new File(fieldDestiny.getText()), 
+                    new File(fieldLinker.getText())
             ).run();
         } catch (Exception e) {
             WizSwing.showError(e);
@@ -111,11 +111,11 @@ public class AelinCapturarLegendasDesk extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRun;
-    private javax.swing.JTextField fieldDestino;
-    private javax.swing.JTextField fieldOrigem;
-    private javax.swing.JTextField fieldVinculador;
+    private javax.swing.JTextField fieldDestiny;
+    private javax.swing.JTextField fieldLinker;
+    private javax.swing.JTextField fieldOrigin;
     private javax.swing.JLabel labelDestino;
+    private javax.swing.JLabel labelLinker;
     private javax.swing.JLabel labelOrigem;
-    private javax.swing.JLabel labelVinculador;
     // End of variables declaration//GEN-END:variables
 }

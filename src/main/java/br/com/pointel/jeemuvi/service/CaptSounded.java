@@ -14,7 +14,7 @@ import org.apache.commons.io.FilenameUtils;
  *
  * @author emuvi
  */
-public class AelinReditCatchOn {
+public class CaptSounded {
 
     public void run() throws Exception {
         if (!WizSwing.showConfirm("Want to CatchOn the Redit?")) {

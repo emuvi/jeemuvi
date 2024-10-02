@@ -34,7 +34,10 @@ public class WizChars {
     }
     
     public static String makeParameterName(String ofTitle) {
-        return ofTitle.replace(" ", "_").toUpperCase();
+        return ofTitle
+                .replace(" ", "")
+                .replace("-", "_")
+                .toUpperCase();
     }
 
     public static String mountGrid(List<Pair<String, String>> grid) {
@@ -88,6 +91,10 @@ public class WizChars {
             result.addAll(getWordsInBounds(spaced));
         }
         return result;
+    }
+    
+    public static String[] getLines(String source) {
+        return source.split("\\r?\\n");
     }
 
     public static Set<String> getWordsInBounds(String source) {

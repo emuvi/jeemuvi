@@ -1,14 +1,11 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.service.AelinCapturarLegendasDesk;
-import br.com.pointel.jeemuvi.service.AelinReditCatchOn;
+import br.com.pointel.jeemuvi.service.CaptSubtitledDesk;
+import br.com.pointel.jeemuvi.service.CaptSounded;
 import br.com.pointel.jeemuvi.service.CharvsDesk;
+import br.com.pointel.jeemuvi.service.CharScrapDesk;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
-import java.awt.event.ActionListener;
-import javax.swing.AbstractButton;
 import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JComponent;
-import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.event.PopupMenuEvent;
@@ -22,10 +19,11 @@ public class JeemuviDeskMenu extends JPopupMenu {
 
     private final JeemuviDesk desk;
     
+    private final JMenuItem menuCaptSounded = new JMenuItem("CaptSounded");
+    private final JMenuItem menuCaptSubtitled = new JMenuItem("CaptSubtitled");
+    private final JMenuItem menuCharScrap = new JMenuItem("CharScrap");
     private final JMenuItem menuCharvs = new JMenuItem("Charvs");
-    private final JMenuItem menuAelinReditCatchOn = new JMenuItem("AelinReditCatchOn");
-    private final JMenuItem menuAelinCapturarLegendas = new JMenuItem("Aelin Capturar Legendas");
-    private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("On Top");
+    private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("OnTop");
     private final JMenuItem menuExit = new JMenuItem("Exit");
     
     public JeemuviDeskMenu(JeemuviDesk desk) {
@@ -35,35 +33,40 @@ public class JeemuviDeskMenu extends JPopupMenu {
     }
     
     private void initMenu() {
+        WizSwing.addMenuItem(this, menuCaptSounded, e -> callCaptSounded());
+        WizSwing.addMenuItem(this, menuCaptSubtitled, e -> callCaptSubtitled());
+        WizSwing.addMenuItem(this, menuCharScrap, e -> callCharScrap());
         WizSwing.addMenuItem(this, menuCharvs, e -> callCharvs());
-        WizSwing.addMenuItem(this, menuAelinCapturarLegendas, e -> callAelinCapturarLegendas());
-        WizSwing.addMenuItem(this, menuAelinReditCatchOn, e -> callAelinReditCatchOn());
-        WizSwing.addMenuItem(this, menuOnTop, e -> callRootOnTop());
-        WizSwing.addMenuItem(this, menuExit, e -> callRootExit());
+        WizSwing.addMenuItem(this, menuOnTop, e -> callOnTop());
+        WizSwing.addMenuItem(this, menuExit, e -> callExit());
+    }
+    
+    private void callCaptSounded() {
+        try {
+            new CaptSounded().run();
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
+    }
+    
+    private void callCaptSubtitled() {
+        new CaptSubtitledDesk().setVisible(true);
     }
     
     private void callCharvs() {
         new CharvsDesk().setVisible(true);
     }
     
-    private void callAelinCapturarLegendas() {
-        new AelinCapturarLegendasDesk().setVisible(true);
+    private void callCharScrap() {
+        new CharScrapDesk().setVisible(true);
     }
     
-    private void callAelinReditCatchOn() {
-        try {
-            new AelinReditCatchOn().run();
-        } catch (Exception e) {
-            WizSwing.showError(e);
-        }
-    }
-    
-    private void callRootOnTop() {
+    private void callOnTop() {
         desk.setAlwaysOnTop(!desk.isAlwaysOnTop());
         menuOnTop.setSelected(desk.isAlwaysOnTop());
     }
     
-    private void callRootExit() {
+    private void callExit() {
         WizSwing.close(desk);
     }
     

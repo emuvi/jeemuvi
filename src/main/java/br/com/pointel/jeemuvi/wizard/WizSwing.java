@@ -20,10 +20,12 @@ import java.io.File;
 import java.net.URI;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -172,14 +174,19 @@ public class WizSwing {
             }
 
             public void loadFrameComps(Component component) {
+                if (component != null && component.getName() != null && !component.getName().isEmpty()) {
+                    var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
+                    switch (component) {
+                        case JTextField textField -> textField.setText(WizProps.get(paramName, textField.getText()));
+                        case JSpinner spinnerField -> spinnerField.setValue(WizProps.get(paramName, (Integer) spinnerField.getValue()));
+                        case JCheckBox checkField -> checkField.setSelected(WizProps.get(paramName, checkField.isSelected()));
+                        default -> {
+                        }
+                    }
+                }
                 if (component instanceof Container container) {
                     for (Component inside : container.getComponents()) {
                         loadFrameComps(inside);
-                    }
-                }
-                if (component instanceof JTextField textField) {
-                    if (!textField.getName().isEmpty()) {
-                        textField.setText(WizProps.get(rootName + "_COMP_" + WizChars.makeParameterName(textField.getName()), textField.getText()));
                     }
                 }
             }
@@ -199,14 +206,19 @@ public class WizSwing {
             }
 
             public void saveFrameComps(Component component) {
+                if (component != null && component.getName() != null && !component.getName().isEmpty()) {
+                    var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
+                    switch (component) {
+                        case JTextField textField -> WizProps.set(paramName, textField.getText());
+                        case JSpinner spinnerField -> WizProps.set(paramName, (Integer) spinnerField.getValue());
+                        case JCheckBox checkField -> WizProps.set(paramName, checkField.isSelected());
+                        default -> {
+                        }
+                    }
+                }
                 if (component instanceof Container container) {
                     for (Component inside : container.getComponents()) {
                         saveFrameComps(inside);
-                    }
-                }
-                if (component instanceof JTextField textField) {
-                    if (!textField.getName().isEmpty()) {
-                        WizProps.set(rootName + "_COMP_" + WizChars.makeParameterName(textField.getName()), textField.getText());
                     }
                 }
             }
