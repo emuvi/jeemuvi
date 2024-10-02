@@ -26,6 +26,7 @@ public class JeemuviDesk extends JFrame {
         setIconImage(deskIcon.getLogo());
         setSize(128, 128);
         setUndecorated(true);
+        setName(WizBase.APP_NAME);
         setTitle(WizBase.APP_TITLE);
         setLayout(new BorderLayout());
         add(deskIcon, BorderLayout.CENTER);

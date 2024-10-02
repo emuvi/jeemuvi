@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -23,6 +24,7 @@ import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
@@ -36,7 +38,7 @@ public class WizSwing {
         item.addActionListener(action);
         menu.add(item);
     }
-    
+
     public static void showInfo(String message) {
         if (SwingUtilities.isEventDispatchThread()) {
             JOptionPane.showMessageDialog(null, message, "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -126,26 +128,31 @@ public class WizSwing {
     }
 
     public static Font fontMonospaced() {
-        return new Font(Font.MONOSPACED, Font.PLAIN, 12);
+        return new Font(Font.MONOSPACED, Font.PLAIN, 11);
     }
 
     public static Font fontSerif() {
-        return new Font(Font.SERIF, Font.PLAIN, 12);
+        return new Font(Font.SERIF, Font.PLAIN, 11);
     }
 
     public static Font fontSansSerif() {
-        return new Font(Font.SANS_SERIF, Font.PLAIN, 12);
+        return new Font(Font.SANS_SERIF, Font.PLAIN, 11);
     }
 
     public static void initFrame(JFrame frame) {
-        final var parameterName = WizChars.makeParameterName(frame.getTitle());
+        final var rootName = WizChars.makeParameterName(!frame.getName().isEmpty() ? frame.getName() : frame.getTitle());
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowOpened(WindowEvent e) {
-                var left = WizProps.get(parameterName + "_FRAME_LEFT", frame.getBounds().x);
-                var top = WizProps.get(parameterName + "_FRAME_TOP", frame.getBounds().y);
-                var width = WizProps.get(parameterName + "_FRAME_WIDTH", frame.getBounds().width);
-                var height = WizProps.get(parameterName + "_FRAME_HEIGHT", frame.getBounds().height);
+                loadFrameProps();
+                loadFrameComps(frame);
+            }
+
+            private void loadFrameProps() throws HeadlessException, SecurityException {
+                var left = WizProps.get(rootName + "_FRAME_LEFT", frame.getBounds().x);
+                var top = WizProps.get(rootName + "_FRAME_TOP", frame.getBounds().y);
+                var width = WizProps.get(rootName + "_FRAME_WIDTH", frame.getBounds().width);
+                var height = WizProps.get(rootName + "_FRAME_HEIGHT", frame.getBounds().height);
                 var gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
                 var screenBounds = gd.getDefaultConfiguration().getBounds();
                 if (left + width > screenBounds.x + screenBounds.width) {
@@ -161,26 +168,57 @@ public class WizSwing {
                     top = screenBounds.y;
                 }
                 frame.setBounds(left, top, width, height);
-                frame.setAlwaysOnTop(WizProps.get(parameterName + "_FRAME_ONTOP", frame.isAlwaysOnTop()));
+                frame.setAlwaysOnTop(WizProps.get(rootName + "_FRAME_ONTOP", frame.isAlwaysOnTop()));
+            }
+
+            public void loadFrameComps(Component component) {
+                if (component instanceof Container container) {
+                    for (Component inside : container.getComponents()) {
+                        loadFrameComps(inside);
+                    }
+                }
+                if (component instanceof JTextField textField) {
+                    if (!textField.getName().isEmpty()) {
+                        textField.setText(WizProps.get(rootName + "_COMP_" + WizChars.makeParameterName(textField.getName()), textField.getText()));
+                    }
+                }
             }
 
             @Override
             public void windowClosing(WindowEvent e) {
-                WizProps.set(parameterName + "_FRAME_LEFT", frame.getBounds().x);
-                WizProps.set(parameterName + "_FRAME_TOP", frame.getBounds().y);
-                WizProps.set(parameterName + "_FRAME_WIDTH", frame.getBounds().width);
-                WizProps.set(parameterName + "_FRAME_HEIGHT", frame.getBounds().height);
-                WizProps.set(parameterName + "_FRAME_ONTOP", frame.isAlwaysOnTop());
+                saveFrameProps();
+                saveFrameComps(frame);
+            }
+
+            private void saveFrameProps() {
+                WizProps.set(rootName + "_FRAME_LEFT", frame.getBounds().x);
+                WizProps.set(rootName + "_FRAME_TOP", frame.getBounds().y);
+                WizProps.set(rootName + "_FRAME_WIDTH", frame.getBounds().width);
+                WizProps.set(rootName + "_FRAME_HEIGHT", frame.getBounds().height);
+                WizProps.set(rootName + "_FRAME_ONTOP", frame.isAlwaysOnTop());
+            }
+
+            public void saveFrameComps(Component component) {
+                if (component instanceof Container container) {
+                    for (Component inside : container.getComponents()) {
+                        saveFrameComps(inside);
+                    }
+                }
+                if (component instanceof JTextField textField) {
+                    if (!textField.getName().isEmpty()) {
+                        WizProps.set(rootName + "_COMP_" + WizChars.makeParameterName(textField.getName()), textField.getText());
+                    }
+                }
             }
         });
         setAllCompontentsFont(frame, fontMonospaced());
     }
-    
+
     public static void setAllCompontentsFont(Component component, Font fonte) {
         component.setFont(fonte);
         if (component instanceof Container container) {
-            for (Component filho : container.getComponents()) {
-                setAllCompontentsFont(filho, fonte);
+            for (Component inside : container.getComponents()) {
+                setAllCompontentsFont(inside, fonte);
             }
         }
     }
