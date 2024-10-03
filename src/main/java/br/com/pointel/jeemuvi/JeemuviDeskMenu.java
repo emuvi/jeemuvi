@@ -4,6 +4,7 @@ import br.com.pointel.jeemuvi.service.CaptSubtitledDesk;
 import br.com.pointel.jeemuvi.service.CaptSounded;
 import br.com.pointel.jeemuvi.service.CharvsDesk;
 import br.com.pointel.jeemuvi.service.CharScrapDesk;
+import br.com.pointel.jeemuvi.service.FileDuplicateDesk;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
@@ -21,6 +22,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private final JMenuItem menuCaptSounded = new JMenuItem("CaptSounded");
     private final JMenuItem menuCaptSubtitled = new JMenuItem("CaptSubtitled");
+    private final JMenuItem menuFileDuplicate = new JMenuItem("FileDuplicate");
     private final JMenuItem menuCharScrap = new JMenuItem("CharScrap");
     private final JMenuItem menuCharvs = new JMenuItem("Charvs");
     private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("OnTop");
@@ -35,6 +37,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     private void initMenu() {
         WizSwing.addMenuItem(this, menuCaptSounded, e -> callCaptSounded());
         WizSwing.addMenuItem(this, menuCaptSubtitled, e -> callCaptSubtitled());
+        WizSwing.addMenuItem(this, menuFileDuplicate, e -> callFileDuplicate());
         WizSwing.addMenuItem(this, menuCharScrap, e -> callCharScrap());
         WizSwing.addMenuItem(this, menuCharvs, e -> callCharvs());
         WizSwing.addMenuItem(this, menuOnTop, e -> callOnTop());
@@ -51,6 +54,10 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private void callCaptSubtitled() {
         new CaptSubtitledDesk().setVisible(true);
+    }
+    
+    private void callFileDuplicate() {
+        new FileDuplicateDesk().setVisible(true);
     }
     
     private void callCharvs() {

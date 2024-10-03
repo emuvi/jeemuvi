@@ -17,7 +17,7 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
 
     private void initFrame() {
         WizSwing.initFrame(this);
-        new Dropper(fieldOrigin, fieldDestiny, fieldLinker).init();
+        new Dropper(fieldOrigin, fieldDestinyFolder, fieldLinker).init();
     }
 
     @SuppressWarnings("unchecked")
@@ -27,10 +27,12 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
         labelOrigem = new javax.swing.JLabel();
         fieldOrigin = new javax.swing.JTextField();
         labelDestino = new javax.swing.JLabel();
-        fieldDestiny = new javax.swing.JTextField();
+        fieldDestinyFolder = new javax.swing.JTextField();
         labelLinker = new javax.swing.JLabel();
         fieldLinker = new javax.swing.JTextField();
         buttonRun = new javax.swing.JButton();
+        fieldDestinyName = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CaptSubtitled");
@@ -42,7 +44,7 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
 
         labelDestino.setText("Destiny");
 
-        fieldDestiny.setName("Destiny"); // NOI18N
+        fieldDestinyFolder.setName("DestinyFolder"); // NOI18N
 
         labelLinker.setText("Linker");
 
@@ -55,6 +57,11 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
             }
         });
 
+        fieldDestinyName.setText("{name}");
+        fieldDestinyName.setName("DestinyName"); // NOI18N
+
+        jLabel1.setText("Name");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,15 +70,21 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldOrigin)
-                    .addComponent(fieldDestiny)
                     .addComponent(fieldLinker)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelOrigem)
-                            .addComponent(labelDestino)
-                            .addComponent(labelLinker)
-                            .addComponent(buttonRun))
-                        .addGap(0, 249, Short.MAX_VALUE)))
+                            .addComponent(fieldDestinyFolder)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelOrigem)
+                                    .addComponent(labelDestino)
+                                    .addComponent(labelLinker)
+                                    .addComponent(buttonRun))
+                                .addGap(0, 110, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(fieldDestinyName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -82,9 +95,13 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelDestino)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelDestino)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fieldDestiny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldDestinyFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldDestinyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelLinker)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -101,7 +118,8 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
         try {
             new CaptSubtitled(
                     new File(fieldOrigin.getText()), 
-                    new File(fieldDestiny.getText()), 
+                    new File(fieldDestinyFolder.getText()), 
+                    fieldDestinyName.getText(),
                     new File(fieldLinker.getText())
             ).run();
         } catch (Exception e) {
@@ -111,9 +129,11 @@ public class CaptSubtitledDesk extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRun;
-    private javax.swing.JTextField fieldDestiny;
+    private javax.swing.JTextField fieldDestinyFolder;
+    private javax.swing.JTextField fieldDestinyName;
     private javax.swing.JTextField fieldLinker;
     private javax.swing.JTextField fieldOrigin;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelDestino;
     private javax.swing.JLabel labelLinker;
     private javax.swing.JLabel labelOrigem;

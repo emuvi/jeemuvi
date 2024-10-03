@@ -4,7 +4,8 @@ import br.com.pointel.jeemuvi.wizard.WizChars;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -13,34 +14,42 @@ import org.apache.commons.io.FilenameUtils;
  */
 public class CaptSubtitled {
     
-    private final File origem;
-    private final File destino;
-    private final File vinculador;
+    private final File origin;
+    private final File destinyFolder;
+    private final String destinyName;
+    private final File linker;
+    
+    private final List<String> links;
 
-    public CaptSubtitled(File origem, File destino, File vinculador) {
-        this.origem = origem;
-        this.destino = destino;
-        this.vinculador = vinculador;
+    public CaptSubtitled(File origin, File destinyFolder, String destinyName, File linker) {
+        this.origin = origin;
+        this.destinyFolder = destinyFolder;
+        this.destinyName = destinyName;
+        this.linker = linker;
+        this.links = new ArrayList<>();
     }
     
     public void run() throws Exception {
-        if (origem.isDirectory()) {
-            for (var inside : origem.listFiles()) {
+        if (origin.isDirectory()) {
+            for (var inside : origin.listFiles()) {
                 shoot(inside);
             }
         } else {
-            shoot(origem);
+            shoot(origin);
+        }
+        if (!links.isEmpty()) {
+            makeLinker();
         }
     }
     
     private void shoot(File file) throws Exception {
         if (file.getName().endsWith(".srt")) {
-            capturar(file);
+            capture(file);
         }
     }
     
-    private void capturar(File legenda) throws Exception {
-        var source = Files.readString(legenda.toPath(), StandardCharsets.UTF_8);
+    private void capture(File file) throws Exception {
+        var source = Files.readString(file.toPath(), StandardCharsets.UTF_8);
         var builder = new StringBuilder();
         var lines = WizChars.getLines(source);
         for (var line : lines) {
@@ -52,9 +61,19 @@ public class CaptSubtitled {
                 builder.append("\n");
             }
         }
-        var baseName = FilenameUtils.getBaseName(legenda.getName());
-        var fileDestino = new File(destino, baseName + ".md");
-        Files.writeString(fileDestino.toPath(), builder.toString(), StandardCharsets.UTF_8);
+        var baseName = FilenameUtils.getBaseName(file.getName());
+        var newName = destinyName.replace("{name}", baseName);
+        var destinyFile = new File(destinyFolder, newName + ".md");
+        Files.writeString(destinyFile.toPath(), builder.toString(), StandardCharsets.UTF_8);
+        links.add("[[" + newName + "]]");
+    }
+    
+    private void makeLinker() throws Exception {
+        if (linker.exists()) {
+            links.add(0, Files.readString(linker.toPath(), StandardCharsets.UTF_8));
+        }
+        var source = String.join("\n\n", links);
+        Files.writeString(linker.toPath(), source, StandardCharsets.UTF_8);
     }
     
 }
