@@ -1,6 +1,6 @@
-package br.com.pointel.jeemuvi.service;
+package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.Dropper;
+import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.io.File;
 import javax.swing.JTextField;
@@ -17,7 +17,7 @@ public class CaptSoundedDesk extends javax.swing.JFrame {
     }
 
     private void initFrame() {
-        new Dropper(WizSwing.getAllCompontentsOf(this, JTextField.class)).init();
+        SwingDropper.initAllOn(this);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }

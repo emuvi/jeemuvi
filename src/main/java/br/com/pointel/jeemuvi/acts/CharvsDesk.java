@@ -1,4 +1,4 @@
-package br.com.pointel.jeemuvi.service;
+package br.com.pointel.jeemuvi.acts;
 
 
 import br.com.pointel.jeemuvi.wizard.WizChars;
@@ -691,7 +691,6 @@ public class CharvsDesk extends javax.swing.JFrame {
         var selected = new File(FOLDER_CHATS, comboChats.getSelectedItem().toString());
         WizSwing.open(selected);
     }
-    
 
     private String produce(String origin, String nameMark, String nameText, boolean checkAlreadyExists) throws Exception {
         origin = origin.replaceAll("\\【.*\\†.*\\】", "");

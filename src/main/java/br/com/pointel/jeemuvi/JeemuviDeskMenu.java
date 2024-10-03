@@ -1,10 +1,11 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.service.CaptSubtitledDesk;
-import br.com.pointel.jeemuvi.service.CaptSoundedDesk;
-import br.com.pointel.jeemuvi.service.CharvsDesk;
-import br.com.pointel.jeemuvi.service.CharScrapDesk;
-import br.com.pointel.jeemuvi.service.FileDuplicateDesk;
+import br.com.pointel.jeemuvi.acts.CaptSubtitledDesk;
+import br.com.pointel.jeemuvi.acts.CaptSoundedDesk;
+import br.com.pointel.jeemuvi.acts.CharvsDesk;
+import br.com.pointel.jeemuvi.acts.CharScrapDesk;
+import br.com.pointel.jeemuvi.acts.FileDuplicateDesk;
+import br.com.pointel.jeemuvi.acts.HeartMakeDesk;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JMenuItem;
@@ -22,9 +23,10 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private final JMenuItem menuCaptSounded = new JMenuItem("CaptSounded");
     private final JMenuItem menuCaptSubtitled = new JMenuItem("CaptSubtitled");
-    private final JMenuItem menuFileDuplicate = new JMenuItem("FileDuplicate");
     private final JMenuItem menuCharScrap = new JMenuItem("CharScrap");
     private final JMenuItem menuCharvs = new JMenuItem("Charvs");
+    private final JMenuItem menuFileDuplicate = new JMenuItem("FileDuplicate");
+    private final JMenuItem menuHeartMake = new JMenuItem("HeartMake");
     private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("OnTop");
     private final JMenuItem menuExit = new JMenuItem("Exit");
     
@@ -37,9 +39,10 @@ public class JeemuviDeskMenu extends JPopupMenu {
     private void initMenu() {
         WizSwing.addMenuItem(this, menuCaptSounded, e -> callCaptSounded());
         WizSwing.addMenuItem(this, menuCaptSubtitled, e -> callCaptSubtitled());
-        WizSwing.addMenuItem(this, menuFileDuplicate, e -> callFileDuplicate());
         WizSwing.addMenuItem(this, menuCharScrap, e -> callCharScrap());
         WizSwing.addMenuItem(this, menuCharvs, e -> callCharvs());
+        WizSwing.addMenuItem(this, menuFileDuplicate, e -> callFileDuplicate());
+        WizSwing.addMenuItem(this, menuHeartMake, e -> callHeartMake());
         WizSwing.addMenuItem(this, menuOnTop, e -> callOnTop());
         WizSwing.addMenuItem(this, menuExit, e -> callExit());
     }
@@ -52,16 +55,20 @@ public class JeemuviDeskMenu extends JPopupMenu {
         new CaptSubtitledDesk().setVisible(true);
     }
     
-    private void callFileDuplicate() {
-        new FileDuplicateDesk().setVisible(true);
+    private void callCharScrap() {
+        new CharScrapDesk().setVisible(true);
     }
     
     private void callCharvs() {
         new CharvsDesk().setVisible(true);
     }
     
-    private void callCharScrap() {
-        new CharScrapDesk().setVisible(true);
+    private void callFileDuplicate() {
+        new FileDuplicateDesk().setVisible(true);
+    }
+    
+    private void callHeartMake() {
+        new HeartMakeDesk().setVisible(true);
     }
     
     private void callOnTop() {

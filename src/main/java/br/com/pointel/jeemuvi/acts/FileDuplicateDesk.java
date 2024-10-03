@@ -1,6 +1,6 @@
-package br.com.pointel.jeemuvi.service;
+package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.Dropper;
+import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.io.File;
 
@@ -16,9 +16,9 @@ public class FileDuplicateDesk extends javax.swing.JFrame {
     }
     
     private void initFrame() {
+        SwingDropper.initAllOn(this);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
-        new Dropper(fieldPath).init();
     }
 
     @SuppressWarnings("unchecked")

@@ -14,21 +14,26 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 /**
  *
  * @author emuvi
  */
-public class Dropper {
+public class SwingDropper {
+    
+    public static void initAllOn(JFrame frame) {
+        new SwingDropper(WizSwing.getAllCompontentsOf(frame, JTextField.class)).init();
+    }
 
     private final List<Component> components;
 
-    public Dropper(Component... components) {
+    public SwingDropper(Component... components) {
         this.components = Arrays.asList(components);
     }
     
-    public Dropper(List<Component> components) {
+    public SwingDropper(List<Component> components) {
         this.components = components;
     }
 

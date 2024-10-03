@@ -1,6 +1,6 @@
-package br.com.pointel.jeemuvi.service;
+package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.Dropper;
+import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.wizard.WizBase;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.io.File;
@@ -18,8 +18,8 @@ public class CharScrapDesk extends javax.swing.JFrame {
     }
 
     private void initFrame() {
-        new Dropper(fieldOrigin).init();
         labelScrapped.setVisible(false);
+        SwingDropper.initAllOn(this);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }
