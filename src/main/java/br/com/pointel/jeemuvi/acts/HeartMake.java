@@ -1,10 +1,12 @@
 package br.com.pointel.jeemuvi.acts;
 
+import br.com.pointel.jeemuvi.gears.RunChase;
 import br.com.pointel.jeemuvi.wizard.WizChars;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -28,8 +30,48 @@ public class HeartMake {
         return saved;
     }
 
-    public void remake() throws Exception {
-
+    public void startRemake() {
+        var chase = RunChase.init("Remake Heart");
+        new Thread("Remake Heart") {
+            @Override
+            public void run() {
+                try {
+                    chase.setProgressSize(2 * folder.listFiles().length);
+                    chase.putInfo("Cleaning the Heart.");
+                    for (var file : folder.listFiles()) {
+                        if (!file.getName().endsWith(".md")) {
+                            file.delete();
+                            chase.putInfo("Cleaned " + file.getName());
+                        } else {
+                            chase.putInfo("Jumped " + file.getName());
+                        }
+                        chase.advance();
+                    }
+                    chase.putInfo("Remaking the Heart.");
+                    for (var file : folder.listFiles()) {
+                        if (file.getName().endsWith(".md")) {
+                            remakeHeart(file);
+                            chase.putInfo("Remaked " + file.getName());
+                        } else {
+                            chase.putInfo("Jumped " + file.getName());
+                        }
+                        chase.advance();
+                    }
+                    chase.putInfo("Finished to remake your heart!");
+                } catch (Exception e) {
+                    chase.putError(e);
+                } finally {
+                    chase.finish();
+                }
+            }
+        }.start();
+    }
+    
+    private void remakeHeart(File file) throws Exception {
+        var origin = Files.readString(file.toPath(), StandardCharsets.UTF_8);
+        var nameMark = FilenameUtils.getBaseName(file.getName());
+        var nameText = WizChars.generateRandomString(18);
+        produce(origin, nameMark, nameText, false);
     }
     
     private Saved produce(String origin, String nameMark, String nameText, boolean checkAlreadyExists) throws Exception {
@@ -111,6 +153,8 @@ public class HeartMake {
                 .replaceAll("\\_+", "_")
                 .replaceAll("\\-+", "-")
                 .replaceAll("\\++", "+")
+                .replaceAll("\\(", "\"")
+                .replaceAll("\\)", "\"")
                 .trim();
     }
 

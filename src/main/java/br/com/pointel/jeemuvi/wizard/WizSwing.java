@@ -38,11 +38,6 @@ import javax.swing.SwingUtilities;
  */
 public class WizSwing {
 
-    public static void addMenuItem(JComponent menu, AbstractButton item, ActionListener action) {
-        item.addActionListener(action);
-        menu.add(item);
-    }
-
     public static void showInfo(String message) {
         if (SwingUtilities.isEventDispatchThread()) {
             JOptionPane.showMessageDialog(null, message, "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -273,6 +268,21 @@ public class WizSwing {
         frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         frame.setVisible(false);
         frame.dispose();
+    }
+    
+    public static void addMenuItem(JComponent menu, AbstractButton item, ActionListener action) {
+        item.addActionListener(action);
+        menu.add(item);
+    }
+    
+    public static void triggerDebounce(int millis, Runnable action) {
+        new Thread("Trigger Debounce") {
+            @Override
+            public void run() {
+                WizBase.sleep(millis);
+                SwingUtilities.invokeLater(action);
+            }
+        }.start();
     }
 
 }

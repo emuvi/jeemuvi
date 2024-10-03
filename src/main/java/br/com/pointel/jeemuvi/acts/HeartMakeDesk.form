@@ -112,6 +112,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldAddAtTheEnd">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="AddAtEnd" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -61,6 +61,8 @@ public class HeartMakeDesk extends javax.swing.JFrame {
 
         labelAddAtTheEnd.setText("Add At The End");
 
+        fieldAddAtTheEnd.setName("AddAtEnd"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,14 +120,15 @@ public class HeartMakeDesk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCaptureActionPerformed
 
     private void buttonRemakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemakeActionPerformed
-        try {
-            new HeartMake(
-                    new File(fieldFolder.getText()),
-                    fieldAddAtTheEnd.getText()
-            ).remake();
-        } catch (Exception e) { 
-            WizSwing.showError(e);
+        if (!WizSwing.showConfirm("Are you sure to remake the heart?")) {
+            return;
         }
+        buttonRemake.setEnabled(false);
+        new HeartMake(
+                new File(fieldFolder.getText()),
+                fieldAddAtTheEnd.getText()
+        ).startRemake();
+        WizSwing.triggerDebounce(3000, () -> buttonRemake.setEnabled(true));
     }//GEN-LAST:event_buttonRemakeActionPerformed
 
 
