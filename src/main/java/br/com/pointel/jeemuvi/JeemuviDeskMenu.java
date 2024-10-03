@@ -1,13 +1,13 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.acts.CaptSubtitledDesk;
-import br.com.pointel.jeemuvi.acts.CaptSoundedDesk;
-import br.com.pointel.jeemuvi.acts.CharvsDesk;
-import br.com.pointel.jeemuvi.acts.CharScrapDesk;
-import br.com.pointel.jeemuvi.acts.FileDuplicateDesk;
-import br.com.pointel.jeemuvi.acts.HeartMakeDesk;
 import br.com.pointel.jeemuvi.wizard.WizSwing;
+import com.google.common.reflect.ClassPath;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.event.PopupMenuEvent;
@@ -18,57 +18,77 @@ import javax.swing.event.PopupMenuListener;
  * @author emuvi
  */
 public class JeemuviDeskMenu extends JPopupMenu {
-
+    
     private final JeemuviDesk desk;
     
-    private final JMenuItem menuCaptSounded = new JMenuItem("CaptSounded");
-    private final JMenuItem menuCaptSubtitled = new JMenuItem("CaptSubtitled");
-    private final JMenuItem menuCharScrap = new JMenuItem("CharScrap");
-    private final JMenuItem menuCharvs = new JMenuItem("Charvs");
-    private final JMenuItem menuFileDuplicate = new JMenuItem("FileDuplicate");
-    private final JMenuItem menuHeartMake = new JMenuItem("HeartMake");
     private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("OnTop");
     private final JMenuItem menuExit = new JMenuItem("Exit");
     
     public JeemuviDeskMenu(JeemuviDesk desk) {
         this.desk = desk;
-        initMenu();
         initPopupListener();
     }
     
-    private void initMenu() {
-        WizSwing.addMenuItem(this, menuCaptSounded, e -> callCaptSounded());
-        WizSwing.addMenuItem(this, menuCaptSubtitled, e -> callCaptSubtitled());
-        WizSwing.addMenuItem(this, menuCharScrap, e -> callCharScrap());
-        WizSwing.addMenuItem(this, menuCharvs, e -> callCharvs());
-        WizSwing.addMenuItem(this, menuFileDuplicate, e -> callFileDuplicate());
-        WizSwing.addMenuItem(this, menuHeartMake, e -> callHeartMake());
+    private void initPopupListener() {
+        addPopupMenuListener(new PopupMenuListener() {
+            @Override
+            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+                menuClean();
+                menuPutDesks();
+                menuPutEnding();
+                menuOnTop.setSelected(desk.isAlwaysOnTop());
+            }
+            
+            @Override
+            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+            }
+            
+            @Override
+            public void popupMenuCanceled(PopupMenuEvent e) {
+            }
+        });
+    }
+    
+    private void menuClean() {
+        removeAll();
+    }
+    
+    private void menuPutDesks() {
+        try {
+            String packageName = "br.com.pointel.jeemuvi.acts";
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            ClassPath classpath = ClassPath.from(loader);
+            List<String> clazzNames = classpath.getTopLevelClasses(packageName)
+                    .stream().map(ci -> ci.getName()).collect(Collectors.toList());
+            Collections.sort(clazzNames);
+            var menu = new JMenu("Desk");
+            for (var clazzName : clazzNames) {
+                var inClazz = Class.forName(clazzName);
+                if (JFrame.class.isAssignableFrom(inClazz)) {
+                    var item = new JMenuItem(inClazz.getSimpleName().replace("Desk", ""));
+                    item.addActionListener(e -> callDesk(inClazz));
+                    menu.add(item);
+                }
+            }
+            add(menu);
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
+    }
+    
+    private void menuPutEnding() {
+        this.addSeparator();
         WizSwing.addMenuItem(this, menuOnTop, e -> callOnTop());
         WizSwing.addMenuItem(this, menuExit, e -> callExit());
     }
     
-    private void callCaptSounded() {
-        new CaptSoundedDesk().setVisible(true);
-    }
-    
-    private void callCaptSubtitled() {
-        new CaptSubtitledDesk().setVisible(true);
-    }
-    
-    private void callCharScrap() {
-        new CharScrapDesk().setVisible(true);
-    }
-    
-    private void callCharvs() {
-        new CharvsDesk().setVisible(true);
-    }
-    
-    private void callFileDuplicate() {
-        new FileDuplicateDesk().setVisible(true);
-    }
-    
-    private void callHeartMake() {
-        new HeartMakeDesk().setVisible(true);
+    private void callDesk(Class<?> clazz) {
+        try {
+            JFrame frame = (JFrame) clazz.getConstructor().newInstance();
+            frame.setVisible(true);
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
     }
     
     private void callOnTop() {
@@ -78,21 +98,6 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private void callExit() {
         WizSwing.close(desk);
-    }
-    
-    private void initPopupListener() {
-        addPopupMenuListener(new PopupMenuListener() {
-            @Override
-            public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                menuOnTop.setSelected(desk.isAlwaysOnTop());
-            }
-
-            @Override
-            public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {}
-
-            @Override
-            public void popupMenuCanceled(PopupMenuEvent e) {}
-        });
     }
     
 }
