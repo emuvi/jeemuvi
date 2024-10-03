@@ -15,15 +15,26 @@ import org.apache.commons.io.FilenameUtils;
  * @author emuvi
  */
 public class CaptSounded {
+    
+    private final String driveName;
+    private final String originPath;
+    private final File destinyFolder;
+    private final File visioFolder;
+    private final File linkerNote;
+
+    public CaptSounded(String driveName, String originPath, File destinyFolder, File visioFolder, File linkerNote) {
+        this.driveName = driveName;
+        this.originPath = originPath;
+        this.destinyFolder = destinyFolder;
+        this.visioFolder = visioFolder;
+        this.linkerNote = linkerNote;
+    }
 
     public void run() throws Exception {
-        if (!WizSwing.showConfirm("Want to CatchOn the Redit?")) {
-            return;
-        }
         var rootsNamed = WizFiles.getRootsNamed();
         File rootRecorder = null;
         for (var rootNamed : rootsNamed) {
-            if (rootNamed.name().startsWith("IC RECORDER")) {
+            if (rootNamed.name().startsWith(driveName)) {
                 rootRecorder = rootNamed.root();
                 break;
             }
@@ -31,8 +42,7 @@ public class CaptSounded {
         if (rootRecorder == null) {
             throw new Exception("Not found the recorder root.");
         }
-        var destinyFolder = new File("D:\\emuvi\\OneDrive\\Documentos\\Educação\\AELIN\\ABIN\\Redit");
-        var originFolder = new File(rootRecorder, "REC_FILE\\FOLDER01");
+        var originFolder = new File(rootRecorder, originPath);
         var links = new ArrayList<String>();
         for (var reditOrigin : originFolder.listFiles()) {
             var yearOrigin = reditOrigin.getName().substring(0, 2);
@@ -49,7 +59,6 @@ public class CaptSounded {
             links.add("[[" + baseName + "]]");
         }
         if (!links.isEmpty()) {
-            var visioFolder = new File("D:\\emuvi\\OneDrive\\Documentos\\Educação\\AELIN\\ABIN\\Visio");
             var todayName = "VD-" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             var visioFile = new File(visioFolder, todayName + ".md");
             var visioText = String.join(" | ", links);
@@ -57,13 +66,12 @@ public class CaptSounded {
                 visioText = String.join(" | ", Files.readString(visioFile.toPath(), StandardCharsets.UTF_8), visioText);
             }
             Files.writeString(visioFile.toPath(), visioText, StandardCharsets.UTF_8);
-            var classFile = new File("D:\\emuvi\\OneDrive\\Documentos\\Educação\\AELIN\\ABIN\\Class\\Revisão Diária.md");
             var todayLink = "[[" + todayName + "]]";
-            var classText = Files.readString(classFile.toPath(), StandardCharsets.UTF_8);
+            var classText = Files.readString(linkerNote.toPath(), StandardCharsets.UTF_8);
             if (!classText.contains(todayLink)) {
                 classText = String.join(" | ", todayLink, classText);
             }
-            Files.writeString(classFile.toPath(), classText, StandardCharsets.UTF_8);
+            Files.writeString(linkerNote.toPath(), classText, StandardCharsets.UTF_8);
         }
         WizSwing.showInfo("Done to CatchOn Redit");
     }

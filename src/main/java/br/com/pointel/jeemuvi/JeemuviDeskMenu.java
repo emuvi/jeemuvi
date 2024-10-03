@@ -1,7 +1,7 @@
 package br.com.pointel.jeemuvi;
 
 import br.com.pointel.jeemuvi.service.CaptSubtitledDesk;
-import br.com.pointel.jeemuvi.service.CaptSounded;
+import br.com.pointel.jeemuvi.service.CaptSoundedDesk;
 import br.com.pointel.jeemuvi.service.CharvsDesk;
 import br.com.pointel.jeemuvi.service.CharScrapDesk;
 import br.com.pointel.jeemuvi.service.FileDuplicateDesk;
@@ -45,11 +45,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     }
     
     private void callCaptSounded() {
-        try {
-            new CaptSounded().run();
-        } catch (Exception e) {
-            WizSwing.showError(e);
-        }
+        new CaptSoundedDesk().setVisible(true);
     }
     
     private void callCaptSubtitled() {

@@ -17,7 +17,7 @@ public class CaptSubtitled {
     private final File origin;
     private final File destinyFolder;
     private final String destinyName;
-    private final File linker;
+    private final File linkerNote;
     
     private final List<String> links;
 
@@ -25,24 +25,24 @@ public class CaptSubtitled {
         this.origin = origin;
         this.destinyFolder = destinyFolder;
         this.destinyName = destinyName;
-        this.linker = linker;
+        this.linkerNote = linker;
         this.links = new ArrayList<>();
     }
     
     public void run() throws Exception {
         if (origin.isDirectory()) {
             for (var inside : origin.listFiles()) {
-                shoot(inside);
+                checkOut(inside);
             }
         } else {
-            shoot(origin);
+            checkOut(origin);
         }
         if (!links.isEmpty()) {
-            makeLinker();
+            writeLinkerNote();
         }
     }
     
-    private void shoot(File file) throws Exception {
+    private void checkOut(File file) throws Exception {
         if (file.getName().endsWith(".srt")) {
             capture(file);
         }
@@ -54,8 +54,7 @@ public class CaptSubtitled {
         var lines = WizChars.getLines(source);
         for (var line : lines) {
             line = line.trim();
-            line = line.replaceAll("^\\d+$", "");
-            line = line.replaceAll("^(\\d{2}:\\d{2}:\\d{2},\\d{3}) --> (\\d{2}:\\d{2}:\\d{2},\\d{3})$", "");
+            line = removeTimestamps(line);
             if (!line.isEmpty()) {
                 builder.append(line);
                 builder.append("\n");
@@ -67,13 +66,19 @@ public class CaptSubtitled {
         Files.writeString(destinyFile.toPath(), builder.toString(), StandardCharsets.UTF_8);
         links.add("[[" + newName + "]]");
     }
+
+    private String removeTimestamps(String line) {
+        line = line.replaceAll("^\\d+$", "");
+        line = line.replaceAll("^(\\d{2}:\\d{2}:\\d{2},\\d{3}) --> (\\d{2}:\\d{2}:\\d{2},\\d{3})$", "");
+        return line;
+    }
     
-    private void makeLinker() throws Exception {
-        if (linker.exists()) {
-            links.add(0, Files.readString(linker.toPath(), StandardCharsets.UTF_8));
+    private void writeLinkerNote() throws Exception {
+        if (linkerNote.exists()) {
+            links.add(0, Files.readString(linkerNote.toPath(), StandardCharsets.UTF_8));
         }
         var source = String.join("\n\n", links);
-        Files.writeString(linker.toPath(), source, StandardCharsets.UTF_8);
+        Files.writeString(linkerNote.toPath(), source, StandardCharsets.UTF_8);
     }
     
 }

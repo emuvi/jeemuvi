@@ -18,6 +18,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
@@ -231,6 +233,25 @@ public class WizSwing {
         if (component instanceof Container container) {
             for (Component inside : container.getComponents()) {
                 setAllCompontentsFont(inside, fonte);
+            }
+        }
+    }
+    
+    public static <T extends Class<? extends Component>> List<Component> getAllCompontentsOf(Component root, T... clazz) {
+        var results = new ArrayList<Component>();
+        getAllCompontentsOf(results, root, clazz);
+        return results;
+    }
+    
+    public static <T extends Class<? extends Component>> void getAllCompontentsOf(List<Component> results, Component root, T... clazz) {
+        for (var kind : clazz) {
+            if (kind.isInstance(root)) {
+                results.add(root);
+            }
+        }
+        if (root instanceof Container container) {
+            for (Component inside : container.getComponents()) {
+                getAllCompontentsOf(results, inside, clazz);
             }
         }
     }

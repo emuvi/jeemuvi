@@ -12,6 +12,7 @@ import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetAdapter;
 import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import javax.swing.JTextField;
 
@@ -21,9 +22,13 @@ import javax.swing.JTextField;
  */
 public class Dropper {
 
-    private final Component[] components;
+    private final List<Component> components;
 
     public Dropper(Component... components) {
+        this.components = Arrays.asList(components);
+    }
+    
+    public Dropper(List<Component> components) {
         this.components = components;
     }
 
