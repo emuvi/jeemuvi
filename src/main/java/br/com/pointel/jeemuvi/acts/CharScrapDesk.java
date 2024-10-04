@@ -41,11 +41,13 @@ public class CharScrapDesk extends javax.swing.JFrame {
 
         labelOrigin = new javax.swing.JLabel();
         fieldOrigin = new javax.swing.JTextField();
-        fieldLines = new javax.swing.JSpinner();
-        labelLines = new javax.swing.JLabel();
+        fieldCount = new javax.swing.JSpinner();
+        labelCount = new javax.swing.JLabel();
         buttonScrap = new javax.swing.JButton();
         fieldDeleteOnEmpty = new javax.swing.JCheckBox();
         labelScrapped = new javax.swing.JLabel();
+        labelKind = new javax.swing.JLabel();
+        fieldKind = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CharScrap");
@@ -55,10 +57,10 @@ public class CharScrapDesk extends javax.swing.JFrame {
 
         fieldOrigin.setName("Origin"); // NOI18N
 
-        fieldLines.setName("Lines"); // NOI18N
-        fieldLines.setValue(30);
+        fieldCount.setName("Lines"); // NOI18N
+        fieldCount.setValue(30);
 
-        labelLines.setText("Lines");
+        labelCount.setText("Count");
 
         buttonScrap.setText("Scrap");
         buttonScrap.addActionListener(new java.awt.event.ActionListener() {
@@ -72,29 +74,36 @@ public class CharScrapDesk extends javax.swing.JFrame {
 
         labelScrapped.setText("Scrapped!");
 
+        labelKind.setText("Kind");
+
+        fieldKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lines", "Chars" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonScrap)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelScrapped))
+                    .addComponent(fieldDeleteOnEmpty)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelOrigin)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(fieldOrigin))
+                            .addComponent(fieldOrigin, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldLines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelLines)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(labelScrapped)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                        .addComponent(fieldDeleteOnEmpty)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonScrap)))
+                            .addComponent(labelKind)
+                            .addComponent(fieldKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelCount)
+                    .addComponent(fieldCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -102,17 +111,20 @@ public class CharScrapDesk extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonScrap)
+                    .addComponent(labelScrapped))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelOrigin)
-                    .addComponent(labelLines))
+                    .addComponent(labelCount)
+                    .addComponent(labelKind))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldOrigin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldLines, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldCount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buttonScrap)
-                    .addComponent(fieldDeleteOnEmpty)
-                    .addComponent(labelScrapped))
+                .addComponent(fieldDeleteOnEmpty)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -123,7 +135,8 @@ public class CharScrapDesk extends javax.swing.JFrame {
         try {
             new CharScrap(
                     new File(fieldOrigin.getText()),
-                    (Integer) fieldLines.getValue(),
+                    fieldKind.getSelectedItem().toString(),
+                    (Integer) fieldCount.getValue(),
                     fieldDeleteOnEmpty.isSelected()
             ).run();
             triggerDisplayScrapped();
@@ -135,10 +148,12 @@ public class CharScrapDesk extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonScrap;
+    private javax.swing.JSpinner fieldCount;
     private javax.swing.JCheckBox fieldDeleteOnEmpty;
-    private javax.swing.JSpinner fieldLines;
+    private javax.swing.JComboBox<String> fieldKind;
     private javax.swing.JTextField fieldOrigin;
-    private javax.swing.JLabel labelLines;
+    private javax.swing.JLabel labelCount;
+    private javax.swing.JLabel labelKind;
     private javax.swing.JLabel labelOrigin;
     private javax.swing.JLabel labelScrapped;
     // End of variables declaration//GEN-END:variables

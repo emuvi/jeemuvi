@@ -21,6 +21,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private final JeemuviDesk desk;
     
+    private final JMenuItem menuResize = new JMenuItem("Resize");
     private final JCheckBoxMenuItem menuOnTop = new JCheckBoxMenuItem("OnTop");
     private final JMenuItem menuExit = new JMenuItem("Exit");
     
@@ -78,6 +79,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     
     private void menuPutEnding() {
         this.addSeparator();
+        WizSwing.addMenuItem(this, menuResize, e -> callResize());
         WizSwing.addMenuItem(this, menuOnTop, e -> callOnTop());
         WizSwing.addMenuItem(this, menuExit, e -> callExit());
     }
@@ -88,6 +90,15 @@ public class JeemuviDeskMenu extends JPopupMenu {
             frame.setVisible(true);
         } catch (Exception e) {
             WizSwing.showError(e);
+        }
+    }
+    
+    private void callResize() {
+        switch (desk.getWidth()) {
+            case 64 -> desk.setSize(128, 128);
+            case 128 -> desk.setSize(192, 192);
+            case 192 -> desk.setSize(256, 256);
+            default -> desk.setSize(64, 64);
         }
     }
     

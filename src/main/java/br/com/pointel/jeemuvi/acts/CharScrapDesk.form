@@ -25,30 +25,34 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="buttonScrap" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelScrapped" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="fieldDeleteOnEmpty" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="labelOrigin" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="fieldOrigin" max="32767" attributes="0"/>
+                          <Component id="fieldOrigin" pref="188" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fieldLines" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelLines" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelKind" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldKind" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="labelScrapped" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="53" max="32767" attributes="0"/>
-                      <Component id="fieldDeleteOnEmpty" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonScrap" min="-2" max="-2" attributes="0"/>
-                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="labelCount" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldCount" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -59,20 +63,23 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="buttonScrap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelScrapped" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelLines" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelKind" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fieldOrigin" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldLines" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldCount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldKind" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonScrap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldDeleteOnEmpty" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelScrapped" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="fieldDeleteOnEmpty" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -89,7 +96,7 @@
         <Property name="name" type="java.lang.String" value="Origin" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="fieldLines">
+    <Component class="javax.swing.JSpinner" name="fieldCount">
       <Properties>
         <Property name="name" type="java.lang.String" value="Lines" noResource="true"/>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -97,9 +104,9 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="labelLines">
+    <Component class="javax.swing.JLabel" name="labelCount">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lines"/>
+        <Property name="text" type="java.lang.String" value="Count"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="buttonScrap">
@@ -120,6 +127,24 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Scrapped!"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelKind">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kind"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="fieldKind">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Lines"/>
+            <StringItem index="1" value="Chars"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

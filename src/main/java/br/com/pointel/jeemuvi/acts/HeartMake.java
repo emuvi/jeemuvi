@@ -148,8 +148,8 @@ public class HeartMake {
 
     private String cleanLine(String line) {
         return line
-                .replaceAll("\\*+", "*")
                 .replaceAll("\\#+", "#")
+                .replaceAll("\\**", "")
                 .replaceAll("\\_+", "_")
                 .replaceAll("\\-+", "-")
                 .replaceAll("\\++", "+")

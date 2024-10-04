@@ -13,12 +13,14 @@ import java.nio.file.Files;
 public class CharScrap {
     
     private final File origin;
-    private final Integer lines;
+    private final String kind;
+    private final Integer count;
     private final Boolean deleteOnEmpty;
 
-    public CharScrap(File origin, Integer lines, Boolean deleteOnEmpty) {
+    public CharScrap(File origin, String kind, Integer count, Boolean deleteOnEmpty) {
         this.origin = origin;
-        this.lines = lines;
+        this.kind = kind;
+        this.count = count;
         this.deleteOnEmpty = deleteOnEmpty;
     }
     
@@ -27,9 +29,9 @@ public class CharScrap {
         var sourceLines = WizChars.getLines(source);
         var builderScrap = new StringBuilder();
         var builderSource = new StringBuilder();
-        for (var index = 0; index < sourceLines.length; index++) {
-            var sourceLine = sourceLines[index];
-            if (index < lines) {
+        var done = 0;
+        for (var sourceLine : sourceLines) {
+            if (done < count) {
                 if (!sourceLine.isBlank()) {
                     builderScrap.append(sourceLine);
                 }
@@ -37,7 +39,12 @@ public class CharScrap {
             } else {
                 builderSource.append(sourceLine);
                 builderSource.append("\n");
-            }     
+            }
+            if ("Lines".equals(kind)) {
+                done += 1;
+            } else {
+                done += sourceLine.length();
+            }
         }
         var doneScrap = builderScrap.toString().trim();
         var doneSource = builderSource.toString().trim();
