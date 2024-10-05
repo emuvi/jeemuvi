@@ -1,7 +1,7 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.wizard.WizBase;
-import br.com.pointel.jeemuvi.wizard.WizSwing;
+import br.com.pointel.jeemuvi.wizes.WizBase;
+import br.com.pointel.jeemuvi.wizes.WizSwing;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;

@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.gears;
 
-import br.com.pointel.jeemuvi.wizard.WizSwing;
+import br.com.pointel.jeemuvi.wizes.WizSwing;
 import javax.swing.SwingUtilities;
 
 public class RunChaseDesk extends javax.swing.JFrame {

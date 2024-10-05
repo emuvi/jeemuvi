@@ -1,4 +1,4 @@
-package br.com.pointel.jeemuvi.wizard;
+package br.com.pointel.jeemuvi.wizes;
 
 import java.io.File;
 import javax.swing.filechooser.FileSystemView;

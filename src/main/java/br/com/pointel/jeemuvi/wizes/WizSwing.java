@@ -1,11 +1,14 @@
-package br.com.pointel.jeemuvi.wizard;
+package br.com.pointel.jeemuvi.wizes;
 
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
+import java.awt.MouseInfo;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -23,14 +26,17 @@ import java.util.List;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -174,7 +180,8 @@ public class WizSwing {
                 if (component != null && component.getName() != null && !component.getName().isEmpty()) {
                     var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
                     switch (component) {
-                        case JTextField textField -> textField.setText(WizProps.get(paramName, textField.getText()));
+                        case JTextComponent textField -> textField.setText(WizProps.get(paramName, textField.getText()));
+                        case JComboBox comboField -> comboField.setSelectedIndex(WizProps.get(paramName, comboField.getSelectedIndex()));
                         case JSpinner spinnerField -> spinnerField.setValue(WizProps.get(paramName, (Integer) spinnerField.getValue()));
                         case JCheckBox checkField -> checkField.setSelected(WizProps.get(paramName, checkField.isSelected()));
                         default -> {
@@ -206,7 +213,8 @@ public class WizSwing {
                 if (component != null && component.getName() != null && !component.getName().isEmpty()) {
                     var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
                     switch (component) {
-                        case JTextField textField -> WizProps.set(paramName, textField.getText());
+                        case JTextComponent textField -> WizProps.set(paramName, textField.getText());
+                        case JComboBox comboField -> WizProps.set(paramName, comboField.getSelectedIndex());
                         case JSpinner spinnerField -> WizProps.set(paramName, (Integer) spinnerField.getValue());
                         case JCheckBox checkField -> WizProps.set(paramName, checkField.isSelected());
                         default -> {
@@ -270,6 +278,25 @@ public class WizSwing {
         frame.dispose();
     }
     
+    public static void closeAll() {
+        closeAll(false);
+        closeAll(true);
+    }
+    
+    public static void closeAll(boolean closeExitOnClose) {
+        for(var frame : JFrame.getFrames()) {
+            if (frame instanceof JFrame jFrame) {
+                if (jFrame.isVisible()) {
+                    if ((closeExitOnClose && jFrame.getDefaultCloseOperation() == JFrame.EXIT_ON_CLOSE)
+                            || (!closeExitOnClose && jFrame.getDefaultCloseOperation() != JFrame.EXIT_ON_CLOSE)
+                    ) {
+                        close(jFrame);
+                    }
+                }
+            }
+        }
+    }
+    
     public static void addMenuItem(JComponent menu, AbstractButton item, ActionListener action) {
         item.addActionListener(action);
         menu.add(item);
@@ -283,6 +310,20 @@ public class WizSwing {
                 SwingUtilities.invokeLater(action);
             }
         }.start();
+    }
+    
+    public static Point getMouseCurrentPoint() {
+        return MouseInfo.getPointerInfo().getLocation();
+    }
+    
+    public static GraphicsDevice getScreenWithMouse() {
+        var mousePoint = getMouseCurrentPoint();
+        for(var screen : GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()) {
+            if (screen.getDefaultConfiguration().getBounds().contains(mousePoint)) {
+                return screen; 
+            }
+        }
+        return null;
     }
 
 }

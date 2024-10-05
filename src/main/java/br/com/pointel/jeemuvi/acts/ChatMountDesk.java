@@ -1,10 +1,8 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizard.WizSwing;
+import br.com.pointel.jeemuvi.wizes.WizChats;
+import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.awt.event.InputEvent;
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -13,8 +11,6 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class ChatMountDesk extends javax.swing.JFrame {
 
-    private static final File FOLDER_CHATS = new File("chats");
-    
     private final DefaultComboBoxModel<String> modelChats = new DefaultComboBoxModel<>();
     
     public ChatMountDesk() {
@@ -23,7 +19,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
     }
     
     private void initFrame() { 
-        loadChats();
+        WizChats.loadChatsNames(modelChats);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }
@@ -148,9 +144,9 @@ public class ChatMountDesk extends javax.swing.JFrame {
     private void buttonOpenOrRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenOrRefreshActionPerformed
         try {
             if ((evt.getModifiers() & InputEvent.ALT_MASK) != 0) {
-                loadChats();
+                WizChats.loadChatsNames(modelChats);
             } else {
-                WizSwing.open(FOLDER_CHATS);
+                WizChats.openChatsFolder();
             }
         } catch (Exception e) {
             WizSwing.showError(e);
@@ -159,9 +155,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
 
     private void buttonGetChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetChatActionPerformed
         try {
-            var chatFile = new File(FOLDER_CHATS, fieldChat.getSelectedItem().toString());
-            var source = Files.readString(chatFile.toPath(), StandardCharsets.UTF_8);
-            fieldMount.setText(source);
+            fieldMount.setText(WizChats.loadChat(fieldChat.getSelectedItem().toString()));
         } catch (Exception e) {
             WizSwing.showError(e);
         }
@@ -169,9 +163,9 @@ public class ChatMountDesk extends javax.swing.JFrame {
 
     private void buttonEditChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditChatActionPerformed
         try {
-            var chatFile = new File(FOLDER_CHATS, fieldChat.getSelectedItem().toString());
+            var chatName = fieldChat.getSelectedItem().toString();
             var source = fieldMount.getText();
-            Files.writeString(chatFile.toPath(), source, StandardCharsets.UTF_8);
+            WizChats.saveChat(chatName, source);
         } catch (Exception e) {
             WizSwing.showError(e);
         }
@@ -181,8 +175,8 @@ public class ChatMountDesk extends javax.swing.JFrame {
         try {
             var clipboard = WizSwing.getStringOnClipboard();
             var source = fieldMount.getText().trim();
-            if (source.contains("<<INSERT HERE>>")) {
-                source = source.replace("<<INSERT HERE>>", clipboard);
+            if (source.contains("<<INSERT_HERE>>")) {
+                source = source.replace("<<INSERT_HERE>>", clipboard);
             } else {
                 source += "\n\n" + clipboard;
             }
@@ -206,15 +200,6 @@ public class ChatMountDesk extends javax.swing.JFrame {
         buttonGetFromClipboardActionPerformed(evt);
         buttonPutOnClipboardActionPerformed(evt);
     }//GEN-LAST:event_buttonMountActionPerformed
-
-    private void loadChats() {
-        modelChats.removeAllElements();
-        for (var inside : FOLDER_CHATS.listFiles()) {
-            if (inside.isFile() && inside.getName().toLowerCase().endsWith(".txt")) {
-                modelChats.addElement(inside.getName());
-            }
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEditChat;

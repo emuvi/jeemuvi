@@ -4,7 +4,7 @@
  */
 package br.com.pointel.jeemuvi.gears;
 
-import br.com.pointel.jeemuvi.wizard.WizSwing;
+import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;

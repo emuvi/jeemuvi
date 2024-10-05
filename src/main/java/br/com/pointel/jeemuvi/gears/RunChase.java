@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.gears;
 
-import br.com.pointel.jeemuvi.wizard.WizBase;
+import br.com.pointel.jeemuvi.wizes.WizBase;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.concurrent.atomic.AtomicBoolean;

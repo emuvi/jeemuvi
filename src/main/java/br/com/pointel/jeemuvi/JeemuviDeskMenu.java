@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.wizard.WizSwing;
+import br.com.pointel.jeemuvi.wizes.WizSwing;
 import com.google.common.reflect.ClassPath;
 import java.util.Collections;
 import java.util.List;
@@ -108,7 +108,7 @@ public class JeemuviDeskMenu extends JPopupMenu {
     }
     
     private void callExit() {
-        WizSwing.close(desk);
+        WizSwing.closeAll();
     }
     
 }
