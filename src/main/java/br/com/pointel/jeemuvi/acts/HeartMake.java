@@ -31,8 +31,8 @@ public class HeartMake {
     }
 
     public void startRemake() {
-        var chase = RunChase.init("Remake Heart");
-        new Thread("Remake Heart") {
+        var chase = RunChase.init("HeartRemake");
+        new Thread("HeartRemake") {
             @Override
             public void run() {
                 try {
@@ -45,6 +45,7 @@ public class HeartMake {
                         } else {
                             chase.putInfo("Jumped " + file.getName());
                         }
+                        chase.waitOnPauseThrowOnStop();
                         chase.advance();
                     }
                     chase.putInfo("Remaking the Heart.");
@@ -55,6 +56,7 @@ public class HeartMake {
                         } else {
                             chase.putInfo("Jumped " + file.getName());
                         }
+                        chase.waitOnPauseThrowOnStop();
                         chase.advance();
                     }
                     chase.putInfo("Finished to remake your heart!");
