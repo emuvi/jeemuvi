@@ -150,7 +150,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         sourceSection.setColumns(20);
         sourceSection.setRows(5);
-        sourceSection.setText("$clipboard");
+        sourceSection.setText("\"$clipboard\"");
         sourceSection.setName("SourceSection"); // NOI18N
         scrollSection.setViewportView(sourceSection);
 
@@ -175,7 +175,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         sourceTitle.setColumns(20);
         sourceTitle.setRows(5);
-        sourceTitle.setText("$clipboard");
+        sourceTitle.setText("\"$clipboard\"");
         sourceTitle.setName("SourceTitle"); // NOI18N
         scrollTitle.setViewportView(sourceTitle);
 
@@ -200,7 +200,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         sourceParagraph.setColumns(20);
         sourceParagraph.setRows(5);
-        sourceParagraph.setText("$clipboard");
+        sourceParagraph.setText("\"$clipboard\"");
         sourceParagraph.setName("SourceParagraph"); // NOI18N
         scrollParagraph.setViewportView(sourceParagraph);
 
@@ -225,7 +225,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         sourceAppend.setColumns(20);
         sourceAppend.setRows(5);
-        sourceAppend.setText("$clipboard");
+        sourceAppend.setText("\"$clipboard\"");
         sourceAppend.setName("SourceAppend"); // NOI18N
         scrollAppend.setViewportView(sourceAppend);
 
