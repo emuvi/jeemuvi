@@ -1,6 +1,7 @@
 package br.com.pointel.jeemuvi.acts;
 
 import br.com.pointel.jeemuvi.gears.SwingDropper;
+import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import java.util.Objects;
@@ -30,7 +31,6 @@ public class HeartMakeDesk extends javax.swing.JFrame {
         fieldFolder = new javax.swing.JTextField();
         buttonCapture = new javax.swing.JButton();
         buttonRemake = new javax.swing.JButton();
-        fieldStatus = new javax.swing.JTextField();
         labelAddAtTheEnd = new javax.swing.JLabel();
         fieldAddAtTheEnd = new javax.swing.JTextField();
 
@@ -56,9 +56,6 @@ public class HeartMakeDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldStatus.setEditable(false);
-        fieldStatus.setBorder(null);
-
         labelAddAtTheEnd.setText("Add At The End");
 
         fieldAddAtTheEnd.setName("AddAtEnd"); // NOI18N
@@ -71,18 +68,16 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldFolder)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonCapture)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonRemake)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
+                    .addComponent(fieldAddAtTheEnd)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonCapture)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonRemake))
                             .addComponent(labelFolder)
                             .addComponent(labelAddAtTheEnd))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(fieldAddAtTheEnd))
+                        .addGap(0, 238, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,8 +86,7 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCapture)
-                    .addComponent(buttonRemake)
-                    .addComponent(fieldStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonRemake))
                 .addGap(18, 18, 18)
                 .addComponent(labelFolder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +107,7 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                     new File(fieldFolder.getText()),
                     fieldAddAtTheEnd.getText()
             ).capture();
-            fieldStatus.setText(Objects.toString(saved));
+            SwingNotify.show(saved, 2);
         } catch (Exception e) { 
             WizSwing.showError(e);
         }
@@ -137,7 +131,6 @@ public class HeartMakeDesk extends javax.swing.JFrame {
     private javax.swing.JButton buttonRemake;
     private javax.swing.JTextField fieldAddAtTheEnd;
     private javax.swing.JTextField fieldFolder;
-    private javax.swing.JTextField fieldStatus;
     private javax.swing.JLabel labelAddAtTheEnd;
     private javax.swing.JLabel labelFolder;
     // End of variables declaration//GEN-END:variables

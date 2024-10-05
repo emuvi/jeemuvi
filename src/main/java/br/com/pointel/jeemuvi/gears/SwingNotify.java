@@ -19,8 +19,18 @@ import javax.swing.SwingUtilities;
  * @author emuvi
  */
 public class SwingNotify {
+    
+    public static void show(Object message, double seconds) {
+        if (message == null) {
+            return;
+        }
+        show(message.toString(), seconds);
+    }
 
     public static void show(String message, double seconds) {
+        if (message == null) {
+            return;
+        }
         var frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setUndecorated(true);
