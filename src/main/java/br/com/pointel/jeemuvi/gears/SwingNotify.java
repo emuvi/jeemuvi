@@ -31,6 +31,7 @@ public class SwingNotify {
         if (message == null) {
             return;
         }
+        System.out.println(message);
         var frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setUndecorated(true);
