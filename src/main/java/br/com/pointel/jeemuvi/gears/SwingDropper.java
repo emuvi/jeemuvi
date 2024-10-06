@@ -14,8 +14,10 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -24,19 +26,49 @@ import javax.swing.JTextField;
 public class SwingDropper {
     
     public static void initAllOn(JFrame frame) {
-        new SwingDropper(WizSwing.getAllCompontentsOf(frame, JTextField.class)).init();
+        new SwingDropper(WizSwing.getAllCompontentsOf(frame, JTextComponent.class)).init();
     }
 
     private final List<Component> components;
+    private final Consumer<List<File>> fileConsumer;
+    private final Consumer<String> stringConsumer;
 
     public SwingDropper(Component... components) {
         this.components = Arrays.asList(components);
+        this.fileConsumer = null;
+        this.stringConsumer = null;
     }
     
     public SwingDropper(List<Component> components) {
         this.components = components;
+        this.fileConsumer = null;
+        this.stringConsumer = null;
     }
-
+    
+    public SwingDropper(Consumer<List<File>> fileConsumer, Component... components) {
+        this.components = Arrays.asList(components);
+        this.fileConsumer = fileConsumer;
+        this.stringConsumer = null;
+    }
+    
+    public SwingDropper(Consumer<List<File>> fileConsumer, List<Component> components) {
+        this.components = components;
+        this.fileConsumer = fileConsumer;
+        this.stringConsumer = null;
+    }
+    
+    public SwingDropper(Consumer<String> stringConsumer, Consumer<List<File>> fileConsumer, Component... components) {
+        this.components = Arrays.asList(components);
+        this.fileConsumer = fileConsumer;
+        this.stringConsumer = stringConsumer;
+    }
+    
+    public SwingDropper(Consumer<String> stringConsumer, Consumer<List<File>> fileConsumer, List<Component> components) {
+        this.components = components;
+        this.fileConsumer = fileConsumer;
+        this.stringConsumer = stringConsumer;
+    }
+    
     public void init() {
         for (var component : components) {
             new DropTarget(component, DnDConstants.ACTION_COPY, new DropTargetAdapter() {
@@ -47,10 +79,20 @@ public class SwingDropper {
                         DataFlavor[] flavors = e.getCurrentDataFlavors();
                         for (DataFlavor flavor : flavors) {
                             if (flavor.isFlavorJavaFileListType()) {
-                                dropped(component, (List<File>) e.getTransferable().getTransferData(flavor));
+                                var gout = (List<File>) e.getTransferable().getTransferData(flavor);
+                                if (fileConsumer == null) {
+                                    dropped(component, gout);
+                                } else {
+                                    fileConsumer.accept(gout);
+                                }
                                 break;
                             } else if (flavor.isFlavorTextType()) {
-                                dropped(component, (String) e.getTransferable().getTransferData(flavor));
+                                var gout = (String) e.getTransferable().getTransferData(flavor);
+                                if (stringConsumer != null) {
+                                    dropped(component, gout);
+                                } else {
+                                    stringConsumer.accept(gout);
+                                }
                                 break;
                             }
                         }
@@ -65,14 +107,14 @@ public class SwingDropper {
     }
 
     private void dropped(Component component, List<File> files) {
-        if (component instanceof JTextField textField) {
-            textField.setText(String.join(";", files.stream().map(f -> f.getAbsolutePath()).toList()));
+        if (component instanceof JTextComponent textComp) {
+            textComp.setText(String.join(";", files.stream().map(f -> f.getAbsolutePath()).toList()));
         }
     }
 
     private void dropped(Component component, String text) {
-        if (component instanceof JTextField textField) {
-            textField.setText(text);
+        if (component instanceof JTextComponent textComp) {
+            textComp.setText(text);
         }
     }
 
