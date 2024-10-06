@@ -69,6 +69,9 @@ public class NotesHistory {
                 sources.remove(0);
                 index--;
             }
+            while (index > sources.size() -1) {
+                sources.remove(sources.size() -1);
+            }
         }
 
         public void undo() throws Exception {
