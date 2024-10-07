@@ -67,6 +67,8 @@ public class HeartMakeDesk extends javax.swing.JFrame {
 
         labelPutLinkOn.setText("Put Link On");
 
+        fieldPutLinkOn.setName("PutLinkOn"); // NOI18N
+
         buttonWatch.setText("Watch");
         buttonWatch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,7 @@ public class HeartMakeDesk extends javax.swing.JFrame {
         });
 
         fieldCopyLink.setText("Copy Link");
+        fieldCopyLink.setName("CopyLink"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
