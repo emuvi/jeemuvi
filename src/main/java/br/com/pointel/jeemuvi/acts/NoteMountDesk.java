@@ -68,6 +68,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         panelAppend = new javax.swing.JPanel();
         scrollAppend = new javax.swing.JScrollPane();
         sourceAppend = new javax.swing.JTextArea();
+        buttonCopyClean = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NoteMount");
@@ -112,6 +113,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         });
 
         buttonUndo.setText("<");
+        buttonUndo.setToolTipText("Undo");
         buttonUndo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonUndoActionPerformed(evt);
@@ -119,6 +121,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         });
 
         buttonRedo.setText(">");
+        buttonRedo.setToolTipText("Redo");
         buttonRedo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRedoActionPerformed(evt);
@@ -126,9 +129,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
         });
 
         fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chat", "Note", "Section", "Title", "Paragraph", "Append" }));
+        fieldCopyKind.setToolTipText("Copy Source");
         fieldCopyKind.setName("CopyKind"); // NOI18N
 
-        buttonCopy.setText("Copy");
+        buttonCopy.setText("/");
+        buttonCopy.setToolTipText("Copy to Clipboard");
         buttonCopy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCopyActionPerformed(evt);
@@ -136,6 +141,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         });
 
         buttonOpenOrRefresh.setText("#");
+        buttonOpenOrRefresh.setToolTipText("Open or Refresh Chats");
         buttonOpenOrRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonOpenOrRefreshActionPerformed(evt);
@@ -146,6 +152,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         fieldChatName.setName("ChatName"); // NOI18N
 
         buttonInsert.setText("+");
+        buttonInsert.setToolTipText("Insert Chat");
         buttonInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonInsertActionPerformed(evt);
@@ -180,7 +187,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelSectionLayout.setVerticalGroup(
@@ -205,7 +212,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTitleLayout.setVerticalGroup(
@@ -230,7 +237,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelParagraphLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelParagraphLayout.setVerticalGroup(
@@ -255,7 +262,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelAppendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAppendLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
+                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelAppendLayout.setVerticalGroup(
@@ -267,6 +274,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
         );
 
         panelEditors.addTab("Append", panelAppend);
+
+        buttonCopyClean.setText("0");
+        buttonCopyClean.setToolTipText("Copy Clean");
+        buttonCopyClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCopyCleanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -280,11 +295,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonUndo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRedo)
+                        .addGap(18, 18, 18)
+                        .addComponent(buttonCopyClean)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldCopyKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCopy)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(buttonOpenOrRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldChatName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,7 +349,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .addComponent(fieldChatName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonInsert)
                     .addComponent(buttonOpenOrRefresh)
-                    .addComponent(buttonRedo))
+                    .addComponent(buttonRedo)
+                    .addComponent(buttonCopyClean))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -533,6 +551,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonItemActionPerformed
 
+    private void buttonCopyCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyCleanActionPerformed
+        copySection = "";
+        copyTitle = "";
+        copyParagraph = "";
+        copyAppend = "";
+    }//GEN-LAST:event_buttonCopyCleanActionPerformed
+
     private String groovyClipboard(String script) throws Exception {
         var clipboard = WizSwing.getStringOnClipboard().trim();
         if (fieldCleanClipboard.isSelected()) {
@@ -583,6 +608,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAppend;
     private javax.swing.JButton buttonCopy;
+    private javax.swing.JButton buttonCopyClean;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonItem;
     private javax.swing.JButton buttonOpenOrRefresh;
