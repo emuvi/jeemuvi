@@ -185,12 +185,13 @@
     <Component class="javax.swing.JComboBox" name="fieldCopyKind">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="Note"/>
-            <StringItem index="1" value="Section"/>
-            <StringItem index="2" value="Title"/>
-            <StringItem index="3" value="Paragraph"/>
-            <StringItem index="4" value="Append"/>
+          <StringArray count="6">
+            <StringItem index="0" value="Chat"/>
+            <StringItem index="1" value="Note"/>
+            <StringItem index="2" value="Section"/>
+            <StringItem index="3" value="Title"/>
+            <StringItem index="4" value="Paragraph"/>
+            <StringItem index="5" value="Append"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="CopyKind" noResource="true"/>

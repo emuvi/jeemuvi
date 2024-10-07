@@ -125,7 +125,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Note", "Section", "Title", "Paragraph", "Append" }));
+        fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chat", "Note", "Section", "Title", "Paragraph", "Append" }));
         fieldCopyKind.setName("CopyKind"); // NOI18N
 
         buttonCopy.setText("Copy");
@@ -412,6 +412,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyActionPerformed
         try {
             switch (fieldCopyKind.getSelectedItem().toString()) {
+                case "Chat" -> copyChat();
                 case "Note" -> copyNote();
                 case "Section" -> copySection();
                 case "Title" -> copyTitle();
@@ -549,6 +550,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
     
     private String cleanClipboard(String clipboard) {
         return clipboard.replaceAll("\\s+", " ");
+    }
+    
+    private void copyChat() throws Exception {
+        WizSwing.putStringOnClipboard(WizChats.loadChat(getSelectedChat()));
     }
     
     private void copyNote() throws Exception {
