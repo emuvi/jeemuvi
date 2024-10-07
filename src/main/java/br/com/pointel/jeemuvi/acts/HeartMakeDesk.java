@@ -159,10 +159,14 @@ public class HeartMakeDesk extends javax.swing.JFrame {
     private void putLinkOn(String link) throws Exception {
         var file = new File(fieldPutLinkOn.getText());
         var source = Files.readString(file.toPath(), StandardCharsets.UTF_8).trim();
-        if (!source.isEmpty()) {
-            source += "\n\n";
+        if (source.contains("<<HEART_HERE>>")) {
+            source = source.replaceFirst("<<HEART_HERE>>", link);
+        } else {
+            if (!source.isEmpty()) {
+                source += "\n\n";
+            }
+            source += link;
         }
-        source += link;
         Files.writeString(file.toPath(), source, StandardCharsets.UTF_8);
     }
     
