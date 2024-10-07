@@ -515,7 +515,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonItemActionPerformed
         try {
             var making = groovyClipboard(sourceParagraph.getText());
-            making += "- " + making;
+            making = "- " + making;
             var source = loadNote();
             if (!source.isEmpty()) {
                 making = "\n\n" + making;
