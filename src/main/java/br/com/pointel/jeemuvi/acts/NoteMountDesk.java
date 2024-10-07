@@ -441,7 +441,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
                 title += "#";
             }
             title += " ";
-            source += title.trim() + making;
+            if (title.isBlank()) {
+                title = "#" + title;
+            }
+            source += title + making;
             saveNote(source);
         } catch (Exception e) {
             WizSwing.showError(e);
