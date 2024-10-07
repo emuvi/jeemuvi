@@ -70,6 +70,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         sourceAppend = new javax.swing.JTextArea();
         buttonCleanCopyBuffer = new javax.swing.JButton();
         buttonCopyAndCleanBuffer = new javax.swing.JButton();
+        buttonCopyChat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NoteMount");
@@ -129,7 +130,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chat", "Note", "Section", "Title", "Paragraph", "Append" }));
+        fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Note", "Section", "Title", "Paragraph", "Append" }));
         fieldCopyKind.setToolTipText("Copy Source");
         fieldCopyKind.setName("CopyKind"); // NOI18N
 
@@ -292,6 +293,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonCopyChat.setText("/");
+        buttonCopyChat.setToolTipText("Copy the Chat to Clipboard");
+        buttonCopyChat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCopyChatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,6 +325,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonOpenOrRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldChatName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCopyChat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonInsert))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -362,7 +373,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .addComponent(buttonOpenOrRefresh)
                     .addComponent(buttonRedo)
                     .addComponent(buttonCleanCopyBuffer)
-                    .addComponent(buttonCopyAndCleanBuffer))
+                    .addComponent(buttonCopyAndCleanBuffer)
+                    .addComponent(buttonCopyChat))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -442,7 +454,6 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonCopyBufferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyBufferActionPerformed
         try {
             switch (fieldCopyKind.getSelectedItem().toString()) {
-                case "Chat" -> copyChat();
                 case "Note" -> copyNote();
                 case "Section" -> copySection();
                 case "Title" -> copyTitle();
@@ -575,6 +586,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
         buttonCleanCopyBufferActionPerformed(evt);
     }//GEN-LAST:event_buttonCopyAndCleanBufferActionPerformed
 
+    private void buttonCopyChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyChatActionPerformed
+        try {
+            WizSwing.putStringOnClipboard(WizChats.loadChat(getSelectedChat()));
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
+    }//GEN-LAST:event_buttonCopyChatActionPerformed
+
     private String groovyClipboard(String script) throws Exception {
         var clipboard = WizSwing.getStringOnClipboard().trim();
         if (fieldCleanClipboard.isSelected()) {
@@ -592,10 +611,6 @@ public class NoteMountDesk extends javax.swing.JFrame {
     
     private String cleanClipboard(String clipboard) {
         return clipboard.replaceAll("\\s+", " ");
-    }
-    
-    private void copyChat() throws Exception {
-        WizSwing.putStringOnClipboard(WizChats.loadChat(getSelectedChat()));
     }
     
     private void copyNote() throws Exception {
@@ -627,6 +642,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JButton buttonCleanCopyBuffer;
     private javax.swing.JButton buttonCopyAndCleanBuffer;
     private javax.swing.JButton buttonCopyBuffer;
+    private javax.swing.JButton buttonCopyChat;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonItem;
     private javax.swing.JButton buttonOpenOrRefresh;
