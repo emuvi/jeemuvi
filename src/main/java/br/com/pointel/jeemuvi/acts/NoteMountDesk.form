@@ -480,7 +480,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="buttonCleanCopyBuffer">
       <Properties>
-        <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="text" type="java.lang.String" value="_"/>
         <Property name="toolTipText" type="java.lang.String" value="Clean the Copy Buffer"/>
       </Properties>
       <Events>

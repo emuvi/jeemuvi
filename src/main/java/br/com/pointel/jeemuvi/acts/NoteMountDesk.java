@@ -277,7 +277,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         panelEditors.addTab("Append", panelAppend);
 
-        buttonCleanCopyBuffer.setText("0");
+        buttonCleanCopyBuffer.setText("_");
         buttonCleanCopyBuffer.setToolTipText("Clean the Copy Buffer");
         buttonCleanCopyBuffer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
