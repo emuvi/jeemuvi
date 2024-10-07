@@ -153,6 +153,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         });
 
         fieldCleanClipboard.setText("Clean Clipboard");
+        fieldCleanClipboard.setName("CleanClipboard"); // NOI18N
 
         labelPath.setText("Path");
 

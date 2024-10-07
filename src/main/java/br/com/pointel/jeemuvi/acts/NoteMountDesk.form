@@ -237,6 +237,7 @@
     <Component class="javax.swing.JCheckBox" name="fieldCleanClipboard">
       <Properties>
         <Property name="text" type="java.lang.String" value="Clean Clipboard"/>
+        <Property name="name" type="java.lang.String" value="CleanClipboard" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPath">
