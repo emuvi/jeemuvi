@@ -4,7 +4,8 @@ import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
-import java.util.Objects;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 /**
  *
@@ -33,6 +34,10 @@ public class HeartMakeDesk extends javax.swing.JFrame {
         buttonRemake = new javax.swing.JButton();
         labelAddAtTheEnd = new javax.swing.JLabel();
         fieldAddAtTheEnd = new javax.swing.JTextField();
+        labelPutLinkOn = new javax.swing.JLabel();
+        fieldPutLinkOn = new javax.swing.JTextField();
+        buttonWatch = new javax.swing.JButton();
+        fieldCopyLink = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("HeartMake");
@@ -60,6 +65,17 @@ public class HeartMakeDesk extends javax.swing.JFrame {
 
         fieldAddAtTheEnd.setName("AddAtEnd"); // NOI18N
 
+        labelPutLinkOn.setText("Put Link On");
+
+        buttonWatch.setText("Watch");
+        buttonWatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonWatchActionPerformed(evt);
+            }
+        });
+
+        fieldCopyLink.setText("Copy Link");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +84,6 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fieldFolder)
-                    .addComponent(fieldAddAtTheEnd)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -77,7 +92,17 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                                 .addComponent(buttonRemake))
                             .addComponent(labelFolder)
                             .addComponent(labelAddAtTheEnd))
-                        .addGap(0, 238, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(fieldAddAtTheEnd)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelPutLinkOn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                                .addComponent(fieldCopyLink, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(fieldPutLinkOn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonWatch)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,6 +112,14 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCapture)
                     .addComponent(buttonRemake))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPutLinkOn)
+                    .addComponent(fieldCopyLink))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fieldPutLinkOn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonWatch))
                 .addGap(18, 18, 18)
                 .addComponent(labelFolder)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -107,12 +140,29 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                     new File(fieldFolder.getText()),
                     fieldAddAtTheEnd.getText()
             ).capture();
+            var link = "[[" + saved.nameMark() + "]]";
+            if (!fieldPutLinkOn.getText().isBlank()) {
+                putLinkOn(link);
+            }
+            if (fieldCopyLink.isSelected()) {
+                WizSwing.putStringOnClipboard(link);
+            }
             SwingNotify.show(saved, 2);
         } catch (Exception e) { 
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonCaptureActionPerformed
 
+    private void putLinkOn(String link) throws Exception {
+        var file = new File(fieldPutLinkOn.getText());
+        var source = Files.readString(file.toPath(), StandardCharsets.UTF_8).trim();
+        if (!source.isEmpty()) {
+            source += "\n\n";
+        }
+        source += link;
+        Files.writeString(file.toPath(), source, StandardCharsets.UTF_8);
+    }
+    
     private void buttonRemakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemakeActionPerformed
         if (!WizSwing.showConfirm("Are you sure to remake the heart?")) {
             return;
@@ -125,13 +175,21 @@ public class HeartMakeDesk extends javax.swing.JFrame {
         WizSwing.triggerDebounce(3000, () -> buttonRemake.setEnabled(true));
     }//GEN-LAST:event_buttonRemakeActionPerformed
 
+    private void buttonWatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWatchActionPerformed
+        new TextFileWatcherDesk(new File(fieldPutLinkOn.getText())).setVisible(true);
+    }//GEN-LAST:event_buttonWatchActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCapture;
     private javax.swing.JButton buttonRemake;
+    private javax.swing.JButton buttonWatch;
     private javax.swing.JTextField fieldAddAtTheEnd;
+    private javax.swing.JCheckBox fieldCopyLink;
     private javax.swing.JTextField fieldFolder;
+    private javax.swing.JTextField fieldPutLinkOn;
     private javax.swing.JLabel labelAddAtTheEnd;
     private javax.swing.JLabel labelFolder;
+    private javax.swing.JLabel labelPutLinkOn;
     // End of variables declaration//GEN-END:variables
 }

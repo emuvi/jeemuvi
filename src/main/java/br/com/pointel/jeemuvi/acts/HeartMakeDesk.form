@@ -28,19 +28,31 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="fieldFolder" max="32767" attributes="0"/>
-                  <Component id="fieldAddAtTheEnd" alignment="0" max="32767" attributes="0"/>
+                  <Component id="fieldFolder" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="buttonCapture" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="buttonRemake" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="labelFolder" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelFolder" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labelAddAtTheEnd" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="238" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="fieldAddAtTheEnd" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="labelPutLinkOn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="114" max="32767" attributes="0"/>
+                              <Component id="fieldCopyLink" min="-2" pref="85" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="fieldPutLinkOn" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonWatch" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -54,6 +66,16 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonCapture" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonRemake" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelPutLinkOn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldCopyLink" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="fieldPutLinkOn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonWatch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="labelFolder" min="-2" max="-2" attributes="0"/>
@@ -103,6 +125,26 @@
     <Component class="javax.swing.JTextField" name="fieldAddAtTheEnd">
       <Properties>
         <Property name="name" type="java.lang.String" value="AddAtEnd" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelPutLinkOn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Put Link On"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldPutLinkOn">
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonWatch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Watch"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonWatchActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="fieldCopyLink">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Copy Link"/>
       </Properties>
     </Component>
   </SubComponents>

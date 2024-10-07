@@ -26,7 +26,6 @@ public class HeartMake {
         var content = WizSwing.getStringOnClipboard();
         var nameText = WizChars.generateRandomString(18);
         var saved = produce(content, null, nameText, true);
-        WizSwing.putStringOnClipboard("[[" + saved.nameMark + "]]");
         return saved;
     }
 
