@@ -37,6 +37,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
         buttonMount = new javax.swing.JButton();
         scrollMount = new javax.swing.JScrollPane();
         fieldMount = new javax.swing.JTextArea();
+        buttonInsertHere = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ChatMount");
@@ -96,6 +97,14 @@ public class ChatMountDesk extends javax.swing.JFrame {
             fieldMount.setRows(5);
             scrollMount.setViewportView(fieldMount);
 
+            buttonInsertHere.setText("|");
+            buttonInsertHere.setToolTipText("Put Insert Here");
+            buttonInsertHere.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    buttonInsertHereActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -111,6 +120,8 @@ public class ChatMountDesk extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonGetChat)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonInsertHere)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonEditChat)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonGetFromClipboard)
@@ -118,7 +129,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
                             .addComponent(buttonPutOnClipboard)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonMount)
-                            .addGap(0, 110, Short.MAX_VALUE)))
+                            .addGap(0, 81, Short.MAX_VALUE)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
@@ -132,7 +143,8 @@ public class ChatMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonGetFromClipboard)
                         .addComponent(buttonPutOnClipboard)
                         .addComponent(buttonOpenOrRefresh)
-                        .addComponent(buttonMount))
+                        .addComponent(buttonMount)
+                        .addComponent(buttonInsertHere))
                     .addGap(18, 18, 18)
                     .addComponent(scrollMount, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                     .addContainerGap())
@@ -201,10 +213,15 @@ public class ChatMountDesk extends javax.swing.JFrame {
         buttonPutOnClipboardActionPerformed(evt);
     }//GEN-LAST:event_buttonMountActionPerformed
 
+    private void buttonInsertHereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertHereActionPerformed
+        fieldMount.replaceSelection("<<INSERT_HERE>>");
+    }//GEN-LAST:event_buttonInsertHereActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonEditChat;
     private javax.swing.JButton buttonGetChat;
     private javax.swing.JButton buttonGetFromClipboard;
+    private javax.swing.JButton buttonInsertHere;
     private javax.swing.JButton buttonMount;
     private javax.swing.JButton buttonOpenOrRefresh;
     private javax.swing.JButton buttonPutOnClipboard;

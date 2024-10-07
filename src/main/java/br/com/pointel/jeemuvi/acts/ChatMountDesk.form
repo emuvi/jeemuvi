@@ -36,6 +36,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetChat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonInsertHere" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonEditChat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetFromClipboard" min="-2" max="-2" attributes="0"/>
@@ -43,7 +45,7 @@
                       <Component id="buttonPutOnClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonMount" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="110" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -62,6 +64,7 @@
                   <Component id="buttonPutOnClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonOpenOrRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonMount" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonInsertHere" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="scrollMount" pref="247" max="32767" attributes="0"/>
@@ -150,5 +153,14 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="buttonInsertHere">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="|"/>
+        <Property name="toolTipText" type="java.lang.String" value="Put Insert Here"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonInsertHereActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
