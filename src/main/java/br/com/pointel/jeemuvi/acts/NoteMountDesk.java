@@ -47,7 +47,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         buttonUndo = new javax.swing.JButton();
         buttonRedo = new javax.swing.JButton();
         fieldCopyKind = new javax.swing.JComboBox<>();
-        buttonCopy = new javax.swing.JButton();
+        buttonCopyBuffer = new javax.swing.JButton();
         buttonOpenOrRefresh = new javax.swing.JButton();
         fieldChatName = new javax.swing.JComboBox<>();
         buttonInsert = new javax.swing.JButton();
@@ -68,7 +68,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
         panelAppend = new javax.swing.JPanel();
         scrollAppend = new javax.swing.JScrollPane();
         sourceAppend = new javax.swing.JTextArea();
-        buttonCopyClean = new javax.swing.JButton();
+        buttonCleanCopyBuffer = new javax.swing.JButton();
+        buttonCopyAndCleanBuffer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NoteMount");
@@ -132,11 +133,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
         fieldCopyKind.setToolTipText("Copy Source");
         fieldCopyKind.setName("CopyKind"); // NOI18N
 
-        buttonCopy.setText("/");
-        buttonCopy.setToolTipText("Copy to Clipboard");
-        buttonCopy.addActionListener(new java.awt.event.ActionListener() {
+        buttonCopyBuffer.setText("/");
+        buttonCopyBuffer.setToolTipText("Copy the Buffer to Clipboard");
+        buttonCopyBuffer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCopyActionPerformed(evt);
+                buttonCopyBufferActionPerformed(evt);
             }
         });
 
@@ -275,11 +276,19 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         panelEditors.addTab("Append", panelAppend);
 
-        buttonCopyClean.setText("0");
-        buttonCopyClean.setToolTipText("Copy Clean");
-        buttonCopyClean.addActionListener(new java.awt.event.ActionListener() {
+        buttonCleanCopyBuffer.setText("0");
+        buttonCleanCopyBuffer.setToolTipText("Clean the Copy Buffer");
+        buttonCleanCopyBuffer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCopyCleanActionPerformed(evt);
+                buttonCleanCopyBufferActionPerformed(evt);
+            }
+        });
+
+        buttonCopyAndCleanBuffer.setText("|");
+        buttonCopyAndCleanBuffer.setToolTipText("Copy and Clean the Buffer");
+        buttonCopyAndCleanBuffer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCopyAndCleanBufferActionPerformed(evt);
             }
         });
 
@@ -296,11 +305,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRedo)
                         .addGap(18, 18, 18)
-                        .addComponent(buttonCopyClean)
+                        .addComponent(buttonCleanCopyBuffer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fieldCopyKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonCopy)
+                        .addComponent(buttonCopyBuffer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCopyAndCleanBuffer)
                         .addGap(18, 18, 18)
                         .addComponent(buttonOpenOrRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -345,12 +356,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonUndo)
                     .addComponent(fieldCopyKind, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonCopy)
+                    .addComponent(buttonCopyBuffer)
                     .addComponent(fieldChatName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buttonInsert)
                     .addComponent(buttonOpenOrRefresh)
                     .addComponent(buttonRedo)
-                    .addComponent(buttonCopyClean))
+                    .addComponent(buttonCleanCopyBuffer)
+                    .addComponent(buttonCopyAndCleanBuffer))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -427,7 +439,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonInsertActionPerformed
 
-    private void buttonCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyActionPerformed
+    private void buttonCopyBufferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyBufferActionPerformed
         try {
             switch (fieldCopyKind.getSelectedItem().toString()) {
                 case "Chat" -> copyChat();
@@ -440,7 +452,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         } catch (Exception e) {
             WizSwing.showError(e);
         }
-    }//GEN-LAST:event_buttonCopyActionPerformed
+    }//GEN-LAST:event_buttonCopyBufferActionPerformed
     
     private String copySection = "";
     private String copyTitle = "";
@@ -551,12 +563,17 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonItemActionPerformed
 
-    private void buttonCopyCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyCleanActionPerformed
+    private void buttonCleanCopyBufferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCleanCopyBufferActionPerformed
         copySection = "";
         copyTitle = "";
         copyParagraph = "";
         copyAppend = "";
-    }//GEN-LAST:event_buttonCopyCleanActionPerformed
+    }//GEN-LAST:event_buttonCleanCopyBufferActionPerformed
+
+    private void buttonCopyAndCleanBufferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyAndCleanBufferActionPerformed
+        buttonCopyBufferActionPerformed(evt);
+        buttonCleanCopyBufferActionPerformed(evt);
+    }//GEN-LAST:event_buttonCopyAndCleanBufferActionPerformed
 
     private String groovyClipboard(String script) throws Exception {
         var clipboard = WizSwing.getStringOnClipboard().trim();
@@ -607,8 +624,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAppend;
-    private javax.swing.JButton buttonCopy;
-    private javax.swing.JButton buttonCopyClean;
+    private javax.swing.JButton buttonCleanCopyBuffer;
+    private javax.swing.JButton buttonCopyAndCleanBuffer;
+    private javax.swing.JButton buttonCopyBuffer;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonItem;
     private javax.swing.JButton buttonOpenOrRefresh;
