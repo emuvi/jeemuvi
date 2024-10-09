@@ -16,12 +16,17 @@ public class WizChats {
     private static final File FOLDER_CHATS = new File("chats");
     private static final String TAG_INSERT = "<<INSERT_HERE>>";
     
-    public static void openChatsFolder() throws Exception {
+    public static void openFolder() throws Exception {
         WizSwing.open(FOLDER_CHATS);
     }
  
-    public static List<String> getChatsNames() {
+    public static List<String> getNames() {
         var result = new ArrayList<String>();
+        try {
+            Files.createDirectories(FOLDER_CHATS.toPath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         for (var inside : FOLDER_CHATS.listFiles()) {
             if (inside.isFile() && inside.getName().toLowerCase().endsWith(".txt")) {
                 result.add(inside.getName());
@@ -30,33 +35,41 @@ public class WizChats {
         return result;
     }
     
-    public static void loadChatsNames(DefaultComboBoxModel<String> field) {
+    public static void loadNames(DefaultComboBoxModel<String> field) {
         field.removeAllElements();
-        for(var chatName : getChatsNames()) {
+        for(var chatName : getNames()) {
             field.addElement(chatName);
         }
     }
     
-    public static String loadChat(String chatName) throws Exception {
-        var chatFile = new File(FOLDER_CHATS, chatName);
+    public static boolean create(String name) throws Exception {
+        return new File(FOLDER_CHATS, name).createNewFile();
+    }
+    
+    public static boolean delete(String name) throws Exception {
+        return new File(FOLDER_CHATS, name).delete();
+    }
+    
+    public static String load(String name) throws Exception {
+        var chatFile = new File(FOLDER_CHATS, name);
         return Files.readString(chatFile.toPath(), StandardCharsets.UTF_8);
     }
     
-    public static void saveChat(String chatName, String source) throws Exception {
-        var chatFile = new File(FOLDER_CHATS, chatName);
+    public static void save(String name, String source) throws Exception {
+        var chatFile = new File(FOLDER_CHATS, name);
         Files.writeString(chatFile.toPath(), source, StandardCharsets.UTF_8);
     }
     
-    public static String maybeInsertClipboard(String chatName) throws Exception {
-        var chat = loadChat(chatName);
+    public static String maybeInsertClipboard(String name) throws Exception {
+        var chat = load(name);
         if (chat.contains(TAG_INSERT)) {
             chat = chat.replace(TAG_INSERT, WizSwing.getStringOnClipboard());
         }
         return chat;
     }
     
-    public static String forceInsertClipboard(String chatName) throws Exception {
-        var chat = loadChat(chatName);
+    public static String forceInsertClipboard(String name) throws Exception {
+        var chat = load(name);
         if (chat.contains(TAG_INSERT)) {
             chat = chat.replace(TAG_INSERT, WizSwing.getStringOnClipboard());
         } else {

@@ -23,6 +23,7 @@ import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
 import javax.swing.JCheckBox;
@@ -65,7 +66,7 @@ public class WizSwing {
             SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE));
         }
     }
-
+    
     public static boolean showConfirm(String message) {
         return JOptionPane.YES_OPTION
                 == JOptionPane.showConfirmDialog(

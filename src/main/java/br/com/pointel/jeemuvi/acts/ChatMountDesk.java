@@ -19,7 +19,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
     }
     
     private void initFrame() { 
-        WizChats.loadChatsNames(modelChats);
+        WizChats.loadNames(modelChats);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }
@@ -156,9 +156,9 @@ public class ChatMountDesk extends javax.swing.JFrame {
     private void buttonOpenOrRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenOrRefreshActionPerformed
         try {
             if ((evt.getModifiers() & InputEvent.ALT_MASK) != 0) {
-                WizChats.loadChatsNames(modelChats);
+                WizChats.loadNames(modelChats);
             } else {
-                WizChats.openChatsFolder();
+                WizChats.openFolder();
             }
         } catch (Exception e) {
             WizSwing.showError(e);
@@ -167,7 +167,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
 
     private void buttonGetChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetChatActionPerformed
         try {
-            fieldMount.setText(WizChats.loadChat(fieldChat.getSelectedItem().toString()));
+            fieldMount.setText(WizChats.load(getChatName()));
         } catch (Exception e) {
             WizSwing.showError(e);
         }
@@ -175,14 +175,16 @@ public class ChatMountDesk extends javax.swing.JFrame {
 
     private void buttonEditChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditChatActionPerformed
         try {
-            var chatName = fieldChat.getSelectedItem().toString();
-            var source = fieldMount.getText();
-            WizChats.saveChat(chatName, source);
+            WizChats.save(getChatName(), fieldMount.getText());
         } catch (Exception e) {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonEditChatActionPerformed
 
+    private String getChatName() {
+        return fieldChat.getSelectedItem().toString();
+    }
+    
     private void buttonGetFromClipboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetFromClipboardActionPerformed
         try {
             var clipboard = WizSwing.getStringOnClipboard();

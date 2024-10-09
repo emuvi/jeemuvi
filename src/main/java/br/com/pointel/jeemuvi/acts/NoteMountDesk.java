@@ -4,6 +4,7 @@ import br.com.pointel.jeemuvi.gears.NotesHistory;
 import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizChats;
+import br.com.pointel.jeemuvi.wizes.WizGroovy;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
 import groovy.lang.Binding;
 import groovy.lang.GroovyShell;
@@ -28,7 +29,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }
     
     private void initFrame() {
-        WizChats.loadChatsNames(modelChats);
+        WizChats.loadNames(modelChats);
         SwingDropper.initAllOn(this);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
@@ -416,9 +417,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonOpenOrRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOpenOrRefreshActionPerformed
         try {
             if ((evt.getModifiers() & InputEvent.ALT_MASK) != 0) {
-                WizChats.loadChatsNames(modelChats);
+                WizChats.loadNames(modelChats);
             } else {
-                WizChats.openChatsFolder();
+                WizChats.openFolder();
             }
         } catch (Exception e) {
             WizSwing.showError(e);
@@ -588,7 +589,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
     private void buttonCopyChatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyChatActionPerformed
         try {
-            WizSwing.putStringOnClipboard(WizChats.loadChat(getSelectedChat()));
+            WizSwing.putStringOnClipboard(WizChats.load(getSelectedChat()));
         } catch (Exception e) {
             WizSwing.showError(e);
         }
@@ -600,11 +601,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
             clipboard = cleanClipboard(clipboard);
         }
         if (!script.isBlank()) {
-            var binding = new Binding();
-            binding.setProperty("clipboard", clipboard);
-            var shell = new GroovyShell(binding);
-            var result = shell.evaluate(script);
-            clipboard = result.toString();
+            clipboard = WizGroovy.run(script, WizGroovy.mapped(
+                    WizGroovy.map("clipboard", clipboard))).toString();
         }
         return clipboard;
     }
