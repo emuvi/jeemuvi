@@ -79,9 +79,9 @@ public class TigerMonitorDesk extends javax.swing.JFrame {
     private void initComponents() {
 
         fieldActive = new javax.swing.JCheckBox();
+        labelRunCount = new javax.swing.JLabel();
         labelInterval = new javax.swing.JLabel();
         fieldInterval = new javax.swing.JSpinner();
-        labelRunCount = new javax.swing.JLabel();
         labelOnWindow = new javax.swing.JLabel();
         fieldOnWindow = new javax.swing.JTextField();
         buttonMark = new javax.swing.JButton();
@@ -109,12 +109,12 @@ public class TigerMonitorDesk extends javax.swing.JFrame {
             }
         });
 
+        labelRunCount.setText("* 0");
+
         labelInterval.setText("Interval");
 
         fieldInterval.setName("Interval"); // NOI18N
         fieldInterval.setValue(1000);
-
-        labelRunCount.setText("* 0");
 
         labelOnWindow.setText("On Window");
 
@@ -218,11 +218,11 @@ public class TigerMonitorDesk extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(fieldActive)
                                 .addGap(18, 18, 18)
+                                .addComponent(labelRunCount)
+                                .addGap(18, 18, 18)
                                 .addComponent(labelInterval)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(fieldInterval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(labelRunCount)))
+                                .addComponent(fieldInterval, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

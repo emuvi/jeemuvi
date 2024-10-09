@@ -60,11 +60,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="fieldActive" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="labelRunCount" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="labelInterval" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="fieldInterval" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="labelRunCount" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -123,6 +123,11 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldActiveActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JLabel" name="labelRunCount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="* 0"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="labelInterval">
       <Properties>
         <Property name="text" type="java.lang.String" value="Interval"/>
@@ -134,11 +139,6 @@
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="1000" type="code"/>
         </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="labelRunCount">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="* 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelOnWindow">
