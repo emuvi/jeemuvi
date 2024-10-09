@@ -292,7 +292,11 @@ public class TigerMonitorDesk extends javax.swing.JFrame {
 
     private void buttonSourceNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSourceNewActionPerformed
         try {
-            WizGroovy.create(getSourceName());
+            var sourceName = WizSwing.showInput("New Source");
+            if (sourceName == null || sourceName.isBlank()) {
+                return;
+            }
+            WizGroovy.create(sourceName);
             WizGroovy.loadNames(modelGroovy);
         } catch (Exception e) {
             WizSwing.showError(e);
