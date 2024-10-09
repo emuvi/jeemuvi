@@ -179,7 +179,7 @@ public class HeartMakeDesk extends javax.swing.JFrame {
                 new File(fieldFolder.getText()),
                 fieldAddAtTheEnd.getText()
         ).startRemake();
-        WizSwing.triggerDebounce(3000, () -> buttonRemake.setEnabled(true));
+        WizSwing.debounceAction(3000, () -> buttonRemake.setEnabled(true));
     }//GEN-LAST:event_buttonRemakeActionPerformed
 
     private void buttonWatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWatchActionPerformed

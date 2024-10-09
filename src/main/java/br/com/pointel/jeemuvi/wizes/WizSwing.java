@@ -1,14 +1,15 @@
 package br.com.pointel.jeemuvi.wizes;
 
+import br.com.pointel.jeemuvi.gears.SwingFramer;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.HeadlessException;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -17,27 +18,19 @@ import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import javax.swing.AbstractAction;
 import javax.swing.AbstractButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
-import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -134,102 +127,15 @@ public class WizSwing {
     }
 
     public static Font fontMonospaced() {
-        return new Font(Font.MONOSPACED, Font.PLAIN, 11);
+        return new Font(Font.MONOSPACED, Font.PLAIN, 12);
     }
 
     public static Font fontSerif() {
-        return new Font(Font.SERIF, Font.PLAIN, 11);
+        return new Font(Font.SERIF, Font.PLAIN, 12);
     }
 
     public static Font fontSansSerif() {
-        return new Font(Font.SANS_SERIF, Font.PLAIN, 11);
-    }
-
-    public static void initFrame(JFrame frame) {
-        final var rootName = WizChars.makeParameterName(!frame.getName().isEmpty() ? frame.getName() : frame.getTitle());
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-                loadFrameProps();
-                loadFrameComps(frame);
-            }
-
-            private void loadFrameProps() throws HeadlessException, SecurityException {
-                var left = WizProps.get(rootName + "_FRAME_LEFT", frame.getBounds().x);
-                var top = WizProps.get(rootName + "_FRAME_TOP", frame.getBounds().y);
-                var width = WizProps.get(rootName + "_FRAME_WIDTH", frame.getBounds().width);
-                var height = WizProps.get(rootName + "_FRAME_HEIGHT", frame.getBounds().height);
-                var gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-                var screenBounds = gd.getDefaultConfiguration().getBounds();
-                if (left + width > screenBounds.x + screenBounds.width) {
-                    left = screenBounds.width - width;
-                }
-                if (top + height > screenBounds.y + screenBounds.height) {
-                    top = screenBounds.height - height;
-                }
-                if (left < screenBounds.x) {
-                    left = screenBounds.x;
-                }
-                if (top < screenBounds.y) {
-                    top = screenBounds.y;
-                }
-                frame.setBounds(left, top, width, height);
-                frame.setAlwaysOnTop(WizProps.get(rootName + "_FRAME_ONTOP", frame.isAlwaysOnTop()));
-            }
-
-            public void loadFrameComps(Component component) {
-                if (component != null && component.getName() != null && !component.getName().isEmpty()) {
-                    var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
-                    switch (component) {
-                        case JTextComponent textField -> textField.setText(WizProps.get(paramName, textField.getText()));
-                        case JComboBox comboField -> comboField.setSelectedIndex(WizProps.get(paramName, comboField.getSelectedIndex()));
-                        case JSpinner spinnerField -> spinnerField.setValue(WizProps.get(paramName, (Integer) spinnerField.getValue()));
-                        case JCheckBox checkField -> checkField.setSelected(WizProps.get(paramName, checkField.isSelected()));
-                        default -> {
-                        }
-                    }
-                }
-                if (component instanceof Container container) {
-                    for (Component inside : container.getComponents()) {
-                        loadFrameComps(inside);
-                    }
-                }
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-                saveFrameProps();
-                saveFrameComps(frame);
-            }
-
-            private void saveFrameProps() {
-                WizProps.set(rootName + "_FRAME_LEFT", frame.getBounds().x);
-                WizProps.set(rootName + "_FRAME_TOP", frame.getBounds().y);
-                WizProps.set(rootName + "_FRAME_WIDTH", frame.getBounds().width);
-                WizProps.set(rootName + "_FRAME_HEIGHT", frame.getBounds().height);
-                WizProps.set(rootName + "_FRAME_ONTOP", frame.isAlwaysOnTop());
-            }
-
-            public void saveFrameComps(Component component) {
-                if (component != null && component.getName() != null && !component.getName().isEmpty()) {
-                    var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
-                    switch (component) {
-                        case JTextComponent textField -> WizProps.set(paramName, textField.getText());
-                        case JComboBox comboField -> WizProps.set(paramName, comboField.getSelectedIndex());
-                        case JSpinner spinnerField -> WizProps.set(paramName, (Integer) spinnerField.getValue());
-                        case JCheckBox checkField -> WizProps.set(paramName, checkField.isSelected());
-                        default -> {
-                        }
-                    }
-                }
-                if (component instanceof Container container) {
-                    for (Component inside : container.getComponents()) {
-                        saveFrameComps(inside);
-                    }
-                }
-            }
-        });
-        setAllCompontentsFont(frame, fontMonospaced());
+        return new Font(Font.SANS_SERIF, Font.PLAIN, 12);
     }
 
     public static void setAllCompontentsFont(Component component, Font fonte) {
@@ -258,6 +164,10 @@ public class WizSwing {
                 getAllCompontentsOf(results, inside, clazz);
             }
         }
+    }
+    
+    public static void initFrame(JFrame frame) {
+        new SwingFramer(frame).init();
     }
 
     public static void initEscaper(JFrame frame) {
@@ -303,7 +213,7 @@ public class WizSwing {
         menu.add(item);
     }
     
-    public static void triggerDebounce(int millis, Runnable action) {
+    public static void debounceAction(int millis, Runnable action) {
         new Thread("Trigger Debounce") {
             @Override
             public void run() {
@@ -325,6 +235,35 @@ public class WizSwing {
             }
         }
         return null;
+    }
+    
+    public static Rectangle getBoundsInsideScreen(Rectangle bounds) {
+        GraphicsDevice insideScreen = null;
+        var screens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+        for (var screen : screens) {
+            var screenBounds = screen.getDefaultConfiguration().getBounds();
+            if (screenBounds.contains(bounds.getLocation())) {
+                insideScreen = screen;
+                break;
+            }
+        }
+        if (insideScreen == null) {
+            insideScreen = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+        }
+        var screenBounds = insideScreen.getDefaultConfiguration().getBounds();
+        if (bounds.x + bounds.width > screenBounds.x + screenBounds.width) {
+            bounds.x = screenBounds.x + screenBounds.width - bounds.width;
+        }
+        if (bounds.x < screenBounds.x) {
+            bounds.x = screenBounds.x;
+        }
+        if (bounds.y + bounds.height > screenBounds.y + screenBounds.height) {
+            bounds.y = screenBounds.y + screenBounds.height - bounds.height;
+        }
+        if (bounds.y < screenBounds.y) {
+            bounds.y = screenBounds.y;
+        }
+        return bounds;
     }
 
 }
