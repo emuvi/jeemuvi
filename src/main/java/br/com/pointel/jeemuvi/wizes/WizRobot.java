@@ -27,6 +27,9 @@ public class WizRobot {
     
     public static void stroke(Robot robot, String keys) throws Exception {
         var keyStroke = KeyStroke.getKeyStroke(keys);
+        if ((keyStroke.getModifiers() & InputEvent.META_DOWN_MASK) != 0) {
+            robot.keyPress(KeyEvent.VK_META);
+        }
         if ((keyStroke.getModifiers() & InputEvent.CTRL_DOWN_MASK) != 0) {
             robot.keyPress(KeyEvent.VK_CONTROL);
         }
@@ -46,6 +49,9 @@ public class WizRobot {
         }
         if ((keyStroke.getModifiers() & InputEvent.CTRL_DOWN_MASK) != 0) {
             robot.keyRelease(KeyEvent.VK_CONTROL);
+        }
+        if ((keyStroke.getModifiers() & InputEvent.META_DOWN_MASK) != 0) {
+            robot.keyRelease(KeyEvent.VK_META);
         }
     }
     
