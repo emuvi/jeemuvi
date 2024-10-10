@@ -332,6 +332,7 @@ public class TigerMonitorDesk extends javax.swing.JFrame {
     private String getSourceName() {
         return fieldSources.getSelectedItem().toString();
     }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonMark;
     private javax.swing.JButton buttonRun;
