@@ -36,9 +36,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonSourceDel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldSources" pref="157" max="32767" attributes="0"/>
+                      <Component id="fieldSources" pref="158" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldSearchSource" pref="151" max="32767" attributes="0"/>
+                      <Component id="fieldSourceSearch" pref="150" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonSourceGet" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -47,11 +47,15 @@
                       <Component id="buttonRun" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonCapture" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonAssets" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonAssetNew" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonAssetDel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="fieldAssets" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldSearchAsset" max="32767" attributes="0"/>
+                      <Component id="fieldAssetSearch" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonInsert" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -72,16 +76,18 @@
                   <Component id="buttonSourceNew" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonSourceDel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonRun" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldSearchSource" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldSourceSearch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="scrollSource" pref="290" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonCapture" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAssets" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonInsert" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldAssets" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldSearchAsset" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldAssetSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAssetNew" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonAssetDel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -124,6 +130,8 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
+    <Component class="javax.swing.JTextField" name="fieldSourceSearch">
+    </Component>
     <Component class="javax.swing.JButton" name="buttonSourceGet">
       <Properties>
         <Property name="text" type="java.lang.String" value="="/>
@@ -164,12 +172,25 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonCapture">
+    <Component class="javax.swing.JButton" name="buttonAssets">
       <Properties>
         <Property name="text" type="java.lang.String" value="#"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCaptureActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAssetsActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonAssetNew">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonAssetDel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="-"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAssetDelActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="fieldAssets">
@@ -182,14 +203,12 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="fieldSearchAsset">
+    <Component class="javax.swing.JTextField" name="fieldAssetSearch">
     </Component>
     <Component class="javax.swing.JButton" name="buttonInsert">
       <Properties>
-        <Property name="text" type="java.lang.String" value="+"/>
+        <Property name="text" type="java.lang.String" value="|"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="fieldSearchSource">
     </Component>
   </SubComponents>
 </Form>
