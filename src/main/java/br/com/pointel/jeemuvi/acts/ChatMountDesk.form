@@ -28,11 +28,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrollMount" max="32767" attributes="0"/>
+                  <Component id="scrollMount" pref="386" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="buttonOpenOrRefresh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldChat" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="fieldChat" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetChat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -49,7 +49,6 @@
                       <Component id="buttonPutOnClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonMount" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>

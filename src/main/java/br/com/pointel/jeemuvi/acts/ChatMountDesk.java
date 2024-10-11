@@ -126,11 +126,11 @@ public class ChatMountDesk extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(scrollMount)
+                        .addComponent(scrollMount, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(buttonOpenOrRefresh)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fieldChat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldChat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonGetChat)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,8 +146,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonPutOnClipboard)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonMount)
-                            .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(buttonMount)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
