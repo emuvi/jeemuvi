@@ -27,8 +27,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="panelEditors" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="panelEditors" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="fieldPath" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonWatch" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="buttonUndo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -41,38 +46,39 @@
                       <Component id="buttonCopyBuffer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonCopyAndCleanBuffer" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonOpenOrRefresh" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldChatName" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldChatName" pref="0" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonCopyChat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonInsert" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="fieldPath" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonWatch" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonSection" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldTitleSize" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonTitle" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonParagraph" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonItem" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonAppend" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="labelPath" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="buttonSection" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fieldTitleSize" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonTitle" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonParagraph" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonItem" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="fieldItemLined" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonLined" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonAppend" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="fieldCleanClipboard" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="labelPath" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="fieldCleanClipboard" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -90,6 +96,9 @@
                   <Component id="buttonParagraph" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonAppend" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonLined" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldCleanClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldItemLined" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -104,16 +113,8 @@
                   <Component id="buttonCopyAndCleanBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCopyChat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="labelPath" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="fieldCleanClipboard" min="-2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="labelPath" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fieldPath" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,7 +130,8 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="buttonSection">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Section"/>
+        <Property name="text" type="java.lang.String" value="S"/>
+        <Property name="toolTipText" type="java.lang.String" value="Section"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSectionActionPerformed"/>
@@ -145,7 +147,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonTitle">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Title"/>
+        <Property name="text" type="java.lang.String" value="T"/>
+        <Property name="toolTipText" type="java.lang.String" value="Title"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonTitleActionPerformed"/>
@@ -153,7 +156,8 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonParagraph">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Paragraph"/>
+        <Property name="text" type="java.lang.String" value="P"/>
+        <Property name="toolTipText" type="java.lang.String" value="Paragraph"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonParagraphActionPerformed"/>
@@ -161,15 +165,31 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonItem">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Item"/>
+        <Property name="text" type="java.lang.String" value="I"/>
+        <Property name="toolTipText" type="java.lang.String" value="Item"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonItemActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JCheckBox" name="fieldItemLined">
+      <Properties>
+        <Property name="name" type="java.lang.String" value="ItemLined" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonLined">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L"/>
+        <Property name="toolTipText" type="java.lang.String" value="Lined"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLinedActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JButton" name="buttonAppend">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Append"/>
+        <Property name="text" type="java.lang.String" value="A"/>
+        <Property name="toolTipText" type="java.lang.String" value="Append"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAppendActionPerformed"/>
@@ -294,7 +314,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollSection" pref="467" max="32767" attributes="0"/>
+                      <Component id="scrollSection" pref="404" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -343,7 +363,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollTitle" pref="467" max="32767" attributes="0"/>
+                      <Component id="scrollTitle" pref="404" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -392,7 +412,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollParagraph" pref="467" max="32767" attributes="0"/>
+                      <Component id="scrollParagraph" pref="404" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -441,7 +461,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollAppend" pref="467" max="32767" attributes="0"/>
+                      <Component id="scrollAppend" pref="404" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

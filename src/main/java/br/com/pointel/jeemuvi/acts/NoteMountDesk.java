@@ -44,6 +44,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
         buttonTitle = new javax.swing.JButton();
         buttonParagraph = new javax.swing.JButton();
         buttonItem = new javax.swing.JButton();
+        fieldItemLined = new javax.swing.JCheckBox();
+        buttonLined = new javax.swing.JButton();
         buttonAppend = new javax.swing.JButton();
         buttonUndo = new javax.swing.JButton();
         buttonRedo = new javax.swing.JButton();
@@ -77,7 +79,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
         setTitle("NoteMount");
         setName("NoteMountDesk"); // NOI18N
 
-        buttonSection.setText("Section");
+        buttonSection.setText("S");
+        buttonSection.setToolTipText("Section");
         buttonSection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSectionActionPerformed(evt);
@@ -87,28 +90,42 @@ public class NoteMountDesk extends javax.swing.JFrame {
         fieldTitleSize.setName("TitleSize"); // NOI18N
         fieldTitleSize.setValue(3);
 
-        buttonTitle.setText("Title");
+        buttonTitle.setText("T");
+        buttonTitle.setToolTipText("Title");
         buttonTitle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonTitleActionPerformed(evt);
             }
         });
 
-        buttonParagraph.setText("Paragraph");
+        buttonParagraph.setText("P");
+        buttonParagraph.setToolTipText("Paragraph");
         buttonParagraph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonParagraphActionPerformed(evt);
             }
         });
 
-        buttonItem.setText("Item");
+        buttonItem.setText("I");
+        buttonItem.setToolTipText("Item");
         buttonItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonItemActionPerformed(evt);
             }
         });
 
-        buttonAppend.setText("Append");
+        fieldItemLined.setName("ItemLined"); // NOI18N
+
+        buttonLined.setText("L");
+        buttonLined.setToolTipText("Lined");
+        buttonLined.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLinedActionPerformed(evt);
+            }
+        });
+
+        buttonAppend.setText("A");
+        buttonAppend.setToolTipText("Append");
         buttonAppend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAppendActionPerformed(evt);
@@ -190,7 +207,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelSectionLayout.setVerticalGroup(
@@ -215,7 +232,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTitleLayout.setVerticalGroup(
@@ -240,7 +257,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelParagraphLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelParagraphLayout.setVerticalGroup(
@@ -265,7 +282,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelAppendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAppendLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelAppendLayout.setVerticalGroup(
@@ -308,9 +325,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelEditors)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelEditors, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(fieldPath)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonWatch))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonUndo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRedo)
@@ -325,32 +346,33 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(buttonOpenOrRefresh)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldChatName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fieldChatName, 0, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonCopyChat)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonInsert))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(fieldPath)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonWatch))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(buttonSection)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldTitleSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonTitle)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonParagraph)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonItem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonAppend)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(labelPath)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fieldCleanClipboard)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelPath)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonSection)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldTitleSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonParagraph)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonItem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fieldItemLined)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonLined)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(buttonAppend)
+                                .addGap(18, 18, 18)
+                                .addComponent(fieldCleanClipboard)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -363,7 +385,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .addComponent(buttonTitle)
                     .addComponent(buttonParagraph)
                     .addComponent(buttonAppend)
-                    .addComponent(buttonItem))
+                    .addComponent(buttonItem)
+                    .addComponent(buttonLined)
+                    .addComponent(fieldCleanClipboard)
+                    .addComponent(fieldItemLined))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonUndo)
@@ -376,13 +401,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .addComponent(buttonCleanCopyBuffer)
                     .addComponent(buttonCopyAndCleanBuffer)
                     .addComponent(buttonCopyChat))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(labelPath))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldCleanClipboard)))
+                .addGap(22, 22, 22)
+                .addComponent(labelPath)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -568,7 +588,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
             making = "- " + making;
             var source = loadNote();
             if (!source.isEmpty()) {
-                making = "\n\n" + making;
+                if (fieldItemLined.isSelected()) {
+                    making = "\n" + making;
+                } else {
+                    making = "\n\n" + making;
+                }
             }
             source += making;
             saveNote(source);
@@ -600,6 +624,24 @@ public class NoteMountDesk extends javax.swing.JFrame {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonCopyChatActionPerformed
+
+    private void buttonLinedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLinedActionPerformed
+        try {
+            var making = groovyClipboard(sourceParagraph.getText());
+            var source = loadNote();
+            if (!source.isEmpty()) {
+                making = "\n" + making;
+            }
+            source += making;
+            saveNote(source);
+            copySection += making;
+            copyTitle += making;
+            copyParagraph = making;
+            copyAppend = making;
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
+    }//GEN-LAST:event_buttonLinedActionPerformed
 
     private String groovyClipboard(String script) throws Exception {
         var clipboard = WizSwing.getStringOnClipboard().trim();
@@ -649,6 +691,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JButton buttonCopyChat;
     private javax.swing.JButton buttonInsert;
     private javax.swing.JButton buttonItem;
+    private javax.swing.JButton buttonLined;
     private javax.swing.JButton buttonOpenOrRefresh;
     private javax.swing.JButton buttonParagraph;
     private javax.swing.JButton buttonRedo;
@@ -659,6 +702,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> fieldChatName;
     private javax.swing.JCheckBox fieldCleanClipboard;
     private javax.swing.JComboBox<String> fieldCopyKind;
+    private javax.swing.JCheckBox fieldItemLined;
     private javax.swing.JTextField fieldPath;
     private javax.swing.JSpinner fieldTitleSize;
     private javax.swing.JLabel labelPath;
