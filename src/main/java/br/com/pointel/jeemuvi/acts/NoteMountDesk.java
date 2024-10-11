@@ -6,12 +6,11 @@ import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizChats;
 import br.com.pointel.jeemuvi.wizes.WizGroovy;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
-import groovy.lang.Binding;
-import groovy.lang.GroovyShell;
 import java.awt.event.InputEvent;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -29,8 +28,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }
     
     private void initFrame() {
-        WizChats.loadNames(modelChats);
         SwingDropper.initAllOn(this);
+        new SwingDropper((f) -> setPath(f), this).init();
+        WizChats.loadNames(modelChats);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }
@@ -395,6 +395,12 @@ public class NoteMountDesk extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setPath(List<File> files) {
+        if (files != null && !files.isEmpty()) {
+            fieldPath.setText(files.get(0).getAbsolutePath());
+        }
+    }
+    
     private File getNoteFile() {
         return new File(fieldPath.getText());
     }
