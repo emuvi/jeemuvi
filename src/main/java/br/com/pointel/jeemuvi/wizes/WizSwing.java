@@ -80,6 +80,8 @@ public class WizSwing {
             try {
                 if (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
                     return (String) clipboardContents.getTransferData(DataFlavor.stringFlavor);
+                } else if (clipboardContents.isDataFlavorSupported(DataFlavor.imageFlavor)) {
+                    return "<IMAGE>";
                 }
             } catch (Exception e) {
                 return null;
