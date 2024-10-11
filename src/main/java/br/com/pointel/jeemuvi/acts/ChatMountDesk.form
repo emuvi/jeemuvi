@@ -42,10 +42,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetFromClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonPutOnBuffer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelBuffer" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonPutOnClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonMount" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -65,6 +69,8 @@
                   <Component id="buttonOpenOrRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonMount" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonInsertHere" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonPutOnBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="scrollMount" pref="247" max="32767" attributes="0"/>
@@ -74,6 +80,15 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JButton" name="buttonOpenOrRefresh">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="#"/>
+        <Property name="toolTipText" type="java.lang.String" value="Open or Refresh Chats"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOpenOrRefreshActionPerformed"/>
+      </Events>
+    </Component>
     <Component class="javax.swing.JComboBox" name="fieldChat">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -91,6 +106,15 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGetChatActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonInsertHere">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="|"/>
+        <Property name="toolTipText" type="java.lang.String" value="Put Insert Here"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonInsertHereActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonEditChat">
@@ -111,6 +135,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGetFromClipboardActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JButton" name="buttonPutOnBuffer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="+"/>
+        <Property name="toolTipText" type="java.lang.String" value="Put on Buffer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPutOnBufferActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelBuffer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="0"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="buttonPutOnClipboard">
       <Properties>
         <Property name="text" type="java.lang.String" value="/"/>
@@ -118,15 +156,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPutOnClipboardActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="buttonOpenOrRefresh">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="#"/>
-        <Property name="toolTipText" type="java.lang.String" value="Open or Refresh Chats"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonOpenOrRefreshActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonMount">
@@ -153,14 +182,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="buttonInsertHere">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="|"/>
-        <Property name="toolTipText" type="java.lang.String" value="Put Insert Here"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonInsertHereActionPerformed"/>
-      </Events>
-    </Component>
   </SubComponents>
 </Form>
