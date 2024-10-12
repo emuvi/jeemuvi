@@ -10,6 +10,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -357,6 +358,8 @@ public class QuestMountDesk extends javax.swing.JFrame {
         try {
             final var newQuestFile = newQuestFile();            
             fieldPath.setText(newQuestFile.getAbsolutePath());
+            var baseName = FilenameUtils.getBaseName(newQuestFile.getName());
+            WizSwing.putStringOnClipboard("[[" + baseName + "]]");
         } catch (Exception e) {
             WizSwing.showError(e);
         }
