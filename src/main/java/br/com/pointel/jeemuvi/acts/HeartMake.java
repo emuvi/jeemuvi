@@ -24,7 +24,7 @@ public class HeartMake {
 
     public Saved capture() throws Exception {
         var content = WizSwing.getStringOnClipboard();
-        var nameText = WizChars.generateRandomString(18);
+        var nameText = WizChars.newRandomString(18);
         var saved = produce(content, null, nameText, true);
         return saved;
     }
@@ -71,7 +71,7 @@ public class HeartMake {
     private void remakeHeart(File file) throws Exception {
         var origin = Files.readString(file.toPath(), StandardCharsets.UTF_8);
         var nameMark = FilenameUtils.getBaseName(file.getName());
-        var nameText = WizChars.generateRandomString(18);
+        var nameText = WizChars.newRandomString(18);
         produce(origin, nameMark, nameText, false);
     }
     

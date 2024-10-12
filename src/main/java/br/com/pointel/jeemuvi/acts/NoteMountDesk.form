@@ -91,6 +91,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="fieldItemLined" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="buttonUndo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonRedo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldCleanClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="buttonSection" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fieldTitleSize" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -99,11 +104,6 @@
                       <Component id="buttonAppend" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonItem" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="buttonLined" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                          <Component id="buttonUndo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="buttonRedo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldCleanClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -125,7 +125,7 @@
                   <Component id="buttonWatch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelEditors" pref="273" max="32767" attributes="0"/>
+              <Component id="panelEditors" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>

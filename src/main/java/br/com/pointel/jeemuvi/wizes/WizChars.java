@@ -18,7 +18,7 @@ public class WizChars {
     
     private static final String SIMPLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXZY";
 
-    public static String generateRandomString(int length) {
+    public static String newRandomString(int length) {
         var random = new Random();
         var randomNumberString = new StringBuilder();
         for (int i = 0; i < length; i++) {
@@ -29,6 +29,16 @@ public class WizChars {
                 char randomChar = SIMPLE_CHARS.charAt(random.nextInt(SIMPLE_CHARS.length()));
                 randomNumberString.append(randomChar);
             }
+        }        
+        return randomNumberString.toString();
+    }
+    
+    public static String newRandomStringOnlyNumbers(int length) {
+        var random = new Random();
+        var randomNumberString = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int randomDigit = random.nextInt(10);
+            randomNumberString.append(randomDigit);
         }        
         return randomNumberString.toString();
     }
