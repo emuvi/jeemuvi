@@ -373,7 +373,7 @@ public class QuestMountDesk extends javax.swing.JFrame {
         final var questFolder = getQuestFolder();
         File result;
         do {
-            result = new File(questFolder, "(Q) " + WizChars.newRandomStringOnlyNumbers(12));
+            result = new File(questFolder, "(Q) " + WizChars.newRandomStringOnlyNumbers(8) + ".md");
         } while (result.exists());
         if (!result.createNewFile()) {
             throw new Exception("Could not create the file: " + result.getAbsolutePath());
