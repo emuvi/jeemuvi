@@ -306,17 +306,17 @@ public class ChatMountDesk extends javax.swing.JFrame {
             making = "\n\n---\n\n" + making;
         }
         history += making;
-        Files.writeString(historyForFile.toPath(), history);
+        Files.writeString(historyForFile.toPath(), history, StandardCharsets.UTF_8);
     }
 
     private File getHistoryForFile() {
-        var historyFor = fieldHistoryFor.getText();
-        if (historyFor.isBlank()) {
+        var historyForPath = fieldHistoryFor.getText();
+        if (historyForPath.isBlank()) {
             return null;
         }
-        var folder = new File(FilenameUtils.getPath(historyFor));
-        var baseName = FilenameUtils.getBaseName(historyFor);
-        return new File(folder, baseName + ".chi");
+        var historyForFile = new File(historyForPath);
+        var baseName = FilenameUtils.getBaseName(historyForFile.getName());
+        return new File(historyForFile.getParentFile(), baseName + ".chi");
     }
 
     private void buttonInsertHereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertHereActionPerformed
