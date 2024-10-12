@@ -35,10 +35,6 @@
                       <Component id="buttonWatch" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="buttonUndo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonRedo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonCleanCopyBuffer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="fieldCopyKind" min="-2" max="-2" attributes="0"/>
@@ -48,8 +44,8 @@
                       <Component id="buttonCopyAndCleanBuffer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonOpenOrRefresh" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="fieldChatName" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="fieldChatName" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonCopyChat" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -75,6 +71,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="buttonAppend" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="buttonUndo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="buttonRedo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="fieldCleanClipboard" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -89,26 +89,30 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonSection" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldTitleSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonParagraph" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonAppend" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonItem" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonLined" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="fieldCleanClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="fieldItemLined" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="buttonSection" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldTitleSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonTitle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonParagraph" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonAppend" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonLined" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="buttonUndo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonRedo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldCleanClipboard" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="buttonUndo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldCopyKind" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCopyBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldChatName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonInsert" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonOpenOrRefresh" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonRedo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCleanCopyBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCopyAndCleanBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCopyChat" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -121,7 +125,7 @@
                   <Component id="buttonWatch" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="panelEditors" max="32767" attributes="0"/>
+              <Component id="panelEditors" pref="273" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -314,7 +318,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollSection" pref="404" max="32767" attributes="0"/>
+                      <Component id="scrollSection" pref="528" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -323,7 +327,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollSection" pref="139" max="32767" attributes="0"/>
+                      <Component id="scrollSection" pref="226" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -363,7 +367,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollTitle" pref="404" max="32767" attributes="0"/>
+                      <Component id="scrollTitle" pref="528" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -372,7 +376,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollTitle" pref="139" max="32767" attributes="0"/>
+                      <Component id="scrollTitle" pref="226" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -412,7 +416,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollParagraph" pref="404" max="32767" attributes="0"/>
+                      <Component id="scrollParagraph" pref="528" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -421,7 +425,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollParagraph" pref="139" max="32767" attributes="0"/>
+                      <Component id="scrollParagraph" pref="226" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -461,7 +465,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollAppend" pref="404" max="32767" attributes="0"/>
+                      <Component id="scrollAppend" pref="528" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -470,7 +474,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="scrollAppend" pref="139" max="32767" attributes="0"/>
+                      <Component id="scrollAppend" pref="226" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
