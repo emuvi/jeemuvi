@@ -1,11 +1,16 @@
 package br.com.pointel.jeemuvi.acts;
 
+import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.wizes.WizChats;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.awt.event.InputEvent;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -21,9 +26,17 @@ public class ChatMountDesk extends javax.swing.JFrame {
     }
 
     private void initFrame() {
+        SwingDropper.initAllOn(this);
+        new SwingDropper((f) -> setHistoryFor(f), this).init();
         WizChats.loadNames(modelChats);
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
+    }
+
+    private void setHistoryFor(List<File> files) {
+        if (files != null && !files.isEmpty()) {
+            fieldHistoryFor.setText(files.get(0).getAbsolutePath());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +55,8 @@ public class ChatMountDesk extends javax.swing.JFrame {
         buttonMount = new javax.swing.JButton();
         scrollMount = new javax.swing.JScrollPane();
         fieldMount = new javax.swing.JTextArea();
+        labelHistoryFor = new javax.swing.JLabel();
+        fieldHistoryFor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ChatMount");
@@ -120,6 +135,10 @@ public class ChatMountDesk extends javax.swing.JFrame {
             fieldMount.setRows(5);
             scrollMount.setViewportView(fieldMount);
 
+            labelHistoryFor.setText("History For");
+
+            fieldHistoryFor.setName("HistoryFor"); // NOI18N
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -147,7 +166,11 @@ public class ChatMountDesk extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonPutOnClipboard)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonMount)))
+                            .addComponent(buttonMount))
+                        .addComponent(fieldHistoryFor)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelHistoryFor)
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
@@ -166,7 +189,11 @@ public class ChatMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonPutOnBuffer)
                         .addComponent(labelBuffer))
                     .addGap(18, 18, 18)
-                    .addComponent(scrollMount, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                    .addComponent(scrollMount, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(labelHistoryFor)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(fieldHistoryFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
             );
 
@@ -247,6 +274,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
             mountWithBuffer();
             getFromClipboard();
             putOnClipboard();
+            putOnHistory();
         } catch (Exception e) {
             WizSwing.showError(e);
         }
@@ -262,6 +290,33 @@ public class ChatMountDesk extends javax.swing.JFrame {
             buffer.clear();
         }
         labelBuffer.setText(String.valueOf(buffer.size()));
+    }
+
+    private void putOnHistory() throws Exception {
+        var historyForFile = getHistoryForFile();
+        if (historyForFile == null) {
+            return;
+        }
+        var making = WizSwing.getStringOnClipboard().trim();
+        var history = "";
+        if (historyForFile.exists()) {
+            history = Files.readString(historyForFile.toPath(), StandardCharsets.UTF_8).trim();
+        }
+        if (!history.isEmpty()) {
+            making = "\n\n---\n\n" + making;
+        }
+        history += making;
+        Files.writeString(historyForFile.toPath(), history);
+    }
+
+    private File getHistoryForFile() {
+        var historyFor = fieldHistoryFor.getText();
+        if (historyFor.isBlank()) {
+            return null;
+        }
+        var folder = new File(FilenameUtils.getPath(historyFor));
+        var baseName = FilenameUtils.getBaseName(historyFor);
+        return new File(folder, baseName + ".chi");
     }
 
     private void buttonInsertHereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInsertHereActionPerformed
@@ -292,8 +347,10 @@ public class ChatMountDesk extends javax.swing.JFrame {
     private javax.swing.JButton buttonPutOnBuffer;
     private javax.swing.JButton buttonPutOnClipboard;
     private javax.swing.JComboBox<String> fieldChat;
+    private javax.swing.JTextField fieldHistoryFor;
     private javax.swing.JTextArea fieldMount;
     private javax.swing.JLabel labelBuffer;
+    private javax.swing.JLabel labelHistoryFor;
     private javax.swing.JScrollPane scrollMount;
     // End of variables declaration//GEN-END:variables
 }
