@@ -56,6 +56,7 @@ public class ChatMountDesk extends javax.swing.JFrame {
         });
 
         fieldChat.setModel(modelChats);
+        fieldChat.setName("Chat"); // NOI18N
 
         buttonGetChat.setText("=");
         buttonGetChat.setToolTipText("Get Chat");
