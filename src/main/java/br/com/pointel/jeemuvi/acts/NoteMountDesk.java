@@ -421,6 +421,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         if (files != null && !files.isEmpty()) {
             fieldPath.setText(files.get(0).getAbsolutePath());
         }
+        buttonCleanCopyBufferActionPerformed(null);
     }
     
     private File getNoteFile() {
