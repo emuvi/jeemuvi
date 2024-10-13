@@ -215,6 +215,15 @@ public class WizSwing {
         menu.add(item);
     }
     
+    public static void debounceEnable(JComponent component) {
+        debounceEnable(1000, component);
+    }
+    
+    public static void debounceEnable(int millis, JComponent component) {
+        component.setEnabled(false);
+        debounceAction(millis, () -> component.setEnabled(true));
+    }
+    
     public static void debounceAction(int millis, Runnable action) {
         new Thread("Trigger Debounce") {
             @Override

@@ -64,6 +64,16 @@ public class RunChase {
         desk.setProgressDone(done);
     }
     
+    public void advanceWaitOnPause() {
+        advance();
+        waitOnPause();
+    }
+    
+    public void advanceWaitOnPauseThrowOnStop() throws Exception {
+        advance();
+        waitOnPauseThrowOnStop();
+    }
+    
     public void finish() {
         finished.set(true);
         desk.setFinished();
@@ -115,9 +125,10 @@ public class RunChase {
         advance();
     }
     
-    public void putInfo(String info) {
-        System.out.println(info);
-        desk.putInfo(info);
+    public void putInfo(String info, Object... args) {
+        var message = String.format(info, args);
+        System.out.println(message);
+        desk.putInfo(message);
     }
     
     public void putError(Throwable error) {
