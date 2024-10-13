@@ -658,7 +658,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }
     
     private String cleanClipboard(String clipboard) {
-        return clipboard.replaceAll("\\s+", " ");
+        return clipboard
+                .replaceAll("\\s+", " ")
+                .replace("- ", "");
     }
     
     private void copyNote() throws Exception {

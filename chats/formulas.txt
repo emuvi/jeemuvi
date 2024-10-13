@@ -1,1 +1,0 @@
-refaça o artigo anterior, substituindo as fórmulas em notação matemática e as tabelas de dados por descrições textuais para que cegos possam ouvi-las e entender. respeite a estrutura de artigo solicitada no GPT.
