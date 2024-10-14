@@ -6,8 +6,14 @@ public class HeartMakerDesk extends javax.swing.JFrame {
 
     public HeartMakerDesk() {
         initComponents();
+        initFrame();
     }
 
+    private void initFrame() {
+        WizSwing.initFrame(this);
+        WizSwing.initEscaper(this);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
