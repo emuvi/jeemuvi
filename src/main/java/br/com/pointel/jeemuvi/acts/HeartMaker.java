@@ -95,7 +95,8 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
-        insertLines(builder, assertSource);
+        insertLines(builder, assertSource, 
+                new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
     }
 
     private void makeQuest(StringBuilder builder, List<String> questSource) {
@@ -103,13 +104,26 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}Lista de Perguntas e Respostas.{{Pause=2}}\n\n");
-        insertLines(builder, questSource);
+        insertLines(builder, questSource,
+                new Replace("**Pergunta", "{{Pause=1}}**Pergunta"),
+                new Replace("**Resposta", "{{Pause=2}}**Resposta"));
     }
 
-    private void insertLines(StringBuilder builder, List<String> source) {
+    private void insertLines(StringBuilder builder, List<String> source, Replace... replaces) {
         for (var line : source) {
+            if (replaces != null) {
+                for (var replace : replaces) {
+                    line = line.replace(replace.fromChars, replace.toChars);
+                }
+            }
             builder.append(line);
             builder.append("\n");
         }
+    }
+
+    private static record Replace(
+            String fromChars,
+            String toChars) {
+
     }
 }
