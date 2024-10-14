@@ -105,8 +105,8 @@ public class HeartMaker {
         }
         builder.append("{{Pause=2}}Lista de Perguntas e Respostas.{{Pause=2}}\n\n");
         insertLines(builder, questSource,
-                new Replace("**Pergunta", "{{Pause=1}}**Pergunta"),
-                new Replace("**Resposta", "{{Pause=2}}**Resposta"));
+                new Replace("**Pergunta**", "{{Pause=2}}**Pergunta**{{Pause=1}}"),
+                new Replace("**Resposta**", "{{Pause=2}}**Resposta**{{Pause=1}}"));
     }
 
     private void insertLines(StringBuilder builder, List<String> source, Replace... replaces) {
