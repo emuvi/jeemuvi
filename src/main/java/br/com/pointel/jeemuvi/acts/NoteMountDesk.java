@@ -67,6 +67,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
         panelParagraph = new javax.swing.JPanel();
         scrollParagraph = new javax.swing.JScrollPane();
         sourceParagraph = new javax.swing.JTextArea();
+        panelItem = new javax.swing.JPanel();
+        scrollItem = new javax.swing.JScrollPane();
+        sourceItem = new javax.swing.JTextArea();
         panelAppend = new javax.swing.JPanel();
         scrollAppend = new javax.swing.JScrollPane();
         sourceAppend = new javax.swing.JTextArea();
@@ -208,14 +211,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelSectionLayout.setVerticalGroup(
             panelSectionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSectionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(scrollSection, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -233,14 +236,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelTitleLayout.setVerticalGroup(
             panelTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTitleLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(scrollTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -258,18 +261,43 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelParagraphLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelParagraphLayout.setVerticalGroup(
             panelParagraphLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelParagraphLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(scrollParagraph, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         panelEditors.addTab("Paragraph", panelParagraph);
+
+        sourceItem.setColumns(20);
+        sourceItem.setRows(5);
+        sourceItem.setText("\"$clipboard\"");
+        sourceItem.setName("SourceItem"); // NOI18N
+        scrollItem.setViewportView(sourceItem);
+
+        javax.swing.GroupLayout panelItemLayout = new javax.swing.GroupLayout(panelItem);
+        panelItem.setLayout(panelItemLayout);
+        panelItemLayout.setHorizontalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelItemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollItem, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        panelItemLayout.setVerticalGroup(
+            panelItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelItemLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollItem, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        panelEditors.addTab("Item", panelItem);
 
         sourceAppend.setColumns(20);
         sourceAppend.setRows(5);
@@ -283,14 +311,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
             panelAppendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAppendLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelAppendLayout.setVerticalGroup(
             panelAppendLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAppendLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addComponent(scrollAppend, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -327,7 +355,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelEditors, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(panelEditors, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(fieldPath)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -408,7 +436,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(fieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonWatch))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panelEditors)
+                    .addComponent(panelEditors, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addContainerGap())
             );
 
@@ -587,7 +615,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
     private void buttonItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonItemActionPerformed
         try {
-            var making = groovyClipboard(sourceParagraph.getText());
+            var making = groovyClipboard(sourceItem.getText());
             making = "- " + making;
             var source = loadNote();
             if (!source.isEmpty()) {
@@ -723,14 +751,17 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JLabel labelPath;
     private javax.swing.JPanel panelAppend;
     private javax.swing.JTabbedPane panelEditors;
+    private javax.swing.JPanel panelItem;
     private javax.swing.JPanel panelParagraph;
     private javax.swing.JPanel panelSection;
     private javax.swing.JPanel panelTitle;
     private javax.swing.JScrollPane scrollAppend;
+    private javax.swing.JScrollPane scrollItem;
     private javax.swing.JScrollPane scrollParagraph;
     private javax.swing.JScrollPane scrollSection;
     private javax.swing.JScrollPane scrollTitle;
     private javax.swing.JTextArea sourceAppend;
+    private javax.swing.JTextArea sourceItem;
     private javax.swing.JTextArea sourceParagraph;
     private javax.swing.JTextArea sourceSection;
     private javax.swing.JTextArea sourceTitle;
