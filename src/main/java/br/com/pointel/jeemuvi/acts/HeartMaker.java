@@ -95,7 +95,15 @@ public class HeartMaker {
             title = title.substring(4);
         }
         builder.append(title);
-        builder.append("\n\n");
+        builder.append(".\n\n");
+    }
+
+    private void makeArticle(StringBuilder builder, List<String> articleSource) {
+        if (articleSource == null) {
+            return;
+        }
+        builder.append("{{Pause=2}}\n\n");
+        insertLines(builder, articleSource);
     }
 
     private void makeAssert(StringBuilder builder, List<String> assertSource) {
@@ -105,13 +113,6 @@ public class HeartMaker {
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
         insertLines(builder, assertSource,
                 new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
-    }
-
-    private void makeArticle(StringBuilder builder, List<String> articleSource) {
-        if (articleSource == null) {
-            return;
-        }
-        insertLines(builder, articleSource);
     }
 
     private void makeQuest(StringBuilder builder, List<String> questSource) {
