@@ -622,8 +622,12 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonPutOnSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPutOnSectionActionPerformed
         try {
             var clipboard = WizSwing.getStringOnClipboard().trim();
+            if (clipboard.isEmpty()) {
+                throw new Exception("Clipboard is empty.");
+            }
             var lines = Arrays.stream(WizChars.getLines(clipboard))
                     .collect(Collectors.toCollection(ArrayList::new));
+            lines.add(0, "");
             lines.add("");
             var charsSections = new CharsSections(getNoteFile());
             var sections = charsSections.read();
