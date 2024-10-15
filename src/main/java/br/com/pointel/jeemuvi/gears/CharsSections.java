@@ -22,7 +22,14 @@ public class CharsSections {
     }
 
     public Map<String, List<String>> read() throws Exception {
+        return read(null);
+    }
+    
+    public Map<String, List<String>> read(TextHistory history) throws Exception {
         var source = Files.readString(file.toPath(), StandardCharsets.UTF_8);
+        if (history != null) {
+            history.push(file, source);
+        }
         var lines = WizChars.getLines(source);
         var result = new LinkedHashMap<String, List<String>>();
         var actualName = "";
@@ -46,8 +53,12 @@ public class CharsSections {
         }
         return result;
     }
-
+    
     public void write(Map<String, List<String>> source) throws Exception {
+        write(source, null);
+    }
+
+    public void write(Map<String, List<String>> source, TextHistory history) throws Exception {
         var builder = new StringBuilder();
         for (var sectionName : source.keySet()) {
             var lines = source.get(sectionName);
@@ -62,7 +73,11 @@ public class CharsSections {
                 builder.append("\n");
             }
         }
-        Files.writeString(file.toPath(), builder.toString(), StandardCharsets.UTF_8);
+        var text = builder.toString();
+        Files.writeString(file.toPath(), text, StandardCharsets.UTF_8);
+        if (history != null) {
+            history.push(file, text);
+        }
     }
 
 }

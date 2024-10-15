@@ -12,44 +12,48 @@ import java.util.Map;
  *
  * @author emuvi
  */
-public class NotesHistory {
+public class TextHistory {
 
     private final Integer size;
     private final Map<File, History> notesHistory = new HashMap<>();
 
-    public NotesHistory(Integer size) {
+    public TextHistory(Integer size) {
         this.size = size;
     }
 
-    public void push(File noteFile, String source) {
-        getHistory(noteFile).push(source);
+    public void push(File file, String source) {
+        getHistory(file).push(source);
     }
 
-    public void undo(File noteFile) throws Exception {
-        getHistory(noteFile).undo();
+    public void undo(File file) throws Exception {
+        getHistory(file).undo();
     }
 
-    public void redo(File noteFile) throws Exception {
-        getHistory(noteFile).redo();
+    public void redo(File file) throws Exception {
+        getHistory(file).redo();
+    }
+    
+    public void clean() {
+        notesHistory.clear();
     }
 
-    private History getHistory(File noteFile) {
-        var history = notesHistory.get(noteFile);
+    private History getHistory(File file) {
+        var history = notesHistory.get(file);
         if (history == null) {
-            history = new History(noteFile);
-            notesHistory.put(noteFile, history);
+            history = new History(file);
+            notesHistory.put(file, history);
         }
         return history;
     }
 
     private class History {
 
-        private final File noteFile;
+        private final File file;
         private final List<String> sources;
         private Integer index;
 
-        public History(File noteFile) {
-            this.noteFile = noteFile;
+        public History(File file) {
+            this.file = file;
             this.sources = new ArrayList<>();
             this.index = -1;
         }
@@ -92,7 +96,7 @@ public class NotesHistory {
 
         private void rewrite() throws Exception {
             var source = sources.get(index);
-            Files.writeString(noteFile.toPath(), source, StandardCharsets.UTF_8);
+            Files.writeString(file.toPath(), source, StandardCharsets.UTF_8);
         }
 
     }

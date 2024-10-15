@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.NotesHistory;
+import br.com.pointel.jeemuvi.gears.TextHistory;
 import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizChars;
@@ -18,7 +18,7 @@ import org.apache.commons.io.FilenameUtils;
  */
 public class QuestMountDesk extends javax.swing.JFrame {
 
-    private final NotesHistory notesHistory = new NotesHistory(10);
+    private final TextHistory notesHistory = new TextHistory(10);
     
     public QuestMountDesk() {
         initComponents();

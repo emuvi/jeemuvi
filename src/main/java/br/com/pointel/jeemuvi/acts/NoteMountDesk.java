@@ -1,7 +1,7 @@
 package br.com.pointel.jeemuvi.acts;
 
 import br.com.pointel.jeemuvi.gears.CharsSections;
-import br.com.pointel.jeemuvi.gears.NotesHistory;
+import br.com.pointel.jeemuvi.gears.TextHistory;
 import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizChars;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  */
 public class NoteMountDesk extends javax.swing.JFrame {
 
-    private final NotesHistory notesHistory = new NotesHistory(10);
+    private final TextHistory notesHistory = new TextHistory(10);
 
     public NoteMountDesk() {
         initComponents();
@@ -420,6 +420,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             fieldPath.setText(files.get(0).getAbsolutePath());
         }
         buttonCleanCopyBufferActionPerformed(null);
+        notesHistory.clean();
     }
 
     private File getNoteFile() {
@@ -462,7 +463,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonGetFromSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetFromSectionActionPerformed
         try {
             var charsSections = new CharsSections(getNoteFile());
-            var sections = charsSections.read();
+            var sections = charsSections.read(notesHistory);
             var lines = sections.get(getSelectedSection());
             if (lines == null) {
                 WizSwing.putStringOnClipboard("");
@@ -630,9 +631,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
             lines.add(0, "");
             lines.add("");
             var charsSections = new CharsSections(getNoteFile());
-            var sections = charsSections.read();
+            var sections = charsSections.read(notesHistory);
             sections.put(getSelectedSection(), lines);
-            charsSections.write(sections);
+            charsSections.write(sections, notesHistory);
         } catch (Exception e) {
             WizSwing.showError(e);
         }
