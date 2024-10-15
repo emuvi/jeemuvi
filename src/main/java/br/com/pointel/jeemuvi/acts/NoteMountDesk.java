@@ -49,11 +49,12 @@ public class NoteMountDesk extends javax.swing.JFrame {
         buttonAppend = new javax.swing.JButton();
         buttonUndo = new javax.swing.JButton();
         buttonRedo = new javax.swing.JButton();
+        fieldCleanClipboard = new javax.swing.JCheckBox();
         fieldCopyKind = new javax.swing.JComboBox<>();
         buttonCopyBuffer = new javax.swing.JButton();
         fieldSections = new javax.swing.JComboBox<>();
         buttonGetFromSection = new javax.swing.JButton();
-        fieldCleanClipboard = new javax.swing.JCheckBox();
+        buttonGetFromSectionSource = new javax.swing.JButton();
         labelPath = new javax.swing.JLabel();
         fieldPath = new javax.swing.JTextField();
         buttonWatch = new javax.swing.JButton();
@@ -158,6 +159,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        fieldCleanClipboard.setMnemonic('X');
+        fieldCleanClipboard.setText("X");
+        fieldCleanClipboard.setToolTipText("Clean Clipboard");
+        fieldCleanClipboard.setName("CleanClipboard"); // NOI18N
+
         fieldCopyKind.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Note", "Section", "Title", "Paragraph", "Append" }));
         fieldCopyKind.setToolTipText("Copy Source");
         fieldCopyKind.setName("CopyKind"); // NOI18N
@@ -181,10 +187,13 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldCleanClipboard.setMnemonic('X');
-        fieldCleanClipboard.setText("X");
-        fieldCleanClipboard.setToolTipText("Clean Clipboard");
-        fieldCleanClipboard.setName("CleanClipboard"); // NOI18N
+        buttonGetFromSectionSource.setText("|");
+        buttonGetFromSectionSource.setToolTipText("Get From Section Source");
+        buttonGetFromSectionSource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGetFromSectionSourceActionPerformed(evt);
+            }
+        });
 
         labelPath.setText("Path");
 
@@ -373,7 +382,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonPutOnSection)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonGetFromSection))
+                            .addComponent(buttonGetFromSection)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonGetFromSectionSource))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(labelPath)
@@ -428,7 +439,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonGetFromSection)
                         .addComponent(buttonCleanCopyBuffer)
                         .addComponent(buttonCopyAndCleanBuffer)
-                        .addComponent(buttonPutOnSection))
+                        .addComponent(buttonPutOnSection)
+                        .addComponent(buttonGetFromSectionSource))
                     .addGap(22, 22, 22)
                     .addComponent(labelPath)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -685,6 +697,21 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonLinedActionPerformed
 
+    private void buttonGetFromSectionSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetFromSectionSourceActionPerformed
+        try {
+            var charsSections = new CharsSections(getNoteFile());
+            var sections = charsSections.read(notesHistory);
+            var lines = sections.get("Source");
+            if (lines == null) {
+                WizSwing.putStringOnClipboard("");
+            } else {
+                WizSwing.putStringOnClipboard(String.join("\n", lines));
+            }
+        } catch (Exception e) {
+            WizSwing.showError(e);
+        }
+    }//GEN-LAST:event_buttonGetFromSectionSourceActionPerformed
+
     private String groovyClipboard(String script) throws Exception {
         var clipboard = WizSwing.getStringOnClipboard().trim();
         if (fieldCleanClipboard.isSelected()) {
@@ -733,6 +760,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JButton buttonCopyAndCleanBuffer;
     private javax.swing.JButton buttonCopyBuffer;
     private javax.swing.JButton buttonGetFromSection;
+    private javax.swing.JButton buttonGetFromSectionSource;
     private javax.swing.JButton buttonItem;
     private javax.swing.JButton buttonLined;
     private javax.swing.JButton buttonParagraph;

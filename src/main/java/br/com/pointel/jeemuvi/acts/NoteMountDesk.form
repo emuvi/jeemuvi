@@ -48,6 +48,8 @@
                       <Component id="buttonPutOnSection" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetFromSection" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonGetFromSectionSource" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -113,6 +115,7 @@
                   <Component id="buttonCleanCopyBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonCopyAndCleanBuffer" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonPutOnSection" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonGetFromSectionSource" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="labelPath" min="-2" max="-2" attributes="0"/>
@@ -222,6 +225,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRedoActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JCheckBox" name="fieldCleanClipboard">
+      <Properties>
+        <Property name="mnemonic" type="int" value="88"/>
+        <Property name="text" type="java.lang.String" value="X"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clean Clipboard"/>
+        <Property name="name" type="java.lang.String" value="CleanClipboard" noResource="true"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JComboBox" name="fieldCopyKind">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -276,13 +287,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGetFromSectionActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="fieldCleanClipboard">
+    <Component class="javax.swing.JButton" name="buttonGetFromSectionSource">
       <Properties>
-        <Property name="mnemonic" type="int" value="88"/>
-        <Property name="text" type="java.lang.String" value="X"/>
-        <Property name="toolTipText" type="java.lang.String" value="Clean Clipboard"/>
-        <Property name="name" type="java.lang.String" value="CleanClipboard" noResource="true"/>
+        <Property name="text" type="java.lang.String" value="|"/>
+        <Property name="toolTipText" type="java.lang.String" value="Get From Section Source"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGetFromSectionSourceActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPath">
       <Properties>
