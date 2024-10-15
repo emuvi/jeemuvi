@@ -50,10 +50,14 @@ public class CharsSections {
     public void write(Map<String, List<String>> source) throws Exception {
         var builder = new StringBuilder();
         for (var sectionName : source.keySet()) {
+            var lines = source.get(sectionName);
+            if (lines.isEmpty()) {
+                continue;
+            }
             builder.append("# ");
             builder.append(sectionName);
             builder.append("\n---\n");
-            for (var line : source.get(sectionName)) {
+            for (var line : lines) {
                 builder.append(line);
                 builder.append("\n");
             }

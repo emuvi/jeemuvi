@@ -5,7 +5,6 @@ import br.com.pointel.jeemuvi.gears.NotesHistory;
 import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
 import br.com.pointel.jeemuvi.wizes.WizChars;
-import br.com.pointel.jeemuvi.wizes.WizChats;
 import br.com.pointel.jeemuvi.wizes.WizGroovy;
 import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
@@ -14,6 +13,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -22,12 +22,12 @@ import java.util.List;
 public class NoteMountDesk extends javax.swing.JFrame {
 
     private final NotesHistory notesHistory = new NotesHistory(10);
-    
+
     public NoteMountDesk() {
         initComponents();
         initFrame();
     }
-    
+
     private void initFrame() {
         SwingDropper.initAllOn(this);
         new SwingDropper((f) -> setPath(f), this).init();
@@ -411,11 +411,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
         buttonCleanCopyBufferActionPerformed(null);
     }
-    
+
     private File getNoteFile() {
         return new File(fieldPath.getText());
     }
-    
+
     private String loadNote() throws Exception {
         var noteFile = getNoteFile();
         var source = Files.readString(noteFile.toPath(), StandardCharsets.UTF_8);
@@ -423,14 +423,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
         notesHistory.push(noteFile, source);
         return source;
     }
-    
+
     private void saveNote(String source) throws Exception {
         var noteFile = getNoteFile();
         source = source.trim();
         notesHistory.push(noteFile, source);
         Files.writeString(noteFile.toPath(), source, StandardCharsets.UTF_8);
     }
-    
+
     private void buttonUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUndoActionPerformed
         try {
             notesHistory.undo(getNoteFile());
@@ -441,7 +441,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonUndoActionPerformed
 
     private void buttonRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRedoActionPerformed
-       try {
+        try {
             notesHistory.redo(getNoteFile());
             SwingNotify.show("Done Redo!", 1);
         } catch (Exception e) {
@@ -464,26 +464,31 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonGetFromSectionActionPerformed
 
-    
+
     private void buttonCopyBufferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCopyBufferActionPerformed
         try {
             switch (fieldCopyKind.getSelectedItem().toString()) {
-                case "Note" -> copyNote();
-                case "Section" -> copySection();
-                case "Title" -> copyTitle();
-                case "Paragraph" -> copyParagraph();
-                case "Append" -> copyAppend();
+                case "Note" ->
+                    copyNote();
+                case "Section" ->
+                    copySection();
+                case "Title" ->
+                    copyTitle();
+                case "Paragraph" ->
+                    copyParagraph();
+                case "Append" ->
+                    copyAppend();
             }
         } catch (Exception e) {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonCopyBufferActionPerformed
-    
+
     private String copySection = "";
     private String copyTitle = "";
     private String copyParagraph = "";
     private String copyAppend = "";
-    
+
     private void buttonSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSectionActionPerformed
         try {
             var making = groovyClipboard(sourceSection.getText());
@@ -501,7 +506,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonSectionActionPerformed
-    
+
     private void buttonTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonTitleActionPerformed
         try {
             var making = groovyClipboard(sourceTitle.getText());
@@ -528,7 +533,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonTitleActionPerformed
-    
+
     private void buttonParagraphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonParagraphActionPerformed
         try {
             var making = groovyClipboard(sourceParagraph.getText());
@@ -546,7 +551,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonParagraphActionPerformed
-    
+
     private void buttonAppendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAppendActionPerformed
         try {
             var making = groovyClipboard(sourceAppend.getText());
@@ -607,7 +612,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void buttonPutOnSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPutOnSectionActionPerformed
         try {
             var clipboard = WizSwing.getStringOnClipboard().trim();
-            var lines = Arrays.asList(WizChars.getLines(clipboard));
+            var lines = Arrays.stream(WizChars.getLines(clipboard))
+                    .collect(Collectors.toCollection(ArrayList::new));
+            lines.add("");
             var charsSections = new CharsSections(getNoteFile());
             var sections = charsSections.read();
             sections.put(getSelectedSection(), lines);
@@ -646,37 +653,37 @@ public class NoteMountDesk extends javax.swing.JFrame {
         }
         return clipboard;
     }
-    
+
     private String cleanClipboard(String clipboard) {
         return clipboard
                 .replaceAll("\\s+", " ")
                 .replace("- ", "");
     }
-    
+
     private void copyNote() throws Exception {
         WizSwing.putStringOnClipboard(Files.readString(getNoteFile().toPath(), StandardCharsets.UTF_8));
     }
-    
+
     private void copySection() {
         WizSwing.putStringOnClipboard(copySection);
     }
-    
+
     private void copyTitle() {
         WizSwing.putStringOnClipboard(copyTitle);
     }
-    
+
     private void copyParagraph() {
         WizSwing.putStringOnClipboard(copyParagraph);
     }
-    
+
     private void copyAppend() {
         WizSwing.putStringOnClipboard(copyAppend);
     }
-    
+
     private String getSelectedSection() {
         return fieldSections.getSelectedItem().toString();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAppend;
     private javax.swing.JButton buttonCleanCopyBuffer;
