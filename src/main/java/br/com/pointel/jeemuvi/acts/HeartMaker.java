@@ -54,7 +54,8 @@ public class HeartMaker {
 
     private void processBased(File basedFile, File heartFolder) throws Exception {
         var destinyFile = getDestinyFile(basedFile, heartFolder);
-        if (destinyFile.exists()) {
+        if (destinyFile.exists()
+                && basedFile.lastModified() < destinyFile.lastModified()) {
             return;
         }
         var sections = new CharsSections(basedFile);
@@ -73,11 +74,11 @@ public class HeartMaker {
 
     private void makeHeader(StringBuilder builder, List<String> headerSource) {
         if (headerSource.contains("%% Body in English %%")) {
-            builder.append("{{Voice=Acapela Ryan22/}}{{Pause=3}}Attention.{{Pause=3}}\n\n");
+            builder.append("{{Voice=Acapela Ryan22/}}{{Pause=3}}Attention, we are going to start a new title.{{Pause=3}}\n\n");
         } else if (headerSource.contains("%% Body in Spanish %%")) {
-            builder.append("{{Voice=Acapela Antonio22 (Spanish)/}}{{Pause=3}}Atención.{{Pause=3}}\n\n");
+            builder.append("{{Voice=Acapela Antonio22 (Spanish)/}}{{Pause=3}}Atención, comencemos un nuevo título.{{Pause=3}}\n\n");
         } else {
-            builder.append("{{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}{{Pause=3}}Atenção.{{Pause=3}}\n\n");
+            builder.append("{{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}{{Pause=3}}Atenção, vamos começar um novo título.{{Pause=3}}\n\n");
         }
     }
 
@@ -95,7 +96,7 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
-        insertLines(builder, assertSource, 
+        insertLines(builder, assertSource,
                 new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
     }
 
