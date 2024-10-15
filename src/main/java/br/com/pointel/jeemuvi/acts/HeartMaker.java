@@ -60,11 +60,16 @@ public class HeartMaker {
         }
         var sections = new CharsSections(basedFile);
         var source = sections.read();
+        var assertSource = source.get("Assert");
+        var questSource = source.get("Quest");
+        if (assertSource == null && questSource == null) {
+            return;
+        }
         var builder = new StringBuilder();
         makeHeader(builder, source.get(""));
         makeTitle(builder, basedFile);
-        makeAssert(builder, source.get("Assert"));
-        makeQuest(builder, source.get("Quest"));
+        makeAssert(builder, assertSource);
+        makeQuest(builder, questSource);
         Files.writeString(destinyFile.toPath(), builder.toString(), StandardCharsets.UTF_8);
     }
 
