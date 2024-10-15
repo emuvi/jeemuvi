@@ -131,6 +131,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="buttonSection">
       <Properties>
+        <Property name="mnemonic" type="int" value="83"/>
         <Property name="text" type="java.lang.String" value="S"/>
         <Property name="toolTipText" type="java.lang.String" value="Section"/>
       </Properties>
@@ -148,6 +149,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonTitle">
       <Properties>
+        <Property name="mnemonic" type="int" value="84"/>
         <Property name="text" type="java.lang.String" value="T"/>
         <Property name="toolTipText" type="java.lang.String" value="Title"/>
       </Properties>
@@ -157,6 +159,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonParagraph">
       <Properties>
+        <Property name="mnemonic" type="int" value="80"/>
         <Property name="text" type="java.lang.String" value="P"/>
         <Property name="toolTipText" type="java.lang.String" value="Paragraph"/>
       </Properties>
@@ -166,6 +169,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonItem">
       <Properties>
+        <Property name="mnemonic" type="int" value="73"/>
         <Property name="text" type="java.lang.String" value="I"/>
         <Property name="toolTipText" type="java.lang.String" value="Item"/>
       </Properties>
@@ -180,6 +184,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonLined">
       <Properties>
+        <Property name="mnemonic" type="int" value="76"/>
         <Property name="text" type="java.lang.String" value="L"/>
         <Property name="toolTipText" type="java.lang.String" value="Lined"/>
       </Properties>
@@ -189,6 +194,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonAppend">
       <Properties>
+        <Property name="mnemonic" type="int" value="65"/>
         <Property name="text" type="java.lang.String" value="A"/>
         <Property name="toolTipText" type="java.lang.String" value="Append"/>
       </Properties>
@@ -198,6 +204,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonUndo">
       <Properties>
+        <Property name="mnemonic" type="int" value="60"/>
         <Property name="text" type="java.lang.String" value="&lt;"/>
         <Property name="toolTipText" type="java.lang.String" value="Undo"/>
       </Properties>
@@ -207,6 +214,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="buttonRedo">
       <Properties>
+        <Property name="mnemonic" type="int" value="62"/>
         <Property name="text" type="java.lang.String" value="&gt;"/>
         <Property name="toolTipText" type="java.lang.String" value="Redo"/>
       </Properties>
@@ -269,7 +277,9 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="fieldCleanClipboard">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Clean Clipboard"/>
+        <Property name="mnemonic" type="int" value="88"/>
+        <Property name="text" type="java.lang.String" value="X"/>
+        <Property name="toolTipText" type="java.lang.String" value="Clean Clipboard"/>
         <Property name="name" type="java.lang.String" value="CleanClipboard" noResource="true"/>
       </Properties>
     </Component>

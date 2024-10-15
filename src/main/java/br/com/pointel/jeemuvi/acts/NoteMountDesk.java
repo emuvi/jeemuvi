@@ -78,6 +78,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         setTitle("NoteMount");
         setName("NoteMountDesk"); // NOI18N
 
+        buttonSection.setMnemonic('S');
         buttonSection.setText("S");
         buttonSection.setToolTipText("Section");
         buttonSection.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +90,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         fieldTitleSize.setName("TitleSize"); // NOI18N
         fieldTitleSize.setValue(3);
 
+        buttonTitle.setMnemonic('T');
         buttonTitle.setText("T");
         buttonTitle.setToolTipText("Title");
         buttonTitle.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +99,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonParagraph.setMnemonic('P');
         buttonParagraph.setText("P");
         buttonParagraph.setToolTipText("Paragraph");
         buttonParagraph.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +108,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonItem.setMnemonic('I');
         buttonItem.setText("I");
         buttonItem.setToolTipText("Item");
         buttonItem.addActionListener(new java.awt.event.ActionListener() {
@@ -115,6 +119,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
         fieldItemLined.setName("ItemLined"); // NOI18N
 
+        buttonLined.setMnemonic('L');
         buttonLined.setText("L");
         buttonLined.setToolTipText("Lined");
         buttonLined.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +128,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonAppend.setMnemonic('A');
         buttonAppend.setText("A");
         buttonAppend.setToolTipText("Append");
         buttonAppend.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +137,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonUndo.setMnemonic('<');
         buttonUndo.setText("<");
         buttonUndo.setToolTipText("Undo");
         buttonUndo.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +146,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
+        buttonRedo.setMnemonic('>');
         buttonRedo.setText(">");
         buttonRedo.setToolTipText("Redo");
         buttonRedo.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +178,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldCleanClipboard.setText("Clean Clipboard");
+        fieldCleanClipboard.setMnemonic('X');
+        fieldCleanClipboard.setText("X");
+        fieldCleanClipboard.setToolTipText("Clean Clipboard");
         fieldCleanClipboard.setName("CleanClipboard"); // NOI18N
 
         labelPath.setText("Path");
