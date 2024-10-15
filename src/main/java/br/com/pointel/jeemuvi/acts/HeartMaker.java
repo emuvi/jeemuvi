@@ -60,14 +60,16 @@ public class HeartMaker {
         }
         var sections = new CharsSections(basedFile);
         var source = sections.read();
+        var articleSource = source.get("Article");
         var assertSource = source.get("Assert");
         var questSource = source.get("Quest");
-        if (assertSource == null && questSource == null) {
+        if (articleSource == null && assertSource == null && questSource == null) {
             return;
         }
         var builder = new StringBuilder();
         makeHeader(builder, source.get(""));
         makeTitle(builder, basedFile);
+        makeArticle(builder, articleSource);
         makeAssert(builder, assertSource);
         makeQuest(builder, questSource);
         Files.writeString(destinyFile.toPath(), builder.toString(), StandardCharsets.UTF_8);
@@ -103,6 +105,13 @@ public class HeartMaker {
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
         insertLines(builder, assertSource,
                 new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
+    }
+
+    private void makeArticle(StringBuilder builder, List<String> articleSource) {
+        if (articleSource == null) {
+            return;
+        }
+        insertLines(builder, articleSource);
     }
 
     private void makeQuest(StringBuilder builder, List<String> questSource) {
