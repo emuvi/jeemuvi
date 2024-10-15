@@ -170,7 +170,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Based", "Fount", "Source", "Assert", "Quest" }));
+        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Based", "Fount", "Source", "Article", "Assert", "Quest" }));
         fieldSections.setName("ChatName"); // NOI18N
 
         buttonGetFromSection.setText("/");
@@ -355,7 +355,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(panelEditors, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                        .addComponent(panelEditors, javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(fieldPath)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -436,7 +436,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(fieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(buttonWatch))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panelEditors, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addComponent(panelEditors)
                     .addContainerGap())
             );
 
