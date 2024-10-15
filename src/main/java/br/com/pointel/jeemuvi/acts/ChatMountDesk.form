@@ -28,7 +28,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="scrollMount" pref="386" max="32767" attributes="0"/>
+                  <Component id="scrollMount" pref="409" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="buttonOpenOrRefresh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -42,13 +42,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetFromClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonPutOnClipboard" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="buttonPutOnBuffer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelBuffer" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonPutOnClipboard" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonMount" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Component id="fieldHistoryFor" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
