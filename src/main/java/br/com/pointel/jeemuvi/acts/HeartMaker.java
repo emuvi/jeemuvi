@@ -193,6 +193,7 @@ public class HeartMaker {
         
         public void write(File heartFolder) throws Exception {
             var questFile = new File(heartFolder, "Quest.csv");
+            questFile.delete();
             try (var writer = CSVFormat.DEFAULT.builder().build()
                     .print(questFile, StandardCharsets.UTF_8)) {
                 for (var q : quest) {
