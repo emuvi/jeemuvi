@@ -60,11 +60,18 @@ public class CharsSections {
 
     public void write(Map<String, List<String>> source, TextHistory history) throws Exception {
         var builder = new StringBuilder();
+        var emptyNameSectionLines = source.get("");
+        if (!emptyNameSectionLines.isEmpty()) {
+            for (var line : emptyNameSectionLines) {
+                builder.append(line);
+                builder.append("\n");
+            }
+        }
         for (var sectionName : source.keySet()) {
-            var lines = source.get(sectionName);
-            if (sectionName.isEmpty() && lines.isEmpty()) {
+            if (sectionName.isEmpty()) {
                 continue;
             }
+            var lines = source.get(sectionName);
             builder.append("# ");
             builder.append(sectionName);
             builder.append("\n---\n");
