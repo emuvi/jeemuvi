@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  *
@@ -699,13 +700,18 @@ public class NoteMountDesk extends javax.swing.JFrame {
 
     private void buttonGetFromSectionSourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGetFromSectionSourceActionPerformed
         try {
-            var charsSections = new CharsSections(getNoteFile());
+            var noteFile = getNoteFile();
+            var charsSections = new CharsSections(noteFile);
             var sections = charsSections.read(notesHistory);
             var lines = sections.get("Source");
             if (lines == null) {
                 WizSwing.putStringOnClipboard("");
             } else {
-                WizSwing.putStringOnClipboard(String.join("\n", lines));
+                var title = FilenameUtils.getBaseName(noteFile.getName());
+                if (title.startsWith("(B) ")) {
+                    title = title.substring(4);
+                }
+                WizSwing.putStringOnClipboard(title + "\n\n" + String.join("\n", lines));
             }
         } catch (Exception e) {
             WizSwing.showError(e);
