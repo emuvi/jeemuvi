@@ -62,7 +62,7 @@ public class CharsSections {
         var builder = new StringBuilder();
         for (var sectionName : source.keySet()) {
             var lines = source.get(sectionName);
-            if (lines.isEmpty()) {
+            if (sectionName.isEmpty() && lines.isEmpty()) {
                 continue;
             }
             builder.append("# ");
