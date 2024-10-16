@@ -5,7 +5,10 @@ import br.com.pointel.jeemuvi.gears.RunChase;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
+import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -15,6 +18,8 @@ import org.apache.commons.io.FilenameUtils;
 public class HeartMaker {
 
     private final RunChase chase = RunChase.init("Heart Maker");
+    private final QuestTable questTable = new QuestTable();
+    private final QuestConsumer questConsumer = new QuestConsumer();
 
     public void start() {
         new Thread("HeartRemake") {
@@ -27,9 +32,11 @@ public class HeartMaker {
                     var heartFolder = getHeartFolder();
                     for (var basedFile : basedFiles) {
                         chase.putInfo("Processing file: %s", basedFile);
-                        processBased(basedFile, heartFolder);
+                        makeHeart(basedFile, heartFolder);
                         chase.advanceWaitOnPauseThrowOnStop();
                     }
+                    chase.putInfo("Writing the Quest Table.");
+                    questTable.write(heartFolder);
                     chase.putInfo("Finished to make the Aelin Heart!");
                 } catch (Exception e) {
                     chase.putError(e);
@@ -52,7 +59,7 @@ public class HeartMaker {
         return result;
     }
 
-    private void processBased(File basedFile, File heartFolder) throws Exception {
+    private void makeHeart(File basedFile, File heartFolder) throws Exception {
         var destinyFile = getDestinyFile(basedFile, heartFolder);
         if (destinyFile.exists()
                 && basedFile.lastModified() < destinyFile.lastModified()) {
@@ -103,7 +110,7 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}\n\n");
-        insertLines(builder, articleSource);
+        insertLines(builder, articleSource, null);
     }
 
     private void makeAssert(StringBuilder builder, List<String> assertSource) {
@@ -111,7 +118,7 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
-        insertLines(builder, assertSource,
+        insertLines(builder, assertSource, null,
                 new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
     }
 
@@ -120,13 +127,16 @@ public class HeartMaker {
             return;
         }
         builder.append("{{Pause=2}}Lista de Perguntas e Respostas.{{Pause=2}}\n\n");
-        insertLines(builder, questSource,
+        insertLines(builder, questSource, questConsumer,
                 new Replace("**Pergunta**", "{{Pause=2}}**Pergunta**{{Pause=1}}"),
                 new Replace("**Resposta**", "{{Pause=2}}**Resposta**{{Pause=1}}"));
     }
 
-    private void insertLines(StringBuilder builder, List<String> source, Replace... replaces) {
+    private void insertLines(StringBuilder builder, List<String> source, Consumer<String> consumer, Replace... replaces) {
         for (var line : source) {
+            if (consumer != null) {
+                consumer.accept(line);
+            }
             if (replaces != null) {
                 for (var replace : replaces) {
                     line = line.replace(replace.fromChars, replace.toChars);
@@ -137,9 +147,66 @@ public class HeartMaker {
         }
     }
 
+    private class QuestConsumer implements Consumer<String> {
+
+        @Override
+        public void accept(String line) {
+            if (line == null) {
+                return;
+            }
+            line = line.trim();
+            if (line.startsWith("**Pergunta**")) {
+                questTable.putQuestion(clean(line));
+            } else if (line.startsWith("**Resposta**")) {
+                questTable.putAnswer(clean(line));
+            }
+        }
+        
+        private String clean(String line) {
+            line = line.substring(12);
+            while (!line.isEmpty() && !Character.isAlphabetic(line.charAt(0))) {
+                line = line.substring(1);
+            }
+            return line;
+        }
+
+    }
+
     private static record Replace(
             String fromChars,
             String toChars) {
 
     }
+
+    private static class QuestTable {
+
+        private final List<Quest> quest = new ArrayList<>();
+        private String question;
+
+        public void putQuestion(String question) {
+            this.question = question;
+        }
+
+        public void putAnswer(String answer) {
+            quest.add(new Quest(question, answer));
+        }
+        
+        public void write(File heartFolder) throws Exception {
+            var questFile = new File(heartFolder, "Quest.csv");
+            try (var writer = CSVFormat.DEFAULT.builder().build()
+                    .print(questFile, StandardCharsets.UTF_8)) {
+                for (var q : quest) {
+                    writer.printRecord(q.question(), q.answer());
+                }
+            }
+        }
+
+    }
+
+    private static record Quest(
+            String question,
+            String answer) {
+
+    }
+
 }
