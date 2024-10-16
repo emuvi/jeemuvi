@@ -119,7 +119,8 @@ public class HeartMaker {
         }
         builder.append("{{Pause=2}}Lista de Pontos Chaves.{{Pause=2}}\n\n");
         insertLines(builder, assertSource, null,
-                new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"));
+                new Replace("- **", "{{Pause=2}}Ponto{{Pause=1}} - **"),
+                new Replace("• **", "{{Pause=2}}Ponto{{Pause=1}} • **"));
     }
 
     private void makeQuest(StringBuilder builder, List<String> questSource) {
