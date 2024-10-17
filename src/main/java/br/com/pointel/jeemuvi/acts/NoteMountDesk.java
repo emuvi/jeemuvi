@@ -733,7 +733,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private String cleanClipboard(String clipboard) {
         return clipboard
                 .replaceAll("\\s+", " ")
-                .replace("- ", "");
+                .replaceAll("[^\\s]\\-\\s", "");
     }
 
     private void copyNote() throws Exception {
