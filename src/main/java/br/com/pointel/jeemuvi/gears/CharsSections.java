@@ -90,6 +90,7 @@ public class CharsSections {
                     continue;
                 } else {
                     starting = false;
+                    builder.append("\n");
                 }
             }
             builder.append(line);
