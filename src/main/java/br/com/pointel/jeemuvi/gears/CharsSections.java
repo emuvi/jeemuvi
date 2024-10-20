@@ -69,6 +69,7 @@ public class CharsSections {
                 continue;
             }
             var lines = source.get(sectionName);
+            builder.append("\n---\n");
             builder.append("# ");
             builder.append(sectionName);
             builder.append("\n---\n");
