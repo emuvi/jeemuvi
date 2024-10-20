@@ -725,7 +725,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private void transformLinesOfSectionQuest(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             var line = lines.get(i);
-            if (line.contains("**Pergunta**")) {
+            if (line.contains("**Pergunta**") || line.contains("**Pergunta:**")) {
                 line = line + " #card";
             }
             lines.set(i, line);
