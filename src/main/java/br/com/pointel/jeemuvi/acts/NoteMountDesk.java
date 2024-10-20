@@ -39,12 +39,12 @@ public class NoteMountDesk extends javax.swing.JFrame {
         WizSwing.initFrame(this);
         WizSwing.initEscaper(this);
     }
-    
+
     private void initAutoParagraph() {
         new Thread("Note Mount Auto Paragraph") {
-            
+
             private String lastClipboard = null;
-            
+
             @Override
             public void run() {
                 while (isDisplayable()) {
@@ -209,7 +209,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Based", "Fount", "Source", "Article", "Assert", "Quest" }));
+        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Assert", "Quest" }));
         fieldSections.setName("ChatName"); // NOI18N
 
         buttonGetFromSection.setText("/");
@@ -703,6 +703,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .collect(Collectors.toCollection(ArrayList::new));
             lines.add(0, "");
             lines.add("");
+            transformLinesOfSection(lines);
             var charsSections = new CharsSections(getNoteFile());
             var sections = charsSections.read(notesHistory);
             sections.put(getSelectedSection(), lines);
@@ -711,6 +712,25 @@ public class NoteMountDesk extends javax.swing.JFrame {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonPutOnSectionActionPerformed
+
+    private void transformLinesOfSection(List<String> lines) {
+        switch (getSelectedSection()) {
+            case "Quest" ->
+                transformLinesOfSectionQuest(lines);
+            default -> {
+            }
+        }
+    }
+
+    private void transformLinesOfSectionQuest(List<String> lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            var line = lines.get(i);
+            if (line.contains("**Pergunta**")) {
+                line = line + " #card";
+            }
+            lines.set(i, line);
+        }
+    }
 
     private void buttonLinedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLinedActionPerformed
         try {

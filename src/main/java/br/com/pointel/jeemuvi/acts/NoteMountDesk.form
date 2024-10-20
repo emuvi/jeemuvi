@@ -266,13 +266,10 @@
     <Component class="javax.swing.JComboBox" name="fieldSections">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="6">
-            <StringItem index="0" value="Based"/>
-            <StringItem index="1" value="Fount"/>
-            <StringItem index="2" value="Source"/>
-            <StringItem index="3" value="Article"/>
-            <StringItem index="4" value="Assert"/>
-            <StringItem index="5" value="Quest"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Article"/>
+            <StringItem index="1" value="Assert"/>
+            <StringItem index="2" value="Quest"/>
           </StringArray>
         </Property>
         <Property name="name" type="java.lang.String" value="ChatName" noResource="true"/>

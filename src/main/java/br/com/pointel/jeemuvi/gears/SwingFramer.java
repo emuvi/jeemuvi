@@ -31,7 +31,7 @@ public class SwingFramer {
         this.rootName = WizChars.makeParameterName(!frame.getName().isEmpty() ? frame.getName() : frame.getTitle());
         this.popMenu = new JPopupMenu();
     }
-    
+
     public void init() {
         WizSwing.setAllCompontentsFont(frame, WizSwing.fontMonospaced());
         initWindow();
@@ -53,7 +53,7 @@ public class SwingFramer {
             }
         });
     }
-    
+
     private void loadFrameProps() throws HeadlessException, SecurityException {
         var left = WizProps.get(rootName + "_FRAME_LEFT", frame.getBounds().x);
         var top = WizProps.get(rootName + "_FRAME_TOP", frame.getBounds().y);
@@ -63,17 +63,25 @@ public class SwingFramer {
         frame.setBounds(bounds);
         frame.setAlwaysOnTop(WizProps.get(rootName + "_FRAME_ONTOP", frame.isAlwaysOnTop()));
     }
-    
+
     public void loadFrameComps(Component component) {
         if (component != null && component.getName() != null && !component.getName().isEmpty()) {
             var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
-            switch (component) {
-                case JTextComponent textField -> textField.setText(WizProps.get(paramName, textField.getText()));
-                case JComboBox comboField -> comboField.setSelectedIndex(WizProps.get(paramName, comboField.getSelectedIndex()));
-                case JSpinner spinnerField -> spinnerField.setValue(WizProps.get(paramName, (Integer) spinnerField.getValue()));
-                case JCheckBox checkField -> checkField.setSelected(WizProps.get(paramName, checkField.isSelected()));
-                default -> {
+            try {
+                switch (component) {
+                    case JTextComponent textField ->
+                        textField.setText(WizProps.get(paramName, textField.getText()));
+                    case JComboBox comboField ->
+                        comboField.setSelectedIndex(WizProps.get(paramName, comboField.getSelectedIndex()));
+                    case JSpinner spinnerField ->
+                        spinnerField.setValue(WizProps.get(paramName, (Integer) spinnerField.getValue()));
+                    case JCheckBox checkField ->
+                        checkField.setSelected(WizProps.get(paramName, checkField.isSelected()));
+                    default -> {
+                    }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         if (component instanceof Container container) {
@@ -82,7 +90,7 @@ public class SwingFramer {
             }
         }
     }
-    
+
     private void saveFrameProps() {
         WizProps.set(rootName + "_FRAME_LEFT", frame.getBounds().x);
         WizProps.set(rootName + "_FRAME_TOP", frame.getBounds().y);
@@ -95,10 +103,14 @@ public class SwingFramer {
         if (component != null && component.getName() != null && !component.getName().isEmpty()) {
             var paramName = rootName + "_COMP_" + WizChars.makeParameterName(component.getName());
             switch (component) {
-                case JTextComponent textField -> WizProps.set(paramName, textField.getText());
-                case JComboBox comboField -> WizProps.set(paramName, comboField.getSelectedIndex());
-                case JSpinner spinnerField -> WizProps.set(paramName, (Integer) spinnerField.getValue());
-                case JCheckBox checkField -> WizProps.set(paramName, checkField.isSelected());
+                case JTextComponent textField ->
+                    WizProps.set(paramName, textField.getText());
+                case JComboBox comboField ->
+                    WizProps.set(paramName, comboField.getSelectedIndex());
+                case JSpinner spinnerField ->
+                    WizProps.set(paramName, (Integer) spinnerField.getValue());
+                case JCheckBox checkField ->
+                    WizProps.set(paramName, checkField.isSelected());
                 default -> {
                 }
             }
@@ -109,7 +121,7 @@ public class SwingFramer {
             }
         }
     }
-    
+
     private void initPopMenu() {
         frame.addMouseListener(new MouseAdapter() {
             @Override
@@ -121,13 +133,13 @@ public class SwingFramer {
         });
         createPopMenu();
     }
-    
+
     private void createPopMenu() {
         createMenuSizes();
         WizSwing.addMenuItem(popMenu, new JMenuItem("OnTop"), (e) -> menuOnTop());
         WizSwing.addMenuItem(popMenu, new JMenuItem("Close"), (e) -> menuClose());
     }
-    
+
     private void createMenuSizes() {
         var sizes = new JMenu("Sizes");
         WizSwing.addMenuItem(sizes, new JMenuItem("Tag as Size A"), (e) -> menuSizesTagAsSizeA());
@@ -136,35 +148,35 @@ public class SwingFramer {
         WizSwing.addMenuItem(sizes, new JMenuItem("Put on Size B"), (e) -> menuSizesPutOnSizeB());
         popMenu.add(sizes);
     }
-    
+
     private void menuSizesTagAsSizeA() {
         WizProps.set(rootName + "_FRAME_WIDTH_SIZE_A", frame.getBounds().width);
         WizProps.set(rootName + "_FRAME_HEIGHT_SIZE_A", frame.getBounds().height);
     }
-    
+
     private void menuSizesPutOnSizeA() {
         var width = WizProps.get(rootName + "_FRAME_WIDTH_SIZE_A", frame.getBounds().width);
         var height = WizProps.get(rootName + "_FRAME_HEIGHT_SIZE_A", frame.getBounds().height);
         frame.setSize(width, height);
     }
-    
+
     private void menuSizesTagAsSizeB() {
         WizProps.set(rootName + "_FRAME_WIDTH_SIZE_B", frame.getBounds().width);
         WizProps.set(rootName + "_FRAME_HEIGHT_SIZE_B", frame.getBounds().height);
     }
-    
+
     private void menuSizesPutOnSizeB() {
         var width = WizProps.get(rootName + "_FRAME_WIDTH_SIZE_B", frame.getBounds().width);
         var height = WizProps.get(rootName + "_FRAME_HEIGHT_SIZE_B", frame.getBounds().height);
         frame.setSize(width, height);
     }
-    
+
     private void menuOnTop() {
         frame.setAlwaysOnTop(!frame.isAlwaysOnTop());
     }
-    
+
     private void menuClose() {
         WizSwing.close(frame);
     }
-    
+
 }
