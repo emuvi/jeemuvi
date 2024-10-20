@@ -62,7 +62,7 @@ public class CharsSections {
         var builder = new StringBuilder();
         var emptyNameSectionLines = source.get("");
         if (!emptyNameSectionLines.isEmpty()) {
-            putLines(builder, emptyNameSectionLines);
+            putLines(builder, emptyNameSectionLines, false);
         }
         for (var sectionName : source.keySet()) {
             if (sectionName.isEmpty()) {
@@ -72,7 +72,7 @@ public class CharsSections {
             builder.append("# ");
             builder.append(sectionName);
             builder.append("\n---\n");
-            putLines(builder, lines);
+            putLines(builder, lines, true);
         }
         var text = builder.toString();
         Files.writeString(file.toPath(), text, StandardCharsets.UTF_8);
@@ -81,7 +81,7 @@ public class CharsSections {
         }
     }
     
-    private void putLines(StringBuilder builder, List<String> lines) {
+    private void putLines(StringBuilder builder, List<String> lines, boolean spaceOnHead) {
         var starting = true;
         var lastEmpty = false;
         for (var line : lines) {
@@ -90,7 +90,9 @@ public class CharsSections {
                     continue;
                 } else {
                     starting = false;
-                    builder.append("\n");
+                    if (spaceOnHead) {
+                        builder.append("\n");
+                    }
                 }
             }
             builder.append(line);
