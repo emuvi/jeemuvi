@@ -77,13 +77,13 @@ public class HeartMaker {
     }
 
     private File getDestinyFile(File basedFile, File heartFolder) {
-        return new File(heartFolder, FilenameUtils.getBaseName(basedFile.getName()) + ".txt");
+        return new File(heartFolder, "(H)" + FilenameUtils.getBaseName(basedFile.getName()) + ".txt");
     }
 
     private void makeHeader(StringBuilder builder, List<String> headerSource) {
-        if (headerSource.contains("language: English")) {
+        if (headerSource.contains("🌐 : English")) {
             builder.append("{{Voice=Acapela Ryan22/}}{{Pause=5}}Attention, we are going to start a new title.{{Pause=5}}\n\n");
-        } else if (headerSource.contains("language: Spanish")) {
+        } else if (headerSource.contains("🌐 : Español")) {
             builder.append("{{Voice=Acapela Antonio22 (Spanish)/}}{{Pause=5}}Atención, comencemos un nuevo título.{{Pause=5}}\n\n");
         } else {
             builder.append("{{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}{{Pause=5}}Atenção, vamos começar um novo título.{{Pause=5}}\n\n");

@@ -741,15 +741,15 @@ public class NoteMountDesk extends javax.swing.JFrame {
         var found = false;
         for (int i = 0; i < section.size(); i++) {
             var line = section.get(i);
-            if (line.startsWith("##### ♫ : ")) {
-                section.set(i, "##### ♫ : " + sound);
+            if (line.startsWith("♫ : ")) {
+                section.set(i, "♫ : " + sound);
                 found = true;
                 break;
             }
         }
         if (!found) {
             section.add("");
-            section.add("##### ♫ : " + sound);
+            section.add("♫ : " + sound);
             section.add("");
         }
     }
@@ -764,7 +764,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }
 
     private String getSound(File fromNoteFile) {
-        return "[[" + FilenameUtils.getBaseName(fromNoteFile.getName()) + ".mp3]]";
+        return "[[(H)" + FilenameUtils.getBaseName(fromNoteFile.getName()) + ".mp3]]";
     }
 
     private void buttonLinedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLinedActionPerformed
