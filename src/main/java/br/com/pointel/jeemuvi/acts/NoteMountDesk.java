@@ -708,6 +708,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             var charsSections = new CharsSections(noteFile);
             var sections = charsSections.read(notesHistory);
             putTitleOnHeader(sections, noteFile);
+            putSoundOnHeader(sections, noteFile);
             sections.put(getSelectedSection(), lines);
             charsSections.write(sections, notesHistory);
         } catch (Exception e) {
@@ -733,14 +734,37 @@ public class NoteMountDesk extends javax.swing.JFrame {
             section.add("");
         }
     }
+    
+    private void putSoundOnHeader(CharsSectionsMap sections, File noteFile) {
+        var section = sections.get("");
+        var sound = getSound(noteFile);
+        var found = false;
+        for (int i = 0; i < section.size(); i++) {
+            var line = section.get(i);
+            if (line.startsWith("##### ♫ : ")) {
+                section.set(i, "##### ♫ : " + sound);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            section.add("");
+            section.add("##### ♫ : " + sound);
+            section.add("");
+        }
+    }
 
     private String getTitle(File fromNoteFile) {
         var result = fromNoteFile.getName();
         result = FilenameUtils.getBaseName(result);
-        if (result.startsWith("(B) ")) {
+        if (result.startsWith("(B) ") || result.startsWith("(C) ")) {
             result = result.substring(4);
         }
         return result;
+    }
+
+    private String getSound(File fromNoteFile) {
+        return "[[" + FilenameUtils.getBaseName(fromNoteFile.getName()) + ".mp3]]";
     }
 
     private void buttonLinedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLinedActionPerformed

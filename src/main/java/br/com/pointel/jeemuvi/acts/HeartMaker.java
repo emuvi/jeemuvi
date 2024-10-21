@@ -6,7 +6,6 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.function.Function;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -93,7 +92,7 @@ public class HeartMaker {
 
     private void makeTitle(StringBuilder builder, File basedFile) {
         var title = FilenameUtils.getBaseName(basedFile.getName());
-        if (title.startsWith("(B) ")) {
+        if (title.startsWith("(B) ") || title.startsWith("(B) ")) {
             title = title.substring(4);
         }
         builder.append(title);
