@@ -1,6 +1,7 @@
 package br.com.pointel.jeemuvi.acts;
 
 import br.com.pointel.jeemuvi.gears.CharsSections;
+import br.com.pointel.jeemuvi.gears.CharsSectionsMap;
 import br.com.pointel.jeemuvi.gears.TextHistory;
 import br.com.pointel.jeemuvi.gears.SwingDropper;
 import br.com.pointel.jeemuvi.gears.SwingNotify;
@@ -703,14 +704,44 @@ public class NoteMountDesk extends javax.swing.JFrame {
                     .collect(Collectors.toCollection(ArrayList::new));
             lines.add(0, "");
             lines.add("");
-            var charsSections = new CharsSections(getNoteFile());
+            var noteFile = getNoteFile();
+            var charsSections = new CharsSections(noteFile);
             var sections = charsSections.read(notesHistory);
+            putTitleOnHeader(sections, noteFile);
             sections.put(getSelectedSection(), lines);
             charsSections.write(sections, notesHistory);
         } catch (Exception e) {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonPutOnSectionActionPerformed
+
+    private void putTitleOnHeader(CharsSectionsMap sections, File noteFile) {
+        var section = sections.get("");
+        var title = getTitle(noteFile);
+        var found = false;
+        for (int i = 0; i < section.size(); i++) {
+            var line = section.get(i);
+            if (line.startsWith("# ")) {
+                section.set(i, "# " + title);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            section.add("");
+            section.add("# " + title);
+            section.add("");
+        }
+    }
+
+    private String getTitle(File fromNoteFile) {
+        var result = fromNoteFile.getName();
+        result = FilenameUtils.getBaseName(result);
+        if (result.startsWith("(B) ")) {
+            result = result.substring(4);
+        }
+        return result;
+    }
 
     private void buttonLinedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLinedActionPerformed
         try {

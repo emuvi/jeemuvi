@@ -21,20 +21,19 @@ public class CharsSections {
         this.file = file;
     }
 
-    public Map<String, List<String>> read() throws Exception {
+    public CharsSectionsMap read() throws Exception {
         return read(null);
     }
     
-    public Map<String, List<String>> read(TextHistory history) throws Exception {
+    public CharsSectionsMap read(TextHistory history) throws Exception {
         var source = Files.readString(file.toPath(), StandardCharsets.UTF_8).trim();
         if (history != null) {
             history.push(file, source);
         }
         var lines = WizChars.getLines(source);
-        var result = new LinkedHashMap<String, List<String>>();
+        var result = new CharsSectionsMap();
         var actualName = "";
-        List<String> actualList = new ArrayList<>();
-        result.put(actualName, actualList);
+        var actualList = result.newSection(actualName);
         for (int i = 0; i < lines.length; i++) {
             var actualLine = lines[i];
             var nextLine = i < lines.length - 1 ? lines[i + 1] : "";
@@ -44,8 +43,7 @@ public class CharsSections {
                 if (result.containsKey(actualName)) {
                     actualList = result.get(actualName);
                 } else {
-                    actualList = new ArrayList<>();
-                    result.put(actualName, actualList);
+                    actualList = result.newSection(actualName);
                 }
                 i += 1;
                 if ("---".equals(plusLine)) {
@@ -67,11 +65,11 @@ public class CharsSections {
         return result;
     }
     
-    public void write(Map<String, List<String>> source) throws Exception {
+    public void write(CharsSectionsMap source) throws Exception {
         write(source, null);
     }
 
-    public void write(Map<String, List<String>> source, TextHistory history) throws Exception {
+    public void write(CharsSectionsMap source, TextHistory history) throws Exception {
         var builder = new StringBuilder();
         builder.append("\n");
         var emptyNameSectionLines = source.get("");
