@@ -62,9 +62,9 @@ public class HeartMaker {
         }
         var sections = new CharsSections(basedFile);
         var source = sections.read();
-        var articleSource = source.get("Article");
-        var assertSource = source.get("Assert");
-        var questSource = source.get("Quest");
+        var articleSource = source.get("Artigo");
+        var assertSource = source.get("Assertivas");
+        var questSource = source.get("Questões");
         if (articleSource == null && assertSource == null && questSource == null) {
             return;
         }
