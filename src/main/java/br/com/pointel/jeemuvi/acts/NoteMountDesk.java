@@ -210,7 +210,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Article", "Assert", "Quest" }));
+        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artigo", "Assertivas", "Questões" }));
         fieldSections.setName("ChatName"); // NOI18N
 
         buttonGetFromSection.setText("/");
