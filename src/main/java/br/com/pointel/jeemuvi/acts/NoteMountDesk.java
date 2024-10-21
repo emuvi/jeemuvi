@@ -790,12 +790,12 @@ public class NoteMountDesk extends javax.swing.JFrame {
             var noteFile = getNoteFile();
             var charsSections = new CharsSections(noteFile);
             var sections = charsSections.read(notesHistory);
-            var lines = sections.get("Source");
+            var lines = sections.get("Fontes");
             if (lines == null) {
                 WizSwing.putStringOnClipboard("");
             } else {
                 var title = FilenameUtils.getBaseName(noteFile.getName());
-                if (title.startsWith("(B) ")) {
+                if (title.startsWith("(C) ") || title.startsWith("(B) ")) {
                     title = title.substring(4);
                 }
                 WizSwing.putStringOnClipboard(title + "\n\n" + String.join("\n", lines));
