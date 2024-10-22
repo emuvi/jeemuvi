@@ -51,7 +51,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonGetFromSectionSource" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="labelPath" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="labelPath" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="fieldGetLastActive" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="buttonSection" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -76,6 +80,7 @@
                       <Component id="fieldCleanClipboard" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="fieldAutoParagraph" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -115,8 +120,11 @@
                   <Component id="buttonPutOnSection" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="buttonGetFromSectionSource" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="labelPath" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelPath" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldGetLastActive" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fieldPath" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -595,6 +603,12 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonPutOnSectionActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="fieldGetLastActive">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Get Last Active"/>
+        <Property name="name" type="java.lang.String" value="GetLastActive" noResource="true"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

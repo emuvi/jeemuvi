@@ -109,6 +109,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         buttonCleanCopyBuffer = new javax.swing.JButton();
         buttonCopyAndCleanBuffer = new javax.swing.JButton();
         buttonPutOnSection = new javax.swing.JButton();
+        fieldGetLastActive = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("NoteMount");
@@ -391,6 +392,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
                 }
             });
 
+            fieldGetLastActive.setText("Get Last Active");
+            fieldGetLastActive.setName("GetLastActive"); // NOI18N
+
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
             layout.setHorizontalGroup(
@@ -419,7 +423,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
                             .addComponent(buttonGetFromSection)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(buttonGetFromSectionSource))
-                        .addComponent(labelPath)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelPath)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fieldGetLastActive))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(buttonSection)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -443,7 +450,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(fieldCleanClipboard)
                             .addGap(18, 18, 18)
-                            .addComponent(fieldAutoParagraph)))
+                            .addComponent(fieldAutoParagraph)
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addContainerGap())
             );
             layout.setVerticalGroup(
@@ -475,8 +483,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
                         .addComponent(buttonCopyAndCleanBuffer)
                         .addComponent(buttonPutOnSection)
                         .addComponent(buttonGetFromSectionSource))
-                    .addGap(22, 22, 22)
-                    .addComponent(labelPath)
+                    .addGap(20, 20, 20)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelPath)
+                        .addComponent(fieldGetLastActive))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,8 +507,17 @@ public class NoteMountDesk extends javax.swing.JFrame {
         notesHistory.clean();
     }
 
-    private File getNoteFile() {
-        return new File(fieldPath.getText());
+    private File getNoteFile() throws Exception {
+        return fieldGetLastActive.isSelected() ? getLastActiveNoteFile() : new File(fieldPath.getText());
+    }
+
+    private File getLastActiveNoteFile() throws Exception {
+        var sessionsFile = new File(Root.getFile(), "Wizes/Sessions.md");
+        var sessionsSource = Files.readString(sessionsFile.toPath(), StandardCharsets.UTF_8);
+        var sessionsLine = WizChars.getLines(sessionsSource);
+        var lastLine = sessionsLine[sessionsLine.length - 1];
+        var lastActive = lastLine.split("\\|")[0];
+        return new File(Root.getFile(), lastActive);
     }
 
     private String loadNote() throws Exception {
@@ -656,7 +675,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAppendActionPerformed
 
     private void buttonWatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonWatchActionPerformed
-        new TextFileWatcherDesk(new File(fieldPath.getText())).setVisible(true);
+        try {
+            new TextFileWatcherDesk(getNoteFile()).setVisible(true);
+        } catch (Exception ex) {
+            WizSwing.showError(ex);
+        }
     }//GEN-LAST:event_buttonWatchActionPerformed
 
     private void buttonItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonItemActionPerformed
@@ -734,7 +757,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             section.add("");
         }
     }
-    
+
     private void putSoundOnHeader(CharsSectionsMap sections, File noteFile) {
         var section = sections.get("");
         var sound = getSound(noteFile);
@@ -866,6 +889,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
     private javax.swing.JCheckBox fieldAutoParagraph;
     private javax.swing.JCheckBox fieldCleanClipboard;
     private javax.swing.JComboBox<String> fieldCopyKind;
+    private javax.swing.JCheckBox fieldGetLastActive;
     private javax.swing.JCheckBox fieldItemLined;
     private javax.swing.JTextField fieldPath;
     private javax.swing.JComboBox<String> fieldSections;
