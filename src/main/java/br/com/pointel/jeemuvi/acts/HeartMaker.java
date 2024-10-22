@@ -61,15 +61,18 @@ public class HeartMaker {
         }
         var sections = new CharsSections(basedFile);
         var source = sections.read();
+        var headerSource = source.get("");
+        var abstractSource = source.get("Resumo");
         var articleSource = source.get("Artigo");
         var assertSource = source.get("Assertivas");
         var questSource = source.get("Questões");
-        if (articleSource == null && assertSource == null && questSource == null) {
+        if (abstractSource == null && articleSource == null) {
             return;
         }
         var builder = new StringBuilder();
-        makeHeader(builder, source.get(""));
+        makeHeader(builder, headerSource);
         makeTitle(builder, basedFile);
+        makeAbstract(builder, abstractSource);
         makeArticle(builder, articleSource);
         makeAssert(builder, assertSource);
         makeQuest(builder, questSource);
@@ -92,18 +95,26 @@ public class HeartMaker {
 
     private void makeTitle(StringBuilder builder, File basedFile) {
         var title = FilenameUtils.getBaseName(basedFile.getName());
-        if (title.startsWith("(B) ") || title.startsWith("(B) ")) {
+        if (title.startsWith("(B) ") || title.startsWith("(C) ")) {
             title = title.substring(4);
         }
         builder.append(title);
         builder.append(".\n\n");
+    }
+    
+    private void makeAbstract(StringBuilder builder, List<String> abstractSource) {
+        if (abstractSource == null) {
+            return;
+        }
+        builder.append("{{Pause=3}}Início do Resumo.{{Pause=3}}\n\n");
+        insertLines(builder, abstractSource);
     }
 
     private void makeArticle(StringBuilder builder, List<String> articleSource) {
         if (articleSource == null) {
             return;
         }
-        builder.append("{{Pause=3}}\n\n");
+        builder.append("{{Pause=3}}Início do Artigo.{{Pause=3}}\n\n");
         insertLines(builder, articleSource);
     }
 
@@ -111,7 +122,7 @@ public class HeartMaker {
         if (assertSource == null) {
             return;
         }
-        builder.append("{{Pause=3}}Lista de Pontos Chaves.{{Pause=3}}\n\n");
+        builder.append("{{Pause=3}}Início das Assertivas.{{Pause=3}}\n\n");
         insertLines(builder, assertSource, 
                 new Replace("- **", "{{Pause=3}}Ponto{{Pause=2}} - **"),
                 new Replace("• **", "{{Pause=3}}Ponto{{Pause=2}} • **"));
@@ -121,10 +132,9 @@ public class HeartMaker {
         if (questSource == null) {
             return;
         }
-        builder.append("{{Pause=3}}Lista de Perguntas e Respostas.{{Pause=3}}\n\n");
+        builder.append("{{Pause=3}}Início das Questões.{{Pause=3}}\n\n");
         insertLines(builder, questSource, 
                 new Replace("**Pergunta**", "{{Pause=3}}**Pergunta**{{Pause=2}}"),
-                new Replace("#card", ""),
                 new Replace("**Resposta**", "{{Pause=3}}**Resposta**{{Pause=2}}"));
     }
 
