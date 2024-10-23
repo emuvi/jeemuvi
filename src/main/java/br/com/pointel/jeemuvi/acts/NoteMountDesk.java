@@ -642,10 +642,14 @@ public class NoteMountDesk extends javax.swing.JFrame {
         try {
             var making = groovyClipboard(sourceParagraph.getText());
             var source = loadNote();
-            if (!source.isEmpty()) {
-                making = "\n\n" + making;
+            if (source.contains("<INSERT_HERE>")) {
+                source = source.replace("<INSERT_HERE>", making + "\n\n<INSERT_HERE>");
+            } else {
+                if (!source.isEmpty()) {
+                    making = "\n\n" + making;
+                }
+                source += making;
             }
-            source += making;
             saveNote(source);
             copySection += making;
             copyTitle += making;
