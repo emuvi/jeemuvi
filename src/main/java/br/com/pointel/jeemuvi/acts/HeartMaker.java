@@ -5,7 +5,10 @@ import br.com.pointel.jeemuvi.gears.RunChase;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 import org.apache.commons.io.FilenameUtils;
 
 /**
@@ -22,12 +25,12 @@ public class HeartMaker {
             public void run() {
                 try {
                     chase.putInfo("Starting making the Aelin Heart.");
-                    var basedFiles = getBasedFiles();
-                    chase.setProgressSize(basedFiles.length);
+                    var originFiles = getOriginFiles();
+                    chase.setProgressSize(originFiles.size());
                     var heartFolder = getHeartFolder();
-                    for (var basedFile : basedFiles) {
-                        chase.putInfo("Processing file: %s", basedFile);
-                        makeHeart(basedFile, heartFolder);
+                    for (var originFile : originFiles) {
+                        chase.putInfo("Processing file: %s", originFile);
+                        makeHeart(originFile, heartFolder);
                         chase.advanceWaitOnPauseThrowOnStop();
                     }
                     chase.putInfo("Writing the Quest Table.");
@@ -41,8 +44,11 @@ public class HeartMaker {
         }.start();
     }
 
-    private File[] getBasedFiles() {
-        return new File(Root.getFile(), "Based").listFiles();
+    private List<File> getOriginFiles() {
+        var result = new ArrayList<File>();
+        result.addAll(Arrays.asList(new File(Root.getFile(), "Based").listFiles()));
+        result.addAll(Arrays.asList(new File(Root.getFile(), "Quest").listFiles()));
+        return result;
     }
 
     private File getHeartFolder() throws Exception {
