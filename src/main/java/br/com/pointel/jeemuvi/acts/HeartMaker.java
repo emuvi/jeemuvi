@@ -53,13 +53,13 @@ public class HeartMaker {
         return result;
     }
 
-    private void makeHeart(File basedFile, File heartFolder) throws Exception {
-        var destinyFile = getDestinyFile(basedFile, heartFolder);
+    private void makeHeart(File originFile, File heartFolder) throws Exception {
+        var destinyFile = getDestinyFile(originFile, heartFolder);
         if (destinyFile.exists()
-                && basedFile.lastModified() < destinyFile.lastModified()) {
+                && originFile.lastModified() < destinyFile.lastModified()) {
             return;
         }
-        var sections = new CharsSections(basedFile);
+        var sections = new CharsSections(originFile);
         var source = sections.read();
         var headerSource = source.get("");
         var abstractSource = source.get("Resumo");
@@ -71,7 +71,7 @@ public class HeartMaker {
         }
         var builder = new StringBuilder();
         makeHeader(builder, headerSource);
-        makeTitle(builder, basedFile);
+        makeTitle(builder, originFile);
         makeAbstract(builder, abstractSource);
         makeArticle(builder, articleSource);
         makeAssert(builder, assertSource);
@@ -79,8 +79,8 @@ public class HeartMaker {
         Files.writeString(destinyFile.toPath(), builder.toString(), StandardCharsets.UTF_8);
     }
 
-    private File getDestinyFile(File basedFile, File heartFolder) {
-        return new File(heartFolder, "(H)" + FilenameUtils.getBaseName(basedFile.getName()) + ".txt");
+    private File getDestinyFile(File originFile, File heartFolder) {
+        return new File(heartFolder, "(H)" + FilenameUtils.getBaseName(originFile.getName()) + ".txt");
     }
 
     private void makeHeader(StringBuilder builder, List<String> headerSource) {
@@ -95,7 +95,9 @@ public class HeartMaker {
 
     private void makeTitle(StringBuilder builder, File basedFile) {
         var title = FilenameUtils.getBaseName(basedFile.getName());
-        if (title.startsWith("(B) ") || title.startsWith("(C) ")) {
+        if (title.startsWith("(B) ") 
+                || title.startsWith("(C) ") 
+                || title.startsWith("(Q) ")) {
             title = title.substring(4);
         }
         builder.append(title);
