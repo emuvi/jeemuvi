@@ -731,9 +731,21 @@ public class NoteMountDesk extends javax.swing.JFrame {
             if (clipboard.isEmpty()) {
                 throw new Exception("Clipboard is empty.");
             }
-            var lines = Arrays.stream(WizChars.getLines(clipboard))
-                    .collect(Collectors.toCollection(ArrayList::new));
-            lines.add(0, "");
+            var source = Arrays.stream(WizChars.getLines(clipboard))
+                    .map(l -> l.trim())
+                    .filter(l -> !l.isEmpty() && !"---".equals(l) && !"___".equals(l))
+                    .toList();
+            var lines = new ArrayList<String>();            
+            lines.add("");
+            for (var i = 0; i < source.size(); i++) {
+                var line = source.get(i);
+                if (i > 0) {
+                    lines.add(i, "");
+                    lines.add(i, "---");
+                    lines.add(i, "");
+                }
+                lines.add(line);
+            }
             lines.add("");
             var noteFile = getNoteFile();
             var charsSections = new CharsSections(noteFile);
