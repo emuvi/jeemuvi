@@ -740,9 +740,9 @@ public class NoteMountDesk extends javax.swing.JFrame {
             for (var i = 0; i < source.size(); i++) {
                 var line = source.get(i);
                 if (i > 0) {
-                    lines.add(i, "");
-                    lines.add(i, "---");
-                    lines.add(i, "");
+                    lines.add("");
+                    lines.add("---");
+                    lines.add("");
                 }
                 lines.add(line);
             }
