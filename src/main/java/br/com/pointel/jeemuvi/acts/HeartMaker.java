@@ -77,6 +77,7 @@ public class HeartMaker {
         }
         var builder = new StringBuilder();
         makeHeader(builder, headerSource);
+        makeLangs(headerSource, abstractSource, articleSource, assertSource, questSource);
         makeTitle(builder, originFile);
         makeAbstract(builder, abstractSource);
         makeArticle(builder, articleSource);
@@ -91,11 +92,35 @@ public class HeartMaker {
 
     private void makeHeader(StringBuilder builder, List<String> headerSource) {
         if (headerSource.contains("🌐 : English")) {
-            builder.append("{{Voice=Acapela Ryan22/}}{{Pause=5}}Attention, we are going to start a new title.{{Pause=5}}\n\n");
+            builder.append("{{Voice=Acapela Ryan22/}}<rate absspeed=\"-2\"/>{{Pause=5}}Attention, we are going to start a new title.{{Pause=5}}\n\n");
         } else if (headerSource.contains("🌐 : Español")) {
-            builder.append("{{Voice=Acapela Antonio22 (Spanish)/}}{{Pause=5}}Atención, comencemos un nuevo título.{{Pause=5}}\n\n");
+            builder.append("{{Voice=Acapela Antonio22 (Spanish)/}}<rate absspeed=\"-2\"/>{{Pause=5}}Atención, comencemos un nuevo título.{{Pause=5}}\n\n");
         } else {
-            builder.append("{{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}{{Pause=5}}Atenção, vamos começar um novo título.{{Pause=5}}\n\n");
+            builder.append("{{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}<rate absspeed=\"-2\"/>{{Pause=5}}Atenção, vamos começar um novo título.{{Pause=5}}\n\n");
+        }
+    }
+    
+    private void makeLangs(List<String> headerSource, List<String>... sources) {
+        if (headerSource.contains("🌐 : Português, English")) {
+            replaceAll(sources, 
+                    new Replace(" [", " {{Voice=Acapela Ryan22/}}<rate absspeed=\"-2\"/> "),
+                    new Replace("] ", " {{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}<rate absspeed=\"-2\"/> "));
+        } else if (headerSource.contains("🌐 : Português, Español")) {
+            replaceAll(sources, 
+                    new Replace(" [", " {{Voice=Acapela Antonio22 (Spanish)/}}<rate absspeed=\"-2\"/> "),
+                    new Replace("] ", " {{Voice=Acapela Marcia22 (Brazilian Portuguese)/}}<rate absspeed=\"-2\"/> "));
+        }
+    }
+    
+    private void replaceAll(List<String>[] sources, Replace... replaces) {
+        for (var source : sources) {
+            for (int i = 0; i < source.size(); i++) {
+                var line = source.get(i);
+                for (var replace : replaces) {
+                    line = line.replace(replace.fromChars, replace.toChars);
+                }
+                source.set(i, line);
+            }
         }
     }
 
