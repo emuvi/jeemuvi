@@ -211,7 +211,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
             }
         });
 
-        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Resumo", "Artigo", "Assertivas", "Questões" }));
+        fieldSections.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Título", "Resumo", "Artigo", "Assertivas", "Questões" }));
         fieldSections.setName("ChatName"); // NOI18N
 
         buttonGetFromSection.setText("/");
@@ -731,6 +731,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
             if (clipboard.isEmpty()) {
                 throw new Exception("Clipboard is empty.");
             }
+            var destinySection = getSelectedSection();
+            if ("Título".equals(destinySection)) {
+                atualizaTitulo(clipboard);
+                return;
+            }
             var source = Arrays.stream(WizChars.getLines(clipboard))
                     .map(l -> l.trim())
                     .filter(l -> !l.isEmpty() && !"---".equals(l) && !"___".equals(l))
@@ -752,12 +757,35 @@ public class NoteMountDesk extends javax.swing.JFrame {
             var sections = charsSections.read(notesHistory);
             putTitleOnHeader(sections, noteFile);
             putSoundOnHeader(sections, noteFile);
-            sections.put(getSelectedSection(), lines);
+            sections.put(destinySection, lines);
             charsSections.write(sections, notesHistory);
         } catch (Exception e) {
             WizSwing.showError(e);
         }
     }//GEN-LAST:event_buttonPutOnSectionActionPerformed
+
+    private void atualizaTitulo(String clipboard) throws Exception {
+        var noteFile = getNoteFile();
+        while (!Character.isLetterOrDigit(clipboard.charAt(0))) {
+            clipboard = clipboard.substring(1);
+        }
+        while (!Character.isLetterOrDigit(clipboard.charAt(clipboard.length() - 1))) {
+            clipboard = clipboard.substring(0, clipboard.length() - 1);
+        }
+        clipboard = clipboard.replace(":", ",");
+        clipboard = clipboard.replace("/", "-");
+        clipboard = clipboard.replace("\\", "-");
+        clipboard = clipboard.replace("?", "");
+        clipboard = clipboard.replace("!", "");
+        clipboard = clipboard.replace(".", "");
+        var destinyFile = new File(noteFile.getParentFile(), "(B) " + clipboard + ".md");
+        noteFile.renameTo(destinyFile);
+        var charsSections = new CharsSections(destinyFile);
+        var sections = charsSections.read(notesHistory);
+        putTitleOnHeader(sections, noteFile);
+        putSoundOnHeader(sections, noteFile);
+        charsSections.write(sections, notesHistory);
+    }
 
     private void putTitleOnHeader(CharsSectionsMap sections, File noteFile) {
         var section = sections.get("");
