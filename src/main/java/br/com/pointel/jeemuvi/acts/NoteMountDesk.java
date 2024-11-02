@@ -775,6 +775,10 @@ public class NoteMountDesk extends javax.swing.JFrame {
         clipboard = clipboard.replace(":", ",");
         clipboard = clipboard.replace("/", "-");
         clipboard = clipboard.replace("\\", "-");
+        clipboard = clipboard.replace("[", "");
+        clipboard = clipboard.replace("]", "");
+        clipboard = clipboard.replace("{", "");
+        clipboard = clipboard.replace("}", "");
         clipboard = clipboard.replace("?", "");
         clipboard = clipboard.replace("!", "");
         clipboard = clipboard.replace(".", "");
