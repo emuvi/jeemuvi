@@ -782,7 +782,11 @@ public class NoteMountDesk extends javax.swing.JFrame {
         clipboard = clipboard.replace("?", "");
         clipboard = clipboard.replace("!", "");
         clipboard = clipboard.replace(".", "");
-        var destinyFile = new File(noteFile.getParentFile(), "(B) " + clipboard + ".md");
+        var prefix = noteFile.getName().substring(0, 4);
+        var destinyFile = new File(noteFile.getParentFile(), prefix + clipboard + ".md");
+        if (destinyFile.exists()) {
+            throw new Exception("Título já existe.");
+        }
         noteFile.renameTo(destinyFile);
         var charsSections = new CharsSections(destinyFile);
         var sections = charsSections.read(notesHistory);
