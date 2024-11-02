@@ -782,8 +782,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
         noteFile.renameTo(destinyFile);
         var charsSections = new CharsSections(destinyFile);
         var sections = charsSections.read(notesHistory);
-        putTitleOnHeader(sections, noteFile);
-        putSoundOnHeader(sections, noteFile);
+        putTitleOnHeader(sections, destinyFile);
+        putSoundOnHeader(sections, destinyFile);
         charsSections.write(sections, notesHistory);
     }
 
