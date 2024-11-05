@@ -782,7 +782,8 @@ public class NoteMountDesk extends javax.swing.JFrame {
         clipboard = clipboard.replace("?", "");
         clipboard = clipboard.replace("!", "");
         clipboard = clipboard.replace(".", "");
-        var destinyFile = new File(noteFile.getParentFile(), "(B) " + clipboard + ".md");
+        var finalName = "(B) " + clipboard;
+        var destinyFile = new File(noteFile.getParentFile(), finalName + ".md");
         if (destinyFile.exists()) {
             throw new Exception("Título já existe.");
         }
@@ -792,6 +793,7 @@ public class NoteMountDesk extends javax.swing.JFrame {
         putTitleOnHeader(sections, destinyFile);
         putSoundOnHeader(sections, destinyFile);
         charsSections.write(sections, notesHistory);
+        WizSwing.putStringOnClipboard("[[" + finalName + "]]");
     }
 
     private void putTitleOnHeader(CharsSectionsMap sections, File noteFile) {
