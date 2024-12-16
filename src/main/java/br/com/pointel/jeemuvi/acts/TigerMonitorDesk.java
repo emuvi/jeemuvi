@@ -1,9 +1,9 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizes.WizBase;
-import br.com.pointel.jeemuvi.wizes.WizGroovy;
-import br.com.pointel.jeemuvi.wizes.WizNative;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
+import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizGroovy;
+import br.com.pointel.jarch.mage.WizNative;
+import br.com.pointel.jarch.mage.WizSwing;
 import java.awt.event.InputEvent;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;

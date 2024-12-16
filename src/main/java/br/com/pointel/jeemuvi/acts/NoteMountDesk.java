@@ -1,14 +1,5 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.CharsSections;
-import br.com.pointel.jeemuvi.gears.CharsSectionsMap;
-import br.com.pointel.jeemuvi.gears.TextHistory;
-import br.com.pointel.jeemuvi.gears.SwingDropper;
-import br.com.pointel.jeemuvi.gears.SwingNotify;
-import br.com.pointel.jeemuvi.wizes.WizBase;
-import br.com.pointel.jeemuvi.wizes.WizChars;
-import br.com.pointel.jeemuvi.wizes.WizGroovy;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,9 +7,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import javax.swing.SwingUtilities;
 import org.apache.commons.io.FilenameUtils;
+import br.com.pointel.jarch.gears.CharsSections;
+import br.com.pointel.jarch.gears.CharsSectionsMap;
+import br.com.pointel.jarch.gears.SwingDropper;
+import br.com.pointel.jarch.gears.SwingNotify;
+import br.com.pointel.jarch.gears.TextHistory;
+import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizChars;
+import br.com.pointel.jarch.mage.WizGroovy;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

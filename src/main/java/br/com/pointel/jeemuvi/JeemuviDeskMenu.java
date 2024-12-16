@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.wizes.WizSwing;
+import br.com.pointel.jarch.mage.WizSwing;
 import com.google.common.reflect.ClassPath;
 import java.util.Collections;
 import java.util.List;

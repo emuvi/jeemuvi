@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizes.WizSwing;
+import br.com.pointel.jarch.mage.WizSwing;
 
 public class HeartMakerDesk extends javax.swing.JFrame {
 

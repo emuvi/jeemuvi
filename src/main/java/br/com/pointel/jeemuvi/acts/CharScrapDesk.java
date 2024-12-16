@@ -1,10 +1,10 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.SwingDropper;
-import br.com.pointel.jeemuvi.wizes.WizBase;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import javax.swing.SwingUtilities;
+import br.com.pointel.jarch.gears.SwingDropper;
+import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

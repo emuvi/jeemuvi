@@ -1,9 +1,9 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizes.WizProps;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import br.com.pointel.jarch.mage.WizProps;
 
 /**
  *

@@ -1,6 +1,6 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizes.WizChars;
+import br.com.pointel.jarch.mage.WizChars;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

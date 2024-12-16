@@ -1,15 +1,14 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.CharsSections;
-import br.com.pointel.jeemuvi.gears.RunChase;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 import org.apache.commons.io.FilenameUtils;
+import br.com.pointel.jarch.gears.CharsSections;
+import br.com.pointel.jarch.gears.RunChase;
 
 /**
  *

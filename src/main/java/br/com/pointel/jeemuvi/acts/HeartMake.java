@@ -1,12 +1,12 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.RunChase;
-import br.com.pointel.jeemuvi.wizes.WizChars;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import org.apache.commons.io.FilenameUtils;
+import br.com.pointel.jarch.gears.RunChase;
+import br.com.pointel.jarch.mage.WizChars;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

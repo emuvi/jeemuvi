@@ -1,14 +1,14 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.SwingDropper;
-import br.com.pointel.jeemuvi.wizes.WizBase;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.SwingUtilities;
+import br.com.pointel.jarch.gears.SwingDropper;
+import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

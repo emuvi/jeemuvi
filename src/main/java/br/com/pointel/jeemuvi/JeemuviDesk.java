@@ -1,13 +1,12 @@
 package br.com.pointel.jeemuvi;
 
-import br.com.pointel.jeemuvi.wizes.WizBase;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
-import com.formdev.flatlaf.FlatDarculaLaf;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
-import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

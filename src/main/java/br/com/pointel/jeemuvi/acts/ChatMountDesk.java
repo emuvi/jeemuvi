@@ -1,8 +1,5 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.gears.SwingDropper;
-import br.com.pointel.jeemuvi.wizes.WizChats;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.awt.event.InputEvent;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -11,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import org.apache.commons.io.FilenameUtils;
+import br.com.pointel.jarch.gears.SwingDropper;
+import br.com.pointel.jarch.mage.WizChats;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *

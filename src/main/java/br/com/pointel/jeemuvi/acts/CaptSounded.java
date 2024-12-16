@@ -1,7 +1,5 @@
 package br.com.pointel.jeemuvi.acts;
 
-import br.com.pointel.jeemuvi.wizes.WizFiles;
-import br.com.pointel.jeemuvi.wizes.WizSwing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -9,6 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import org.apache.commons.io.FilenameUtils;
+import br.com.pointel.jarch.mage.WizFiles;
+import br.com.pointel.jarch.mage.WizSwing;
 
 /**
  *
