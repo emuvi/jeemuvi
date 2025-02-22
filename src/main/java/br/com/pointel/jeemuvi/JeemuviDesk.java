@@ -3,9 +3,7 @@ package br.com.pointel.jeemuvi;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
-import com.formdev.flatlaf.FlatDarculaLaf;
-import br.com.pointel.jarch.mage.WizBase;
+import br.com.pointel.jarch.mage.WizDesk;
 import br.com.pointel.jarch.mage.WizSwing;
 
 /**
@@ -26,8 +24,8 @@ public class JeemuviDesk extends JFrame {
         setIconImage(deskIcon.getLogo());
         setSize(128, 128);
         setUndecorated(true);
-        setName(WizBase.APP_NAME);
-        setTitle(WizBase.APP_TITLE);
+        setName("jeemuvi");
+        setTitle("Jeemuvi");
         setLayout(new BorderLayout());
         add(deskIcon, BorderLayout.CENTER);
         WizSwing.initFrame(this);
@@ -39,14 +37,7 @@ public class JeemuviDesk extends JFrame {
     }
     
     public static void start(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new FlatDarculaLaf());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        java.awt.EventQueue.invokeLater(() -> {
-            new JeemuviDesk().setVisible(true);
-        });
+        WizDesk.start("Jeemuvi", () -> new JeemuviDesk().setVisible(true));
     }
     
 }
